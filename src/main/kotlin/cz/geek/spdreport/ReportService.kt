@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
 import java.net.URL
 import java.time.Instant
+import java.time.LocalDateTime
 import java.time.ZoneId
 
 @Service
@@ -26,14 +27,14 @@ class ReportService {
             .components
             .filterIsInstance<VEvent>()
             .filter { it.start().isBefore(data.end()) && it.end().isAfter(data.start()) }
-            .map { Report(
-                date = it.start().toLocalDate(),
-                start = it.start().toLocalTime(),
-                end = it.start().toLocalTime(),
+            .flatMap { DatePairGenerator.generate(it.start(), it.end()) }
+            .map { (start, end) -> Report(
+                date = start.toLocalDate(),
+                start = start.toLocalTime(),
+                end = end.toLocalTime(),
                 name = data.name,
                 number = data.number
             ) }
-
 
     private fun VEvent.start() = this.startDate.toLocal()
 
