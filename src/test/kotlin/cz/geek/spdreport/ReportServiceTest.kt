@@ -24,24 +24,50 @@ class ReportServiceTest : FreeSpec({
             end = LocalDate.of(2023, 9, 30)
         )
         val list = service.create(read(), data)
-        list shouldHaveSize 8
+        list shouldHaveSize 12
 
         assertSoftly(list[0]) {
             date shouldBe LocalDate.parse("2023-09-18")
-            start shouldBe LocalTime.of(9, 0)
+            start shouldBe LocalTime.of(17, 0)
             end shouldBe LocalTime.of(23, 59)
             name shouldBe "James"
             number shouldBe "007"
         }
-        list.subList(1, 7).forAll {
-            assertSoftly(it) {
-                start shouldBe LocalTime.of(0, 0)
-                end shouldBe LocalTime.of(23, 59)
-                name shouldBe "James"
-                number shouldBe "007"
+        list.subList(1, 9)
+            .filterIndexed { index, _ -> index % 2 == 0 }
+            .forAll {
+                assertSoftly(it) {
+                    start shouldBe LocalTime.of(0, 0)
+                    end shouldBe LocalTime.of(9, 0)
+                    name shouldBe "James"
+                    number shouldBe "007"
+                }
             }
+        list.subList(1, 9)
+            .filterIndexed { index, _ -> index % 2 == 1 }
+            .forAll {
+                assertSoftly(it) {
+                    start shouldBe LocalTime.of(17, 0)
+                    end shouldBe LocalTime.of(23, 59)
+                    name shouldBe "James"
+                    number shouldBe "007"
+                }
+            }
+        assertSoftly(list[9]) {
+            date shouldBe LocalDate.parse("2023-09-23")
+            start shouldBe LocalTime.of(0, 0)
+            end shouldBe LocalTime.of(23, 59)
+            name shouldBe "James"
+            number shouldBe "007"
         }
-        assertSoftly(list[7]) {
+        assertSoftly(list[10]) {
+            date shouldBe LocalDate.parse("2023-09-24")
+            start shouldBe LocalTime.of(0, 0)
+            end shouldBe LocalTime.of(23, 59)
+            name shouldBe "James"
+            number shouldBe "007"
+        }
+        assertSoftly(list[11]) {
             date shouldBe LocalDate.parse("2023-09-25")
             start shouldBe LocalTime.of(0, 0)
             end shouldBe LocalTime.of(9, 0)
