@@ -32,7 +32,7 @@
             <td th:text="${i.number}">777</td>
             <td th:text="${i.name}">John Doe</td>
             <td th:text="${i.start}">9:00</td>
-            <td th:text="${i.end}">23:59</td>
+            <td th:text="${#temporals.format(i.end, 'kk:mm')}">24:00</td>
         </tr>
     </table>
     </div>

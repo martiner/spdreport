@@ -8,7 +8,6 @@ import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
 import java.net.URL
 import java.time.Instant
-import java.time.LocalDateTime
 import java.time.ZoneId
 
 @Service
@@ -31,7 +30,7 @@ class ReportService {
             .map { (start, end) -> Report(
                 date = start.toLocalDate(),
                 start = start.toLocalTime(),
-                end = end.toLocalTime(),
+                end = end,
                 name = data.name,
                 number = data.number
             ) }

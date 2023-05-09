@@ -29,7 +29,7 @@ class ReportServiceTest : FreeSpec({
         assertSoftly(list[0]) {
             date shouldBe LocalDate.parse("2023-09-18")
             start shouldBe LocalTime.of(17, 0)
-            end shouldBe LocalTime.of(23, 59)
+            end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
         }
@@ -48,7 +48,7 @@ class ReportServiceTest : FreeSpec({
             .forAll {
                 assertSoftly(it) {
                     start shouldBe LocalTime.of(17, 0)
-                    end shouldBe LocalTime.of(23, 59)
+                    end shouldBe LocalTime.of(0, 0)
                     name shouldBe "James"
                     number shouldBe "007"
                 }
@@ -56,14 +56,14 @@ class ReportServiceTest : FreeSpec({
         assertSoftly(list[9]) {
             date shouldBe LocalDate.parse("2023-09-23")
             start shouldBe LocalTime.of(0, 0)
-            end shouldBe LocalTime.of(23, 59)
+            end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
         }
         assertSoftly(list[10]) {
             date shouldBe LocalDate.parse("2023-09-24")
             start shouldBe LocalTime.of(0, 0)
-            end shouldBe LocalTime.of(23, 59)
+            end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
         }

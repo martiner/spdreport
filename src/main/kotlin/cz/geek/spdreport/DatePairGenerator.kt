@@ -4,7 +4,10 @@ import java.time.DayOfWeek.SATURDAY
 import java.time.DayOfWeek.SUNDAY
 import java.time.LocalDate
 import java.time.LocalDateTime
-typealias DatePair = Pair<LocalDateTime, LocalDateTime>
+import java.time.LocalTime
+import java.time.LocalTime.MIDNIGHT
+
+typealias DatePair = Pair<LocalDateTime, LocalTime>
 
 class DatePairGenerator(
     private val start: LocalDateTime,
@@ -19,9 +22,9 @@ class DatePairGenerator(
 
     private fun generate(): List<DatePair> {
         if (start.toLocalDate() == end.toLocalDate()) {
-            list.addDatePair(start, end)
+            list.addDatePair(start, end.toLocalTime())
         } else {
-            list.addDatePair(start, start.toLocalDate().atEndOfDay())
+            list.addDatePair(start, MIDNIGHT)
             generate(start.toLocalDate().plusDays(1))
         }
         return list
@@ -29,9 +32,9 @@ class DatePairGenerator(
 
     private fun generate(startDate: LocalDate) {
         if (startDate == end.toLocalDate()) {
-            list.addDatePair(startDate.atStartOfDay(), end)
+            list.addDatePair(startDate.atStartOfDay(), end.toLocalTime())
         } else {
-            list.addDatePair(startDate.atStartOfDay(), startDate.atEndOfDay())
+            list.addDatePair(startDate.atStartOfDay(), MIDNIGHT)
             generate(startDate.plusDays(1))
         }
     }
@@ -41,20 +44,16 @@ class DatePairGenerator(
             DatePairGenerator(start, end).generate()
     }
 
-    private fun LocalDate.atEndOfDay() = atTime(23, 59)
-
-    private fun MutableList<DatePair>.addDatePair(start: LocalDateTime, end: LocalDateTime) {
-        if (start.isWeekend() || (start.hour < 9 && end.hour <= 9) || (start.hour >= 17 && end.hour > 17)) {
-            addIfNotSame(start, end)
-        } else {
-            addIfNotSame(start, start.withHour(9))
-            addIfNotSame(start.withHour(17), end)
-        }
-    }
-
-    private fun MutableList<DatePair>.addIfNotSame(start: LocalDateTime, end: LocalDateTime) {
-        if (start != end) {
+    private fun MutableList<DatePair>.addDatePair(start: LocalDateTime, end: LocalTime) {
+        if (start.isWeekend()) {
             add(DatePair(start, end))
+        } else {
+            if (start.hour < 9 && (end.hour >= 9 || end.hour == 0)) {
+                add(DatePair(start, LocalTime.of(9, 0)))
+            }
+            if (end.hour > 17 || end.hour == 0) {
+                add(DatePair(start.withHour(17), end))
+            }
         }
     }
 
