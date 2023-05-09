@@ -27,5 +27,10 @@ class SpdReportController(
     }
 
     @ModelAttribute
-    fun model() = ReportData(name = "", number = "", start = LocalDate.now(), end = LocalDate.now())
+    fun model(): ReportData =
+        LocalDate.now().withDayOfMonth(1).minusMonths(1)
+            .let {
+                ReportData(name = "", number = "", start = it, end = it.plusMonths(1).minusDays(1))
+            }
+
 }
