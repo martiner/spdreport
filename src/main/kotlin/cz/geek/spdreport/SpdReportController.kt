@@ -21,7 +21,7 @@ class SpdReportController(
     fun post(@ModelAttribute reportData: ReportData, model: Model): String {
         val url = reportData.url
         if (url != null) {
-            service.create(reportData, url)
+            model.addAttribute("list", service.create(reportData, url))
         }
         return "report"
     }

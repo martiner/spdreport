@@ -5,8 +5,36 @@
     <title>S PD Report</title>
 </head>
 <body>
-<h1>S PD Report</h1>
+    <h1>S PD Report</h1>
 
+    <form action="#" th:action="@{/}" th:object="${reportData}" method="post">
+        <input type="date" th:field="*{start}" />
+        <input type="date" th:field="*{end}" />
+        <input type="text" th:field="*{name}" placeholder="Employee Name" />
+        <input type="text" th:field="*{number}" placeholder="Emp. Num." size="10" />
+        <input type="text" th:field="*{url}" placeholder="PD iCalendar URL" size="110" />
+        <input type="submit" value="Generate" />
+        <p><small>PD: My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)</small></p>
+    </form>
 
+    <div th:if="${list}">
+    <h2>On Call Tracking</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>ID number</th>
+            <th>Employee name</th>
+            <th>On call start hour</th>
+            <th>On call end hour</th>
+        </tr>
+        <tr th:each="i : ${list}">
+            <td th:text="${#temporals.format(i.date, 'EEEE, MMM d, yyyy')}">13/01/2011</td>
+            <td th:text="${i.number}">777</td>
+            <td th:text="${i.name}">John Doe</td>
+            <td th:text="${i.start}">9:00</td>
+            <td th:text="${i.end}">23:59</td>
+        </tr>
+    </table>
+    </div>
 </body>
 </html>
