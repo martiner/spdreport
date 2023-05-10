@@ -28,7 +28,7 @@
             <th>On call end hour</th>
         </tr>
         <tr th:each="i : ${list}">
-            <td th:text="${#temporals.format(i.date, 'EEEE, MMM d, yyyy')}">13/01/2011</td>
+            <td th:text="${#temporals.format(i.date, 'EEEE, MMM d, yyyy', T(java.util.Locale).ENGLISH)}">13/01/2011</td>
             <td th:text="${i.number}">777</td>
             <td th:text="${i.name}">John Doe</td>
             <td th:text="${i.start}">9:00</td>
