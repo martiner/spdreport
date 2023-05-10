@@ -1,5 +1,6 @@
 package cz.geek.spdreport
 
+import mu.KotlinLogging
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.component.VEvent
 import net.fortuna.ical4j.model.property.DateProperty
@@ -10,12 +11,15 @@ import java.net.URL
 import java.time.Instant
 import java.time.ZoneId
 
+private val logger = KotlinLogging.logger {}
+
 @Service
 class ReportService {
 
     private val zone = ZoneId.of("Europe/Prague")
 
     fun create(data: ReportData, url: URL): List<Report> {
+        logger.info { "Creating report for $data" }
         val source = url.readBytes()
         return create(source, data)
     }
