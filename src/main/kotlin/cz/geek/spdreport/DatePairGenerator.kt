@@ -12,6 +12,7 @@ typealias DatePair = Pair<LocalDateTime, LocalTime>
 class DatePairGenerator(
     private val start: LocalDateTime,
     private val end: LocalDateTime,
+    private val holidays: Set<LocalDate>,
 ) {
 
     init {
@@ -40,12 +41,12 @@ class DatePairGenerator(
     }
 
     companion object {
-        fun generate(start: LocalDateTime, end: LocalDateTime): List<DatePair> =
-            DatePairGenerator(start, end).generate()
+        fun generate(start: LocalDateTime, end: LocalDateTime, holidays: Set<LocalDate>): List<DatePair> =
+            DatePairGenerator(start, end, holidays).generate()
     }
 
     private fun MutableList<DatePair>.addDatePair(start: LocalDateTime, end: LocalTime) {
-        if (start.isWeekend()) {
+        if (start.isWeekend() || start.isHoliday()) {
             add(DatePair(start, end))
         } else {
             if (start.hour < 9 && (end.hour >= 9 || end.hour == 0)) {
@@ -58,4 +59,6 @@ class DatePairGenerator(
     }
 
     private fun LocalDateTime.isWeekend(): Boolean = dayOfWeek == SUNDAY || dayOfWeek == SATURDAY
+
+    private fun LocalDateTime.isHoliday(): Boolean = holidays.contains(this.toLocalDate())
 }

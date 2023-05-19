@@ -2,19 +2,18 @@ package cz.geek.spdreport
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.collections.shouldMatchEach
 import io.kotest.matchers.shouldBe
-import java.lang.invoke.MethodHandles
+import io.kotest.datatest.withData
+import java.net.URL
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
 
-    val service = ReportService()
+    val service = ReportService(URL("http://foo"))
 
     "Should create report" {
         val data = ReportData(
@@ -23,7 +22,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.create(read(), data)
+        val list = service.create(read(), data, emptySet())
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
@@ -76,6 +75,26 @@ class ReportServiceTest : FreeSpec({
         }
     }
 
+    "Should create list with holidays" - {
+        withData(
+            setOf<LocalDate>() to LocalTime.of(17, 0),
+            setOf(LocalDate.of(2023, 5, 1)) to LocalTime.of(9, 0),
+        ) { (holidays, startTime) ->
+            val data = ReportData(
+                name = "James",
+                number = "007",
+                start = LocalDate.of(2023, 5, 1),
+                end = LocalDate.of(2023, 5, 2)
+            )
+            val list = service.create(read(), data, holidays)
+            list shouldHaveAtLeastSize 1
+            assertSoftly(list[0]) {
+                date shouldBe data.start
+                start shouldBe startTime
+                end shouldBe LocalTime.of(0, 0)
+            }
+        }
+    }
 })
 
 private fun read() = requireNotNull(ReportServiceTest::class.java.getResource("/schedule.ics")).readBytes()
