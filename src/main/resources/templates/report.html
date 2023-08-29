@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S PD Report</title>
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     <style>
         body {
             font: normal 10pt Arial, sans-serif;
         }
     </style>
+    <script>
+        $(document).ready(function() {
+            $('.tabular.menu .item').tab();
+        })
+    </script>
 </head>
 <body>
 <div class="ui container">
@@ -18,7 +25,7 @@
         <i class="clipboard list icon"></i>S PD Report
     </h1>
 
-    <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form segment">
+    <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form">
         <div class="four fields">
             <div class="field">
                 <label>Start:</label>
@@ -37,13 +44,28 @@
                 <input type="text" th:field="*{number}" />
             </div>
         </div>
-        <div class="field">
-            <label>PD iCalendar URL:</label>
-            <input type="text" th:field="*{url}" />
+        <div class="ui top attached tabular menu">
+            <a class="item active" data-tab="url">iCalendar Download:</a>
+            <a class="item" data-tab="file">iCalendar Upload:</a>
         </div>
-        <div class="ui bottom attached tiny info message">
-            <div class="header">Where do I find the URL in PagerDuty?</div>
-            My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)
+        <div class="ui bottom attached tab segment active" data-tab="url">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui basic label">URL:</div>
+                    <input type="text" th:field="*{url}" />
+                </div>
+            </div>
+            <div class="ui bottom attached tiny info message">
+                <div class="header">Where do I find the URL in PagerDuty?</div>
+                My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)
+            </div>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="file">
+            <div class="fields">
+                <div class="field">
+                    <input type="file" name="file">
+                </div>
+            </div>
         </div>
         <div class="ui center aligned container">
             <button type="submit" class="ui blue button"><i class="icon sync alternate"></i>Generate</button>

@@ -22,6 +22,8 @@ class SpdReportController(
         val url = reportData.url
         if (url != null) {
             model.addAttribute("list", service.create(reportData, url))
+        } else if (reportData.file?.isEmpty == false) {
+            model.addAttribute("list", service.create(reportData, reportData.file!!.bytes))
         }
         return "report"
     }

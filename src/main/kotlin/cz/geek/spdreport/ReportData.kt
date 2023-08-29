@@ -1,6 +1,7 @@
 package cz.geek.spdreport
 
 import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.web.multipart.MultipartFile
 import java.net.URL
 import java.time.LocalDate
 
@@ -12,4 +13,5 @@ data class ReportData(
     @field:DateTimeFormat(pattern = "yyyy-MM-dd")
     var end: LocalDate,
     var url: URL? = null,
+    var file: MultipartFile? = null,
 )

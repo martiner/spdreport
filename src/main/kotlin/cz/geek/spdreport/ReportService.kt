@@ -26,6 +26,10 @@ class ReportService(
     fun create(data: ReportData, url: URL): List<Report> {
         logger.info { "Creating report for $data" }
         val source = url.readBytes()
+        return create(data, source)
+    }
+
+    fun create(data: ReportData, source: ByteArray): List<Report> {
         val holidays = holidays(holidays.readBytes(), data)
         return create(source, data, holidays)
     }
