@@ -22,7 +22,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.create(read(), data, emptySet())
+        val list = service.create(read("/schedule.ics"), data, emptySet())
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
@@ -75,6 +75,34 @@ class ReportServiceTest : FreeSpec({
         }
     }
 
+    "Should create report starting in :30 and ending at midnight" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            start = LocalDate.of(2023, 8, 1),
+            end = LocalDate.of(2023, 8, 30)
+        )
+        val list = service.create(read("/jp.ics"), data, emptySet())
+        list shouldHaveSize 9
+
+        assertSoftly(list.first()) {
+            date shouldBe LocalDate.of(2023, 8, 7)
+            start shouldBe LocalTime.of(17, 0)
+            end shouldBe LocalTime.of(0, 0)
+            name shouldBe "James"
+            number shouldBe "007"
+        }
+
+        assertSoftly(list.last()) {
+            date shouldBe LocalDate.of(2023, 8, 11)
+            start shouldBe LocalTime.of(17, 0)
+            end shouldBe LocalTime.of(0, 0)
+            name shouldBe "James"
+            number shouldBe "007"
+        }
+
+    }
+
     "Should create list with holidays" - {
         withData(
             setOf<LocalDate>() to LocalTime.of(17, 0),
@@ -86,7 +114,7 @@ class ReportServiceTest : FreeSpec({
                 start = LocalDate.of(2023, 5, 1),
                 end = LocalDate.of(2023, 5, 2)
             )
-            val list = service.create(read(), data, holidays)
+            val list = service.create(read("/schedule.ics"), data, holidays)
             list shouldHaveAtLeastSize 1
             assertSoftly(list[0]) {
                 date shouldBe data.start
@@ -97,4 +125,4 @@ class ReportServiceTest : FreeSpec({
     }
 })
 
-private fun read() = requireNotNull(ReportServiceTest::class.java.getResource("/schedule.ics")).readBytes()
+private fun read(resource: String) = requireNotNull(ReportServiceTest::class.java.getResource(resource)).readBytes()

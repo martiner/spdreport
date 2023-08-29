@@ -33,6 +33,9 @@ class DatePairGenerator(
 
     private fun generate(startDate: LocalDate) {
         if (startDate == end.toLocalDate()) {
+            if (end.toLocalTime() == MIDNIGHT) {
+                return
+            }
             list.addDatePair(startDate.atStartOfDay(), end.toLocalTime())
         } else {
             list.addDatePair(startDate.atStartOfDay(), MIDNIGHT)
@@ -53,7 +56,7 @@ class DatePairGenerator(
                 add(DatePair(start, LocalTime.of(9, 0)))
             }
             if (end.hour > 17 || end.hour == 0) {
-                add(DatePair(start.withHour(17), end))
+                add(DatePair(start.withHour(17).withMinute(0), end))
             }
         }
     }
