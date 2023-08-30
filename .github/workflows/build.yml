@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
       - name: Checkout Git
         uses: actions/checkout@v3
@@ -20,5 +24,10 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Build with Maven
-        run: ./mvnw -B package
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
+
+      - name: Build and Deploy
+        run: ./mvnw -B package appengine:deploy
