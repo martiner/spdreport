@@ -44,7 +44,7 @@ class DatePairGenerator(
     }
 
     companion object {
-        fun generate(start: LocalDateTime, end: LocalDateTime, holidays: Set<LocalDate>): List<DatePair> =
+        fun generate(start: LocalDateTime, end: LocalDateTime, holidays: Set<LocalDate> = emptySet()): List<DatePair> =
             DatePairGenerator(start, end, holidays).generate()
     }
 
@@ -54,8 +54,12 @@ class DatePairGenerator(
         } else {
             if (start.hour < 9 && (end.hour >= 9 || end.hour == 0)) {
                 add(DatePair(start, LocalTime.of(9, 0)))
+            } else if (start.hour < 9 && end.hour < 9) {
+                add(DatePair(start, end))
             }
-            if (end.hour > 17 || end.hour == 0) {
+            if (start.hour >= 17 && (end.hour > 17 || end.hour == 0)) {
+                add(DatePair(start, end))
+            } else if (start.hour < 17 && (end.hour > 17 || end.hour == 0)) {
                 add(DatePair(start.withHour(17).withMinute(0), end))
             }
         }

@@ -80,7 +80,7 @@ class ReportServiceTest : FreeSpec({
             name = "James",
             number = "007",
             start = LocalDate.of(2023, 8, 1),
-            end = LocalDate.of(2023, 8, 30)
+            end = LocalDate.of(2023, 8, 20)
         )
         val list = service.create(read("/jp.ics"), data, emptySet())
         list shouldHaveSize 9
@@ -101,6 +101,25 @@ class ReportServiceTest : FreeSpec({
             number shouldBe "007"
         }
 
+    }
+
+    "Should create report for 1,5 hour event" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            start = LocalDate.of(2023, 8, 28),
+            end = LocalDate.of(2023, 8, 30)
+        )
+        val list = service.create(read("/jp.ics"), data, emptySet())
+        list shouldHaveSize 1
+
+        assertSoftly(list.first()) {
+            date shouldBe LocalDate.of(2023, 8, 29)
+            start shouldBe LocalTime.of(18, 30)
+            end shouldBe LocalTime.of(19, 0)
+            name shouldBe "James"
+            number shouldBe "007"
+        }
     }
 
     "Should create list with holidays" - {
