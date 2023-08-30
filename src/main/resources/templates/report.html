@@ -15,6 +15,13 @@
     <script>
         $(document).ready(function() {
             $('.tabular.menu .item').tab();
+            $('#copy-button').click(function() {
+                const content = document.getElementById('content-to-copy');
+                const range = document.createRange();
+                range.selectNode(content);
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+            });
         })
     </script>
 </head>
@@ -74,8 +81,9 @@
 
     <div th:if="${list}">
     <p></p>
+    <button type="button" class="right floated ui green button" id="copy-button"><i class="icon copy"></i>Copy to clipboard</button>
     <h2>On Call Tracking</h2>
-    <table>
+    <table id="content-to-copy">
         <tr>
             <th>Date</th>
             <th>ID number</th>
