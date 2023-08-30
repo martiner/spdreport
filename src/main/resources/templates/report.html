@@ -1,8 +1,10 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S PD Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
     <style>
         body {
             font: normal 10pt Arial, sans-serif;
@@ -10,19 +12,46 @@
     </style>
 </head>
 <body>
-    <h1>S PD Report</h1>
+<div class="ui container">
+    <p></p>
+    <h1 class="ui header">
+        <i class="clipboard list icon"></i>S PD Report
+    </h1>
 
-    <form action="#" th:action="@{/}" th:object="${reportData}" method="post">
-        <input type="date" th:field="*{start}" />
-        <input type="date" th:field="*{end}" />
-        <input type="text" th:field="*{name}" placeholder="Employee Name" />
-        <input type="text" th:field="*{number}" placeholder="Emp. Num." size="10" />
-        <input type="text" th:field="*{url}" placeholder="PD iCalendar URL" size="110" />
-        <input type="submit" value="Generate" />
-        <p><small>PD: My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)</small></p>
+    <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form segment">
+        <div class="four fields">
+            <div class="field">
+                <label>Start:</label>
+                <input type="date" th:field="*{start}" />
+            </div>
+            <div class="field">
+                <label>End:</label>
+                <input type="date" th:field="*{end}" />
+            </div>
+            <div class="field">
+                <label>Employee Name:</label>
+                <input type="text" th:field="*{name}" />
+            </div>
+            <div class="field">
+                <label>Employee Number:</label>
+                <input type="text" th:field="*{number}" />
+            </div>
+        </div>
+        <div class="field">
+            <label>PD iCalendar URL:</label>
+            <input type="text" th:field="*{url}" />
+        </div>
+        <div class="ui bottom attached tiny info message">
+            <div class="header">Where do I find the URL in PagerDuty?</div>
+            My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)
+        </div>
+        <div class="ui center aligned container">
+            <button type="submit" class="ui blue button"><i class="icon sync alternate"></i>Generate</button>
+        </div>
     </form>
 
     <div th:if="${list}">
+    <p></p>
     <h2>On Call Tracking</h2>
     <table>
         <tr>
@@ -41,5 +70,10 @@
         </tr>
     </table>
     </div>
+    <div class="ui divider"></div>
+    <div class="ui center aligned container">
+        <a href="https://github.com/martiner/spdreport"><i class="github icon"></i>Source code</a>
+    </div>
+</div>
 </body>
 </html>
