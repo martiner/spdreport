@@ -102,8 +102,10 @@
     </div>
     <div class="ui divider"></div>
     <div class="ui center aligned container">
-        <a href="https://github.com/martiner/spdreport"><i class="github icon"></i>Source code</a>
+        <i class="github icon"></i><a href="https://github.com/martiner/spdreport">Source code:</a>
+        <a th:href="'https://github.com/martiner/spdreport/commit/' + ${git.shortCommitId}" th:text="'#' + ${git.shortCommitId}">deadbeef</a>
     </div>
+
 </div>
 </body>
 </html>
