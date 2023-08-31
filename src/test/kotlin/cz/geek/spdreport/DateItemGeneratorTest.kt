@@ -141,4 +141,11 @@ class DateItemGeneratorTest : FreeSpec({
         }
     }
 
+    "Should generate many without stack overflow" {
+        DateItemGenerator.generate(
+            LocalDateTime.of(2023, 1, 1, 0, 0),
+            LocalDateTime.of(2053, 12, 31, 23, 0)
+        )
+    }
+
 })

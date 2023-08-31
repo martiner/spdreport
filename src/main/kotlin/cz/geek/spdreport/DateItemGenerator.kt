@@ -29,7 +29,7 @@ class DateItemGenerator(
         return list
     }
 
-    private fun generate(startDate: LocalDate) {
+    private tailrec fun generate(startDate: LocalDate) {
         if (startDate == end.toLocalDate()) {
             if (end.toLocalTime() == MIDNIGHT) {
                 return
