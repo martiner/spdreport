@@ -42,10 +42,10 @@ class ReportService(
 
     fun create(source: ByteArray, data: ReportData, holidays: Set<LocalDate>): List<Report> =
         load(source, data.start, data.end)
-            .flatMap { DatePairGenerator.generate(it.start(), it.end(), holidays) }
-            .map { (start, end) -> Report(
-                date = start.toLocalDate(),
-                start = start.toLocalTime(),
+            .flatMap { DateItemGenerator.generate(it.start(), it.end(), holidays) }
+            .map { (day, start, end) -> Report(
+                date = day,
+                start = start,
                 end = end,
                 name = data.name,
                 number = data.number

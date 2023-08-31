@@ -7,9 +7,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.LocalTime.MIDNIGHT
 
-typealias DatePair = Pair<LocalDateTime, LocalTime>
-
-class DatePairGenerator(
+class DateItemGenerator(
     private val start: LocalDateTime,
     private val end: LocalDateTime,
     private val holidays: Set<LocalDate>,
@@ -19,9 +17,9 @@ class DatePairGenerator(
         require(start.isBefore(end)) { "Start date $start is not before end date $end" }
     }
 
-    private val list: MutableList<DatePair> = mutableListOf()
+    private val list: MutableList<DateItem> = mutableListOf()
 
-    private fun generate(): List<DatePair> {
+    private fun generate(): List<DateItem> {
         if (start.toLocalDate() == end.toLocalDate()) {
             list.addDatePair(start, end.toLocalTime())
         } else {
@@ -44,23 +42,23 @@ class DatePairGenerator(
     }
 
     companion object {
-        fun generate(start: LocalDateTime, end: LocalDateTime, holidays: Set<LocalDate> = emptySet()): List<DatePair> =
-            DatePairGenerator(start, end, holidays).generate()
+        fun generate(start: LocalDateTime, end: LocalDateTime, holidays: Set<LocalDate> = emptySet()): List<DateItem> =
+            DateItemGenerator(start, end, holidays).generate()
     }
 
-    private fun MutableList<DatePair>.addDatePair(start: LocalDateTime, end: LocalTime) {
+    private fun MutableList<DateItem>.addDatePair(start: LocalDateTime, end: LocalTime) {
         if (start.isWeekend() || start.isHoliday()) {
-            add(DatePair(start, end))
+            add(DateItem(start, end))
         } else {
             if (start.hour < 9 && (end.hour >= 9 || end.hour == 0)) {
-                add(DatePair(start, LocalTime.of(9, 0)))
+                add(DateItem(start, LocalTime.of(9, 0)))
             } else if (start.hour < 9 && end.hour < 9) {
-                add(DatePair(start, end))
+                add(DateItem(start, end))
             }
             if (start.hour >= 17 && (end.hour > 17 || end.hour == 0)) {
-                add(DatePair(start, end))
+                add(DateItem(start, end))
             } else if (start.hour < 17 && (end.hour > 17 || end.hour == 0)) {
-                add(DatePair(start.withHour(17).withMinute(0), end))
+                add(DateItem(start.withHour(17).withMinute(0), end))
             }
         }
     }
