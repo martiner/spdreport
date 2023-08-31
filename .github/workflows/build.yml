@@ -29,5 +29,9 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
+      - name: Set env variables
+        run: |
+          yq eval ".env_variables.GOOGLE_CLIENT_SECRET = '${{ secrets.GOOGLE_CLIENT_SECRET }}'" -i src/main/appengine/app.yaml
+
       - name: Build and Deploy
         run: ./mvnw -B package appengine:deploy
