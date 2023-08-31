@@ -1,0 +1,4 @@
+root = true
+
+[pom.xml]
+indent_style = tab

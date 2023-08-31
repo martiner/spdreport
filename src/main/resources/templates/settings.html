@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
+<body>
+<div class="ui container" id="content">
+    <div class="ui center aligned container" th:unless="${#strings.isEmpty(message)}">
+        <div th:text="${message}" class="ui compact positive message">This is the message</div>
+        <p></p>
+    </div>
+
+    <form action="#" th:action="@{/settings}" th:object="${settings}" method="post" class="ui form">
+        <div class="four fields">
+            <div class="field">
+                <label>Employee Name:</label>
+                <input type="text" th:field="*{fullName}" />
+            </div>
+            <div class="field">
+                <label>Employee Number:</label>
+                <input type="text" th:field="*{number}" />
+            </div>
+            <div class="eight wide field">
+                <label>Email:</label>
+                <input type="text" th:field="*{email}" />
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui labeled input">
+                <div class="ui basic label">URL:</div>
+                <input type="text" th:field="*{url}" />
+            </div>
+        </div>
+        <div class="inline fields">
+            <label>Default report date range:</label>
+            <div th:each="r : ${ranges}">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" th:field="*{defaultRange}" th:value="${r}" />
+                        <label th:for="${#ids.prev('defaultRange')}" th:text="${r.title}">range</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="ui center aligned container">
+            <button type="submit" class="ui blue button"><i class="icon save"></i>Save</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
