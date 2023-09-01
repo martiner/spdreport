@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (content)">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S PD Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <style>
+        body {
+            font: normal 10pt Arial, sans-serif;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('.tabular.menu .item').tab();
+            $('#copy-button').click(function() {
+                const content = document.getElementById('content-to-copy');
+                const range = document.createRange();
+                range.selectNode(content);
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="ui container">
+    <p></p>
+    <h1 class="ui header">
+        <i class="clipboard list icon"></i>S PD Report
+    </h1>
+
+    <div th:replace="${content}">
+        <p>Layout content</p>
+    </div>
+
+    <div class="ui divider"></div>
+    <div class="ui center aligned container">
+        <i class="github icon"></i><a href="https://github.com/martiner/spdreport">Source code:</a>
+        <a th:href="'https://github.com/martiner/spdreport/commit/' + ${git.shortCommitId}" th:text="'#' + ${git.shortCommitId}">deadbeef</a>
+    </div>
+
+</div>
+</body>
+</html>
