@@ -32,6 +32,7 @@ jobs:
       - name: Set env variables
         run: |
           yq eval ".env_variables.GOOGLE_CLIENT_SECRET = '${{ secrets.GOOGLE_CLIENT_SECRET }}'" -i src/main/appengine/app.yaml
+          yq eval ".env_variables.GMAIL_PASSWORD = '${{ secrets.GMAIL_PASSWORD }}'" -i src/main/appengine/app.yaml
 
       - name: Build and Deploy
-        run: ./mvnw -B package appengine:deploy
+        run: ./mvnw -B package appengine:deploy appengine:deployCron

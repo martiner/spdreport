@@ -38,6 +38,7 @@ class SettingsController(
         val settings = settingsRepository.load(principal.name) ?: Settings(principal)
         model.addAttribute(MODEL, settings)
         model.addAttribute("ranges", DateRanges.values())
+        model.addAttribute("freq", EmailFrequency.values())
     }
     
     @InitBinder

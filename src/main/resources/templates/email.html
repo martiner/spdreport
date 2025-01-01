@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font: normal 10pt Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div th:switch="${not #lists.isEmpty(list)}">
+    <div th:case="true" th:replace="~{ _report :: report }"></div>
+    <div th:case="false">No data during the period.</div>
+</div>
+</body>
+</html>
