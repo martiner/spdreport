@@ -18,6 +18,7 @@ class WebSecurityConfig {
             authorizeHttpRequests {
                 authorize("/", permitAll)
                 authorize("/login/**", permitAll)
+                authorize("/email/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             logout {

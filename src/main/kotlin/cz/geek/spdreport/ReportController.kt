@@ -52,13 +52,7 @@ class ReportController(
         if (principal != null) {
             val settings = settingsRepository.load(principal.name)
             if (settings != null) {
-                return ReportData(
-                    name = settings.fullName ?: "",
-                    number = settings.number ?: "",
-                    start = settings.defaultRange.dateRange().start,
-                    end = settings.defaultRange.dateRange().end,
-                    url = URL(settings.url),
-                )
+                return settings.toReportData()
             }
         }
         return PREVIOUS_MONTH.dateRange()

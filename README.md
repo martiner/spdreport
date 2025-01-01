@@ -31,5 +31,5 @@ http://localhost:8080
 ### Deploy
 
 ```shell
-mvn package appengine:deploy
+./mvnw package appengine:deploy appengine:deployCron
 ```

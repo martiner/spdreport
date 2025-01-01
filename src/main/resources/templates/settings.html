@@ -19,7 +19,7 @@
             </div>
             <div class="eight wide field">
                 <label>Email:</label>
-                <input type="text" th:field="*{email}" />
+                <input type="text" readonly th:field="*{email}" />
             </div>
         </div>
         <div class="field">
@@ -38,8 +38,19 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <div class="inline fields">
+            <label>Send report email:</label>
+            <div th:each="f : ${freq}">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" th:field="*{emailFrequency}" th:value="${f}" />
+                        <label th:for="${#ids.prev('emailFrequency')}" th:text="${f.title}">frequency</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="ui center aligned container">
             <button type="submit" class="ui blue button"><i class="icon save"></i>Save</button>
         </div>

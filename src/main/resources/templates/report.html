@@ -53,22 +53,7 @@
     <p></p>
     <button type="button" class="right floated ui green button" id="copy-button"><i class="icon copy"></i>Copy to clipboard</button>
     <h2>On Call Tracking</h2>
-    <table id="content-to-copy">
-        <tr>
-            <th>Date</th>
-            <th>ID number</th>
-            <th>Employee name</th>
-            <th>On call start hour</th>
-            <th>On call end hour</th>
-        </tr>
-        <tr th:each="i : ${list}">
-            <td th:text="${#temporals.format(i.date, 'EEEE, MMM d, yyyy', T(java.util.Locale).ENGLISH)}">13/01/2011</td>
-            <td th:text="${i.number}">777</td>
-            <td th:text="${i.name}">John Doe</td>
-            <td th:text="${i.start}">9:00</td>
-            <td th:text="${#temporals.format(i.end, 'kk:mm')}">24:00</td>
-        </tr>
-    </table>
+    <div th:replace="~{_report :: report}"></div>
     </div>
 </div>
 </body>

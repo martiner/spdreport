@@ -29,12 +29,16 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
-      - name: Set env variables
+      - name: Set env variable google client
         run: |
-          yq eval ".env_variables.GOOGLE_CLIENT_SECRET = '${{ secrets.GOOGLE_CLIENT_SECRET }}'" -i src/main/appengine/app.yaml
+          yq eval ".env_variables.GOOGLE_CLIENT_SECRET = \"${{ secrets.GOOGLE_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
+
+      - name: Set env variable gmail password
+        run: |
+          yq eval ".env_variables.GMAIL_PASSWORD = \"${{ secrets.GMAIL_PASSWORD }}\"" -i src/main/appengine/app.yaml
 
       - name: Build and Deploy
-        run: ./mvnw -B package appengine:deploy
+        run: ./mvnw -B package appengine:deploy appengine:deployCron
 
       - name: Publish Tests Report
         uses: martiner/action-junit-report@v5
