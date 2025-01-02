@@ -78,8 +78,8 @@ class DateItemGeneratorTest : FreeSpec({
                     shouldHaveSize(1)
                     assertSoftly(first()) {
                         day shouldBe LocalDate.of(2023, 8, 30)
-                        start shouldBe LocalTime.of(0, 0)
-                        end shouldBe LocalTime.of(9, 0)
+                        this.start shouldBe LocalTime.of(0, 0)
+                        this.end shouldBe LocalTime.of(9, 0)
                     }
                 }
             }
@@ -101,8 +101,8 @@ class DateItemGeneratorTest : FreeSpec({
                     shouldHaveSize(1)
                     assertSoftly(first()) {
                         day shouldBe LocalDate.of(2023, 8, 30)
-                        start shouldBe LocalTime.of(17, 0)
-                        end shouldBe LocalTime.of(0, 0)
+                        this.start shouldBe LocalTime.of(17, 0)
+                        this.end shouldBe LocalTime.of(0, 0)
                     }
                 }
             }
