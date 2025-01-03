@@ -2,6 +2,14 @@
 
 ## Development
 
+### Dependency locking
+
+Dependencies are checked against `dependencies-lock.json` during `validate` phase.
+Rewrite lock using:
+```shell
+./mvnw dependency-lock:lock
+```
+
 ### Setup
 
 ```shell
