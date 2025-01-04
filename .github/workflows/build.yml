@@ -35,3 +35,21 @@ jobs:
 
       - name: Build and Deploy
         run: ./mvnw -B package appengine:deploy
+
+      - name: Publish Tests Report
+        uses: martiner/action-junit-report@v5
+        if: success() || failure()
+        with:
+          report_paths: 'target/*-reports/TEST-*.xml'
+
+      - name: Generate release tag name
+        id: tag
+        run: |
+          echo "tag=deploy/$(TZ=Europe/Prague date +%Y-%m-%dT%H-%M-%S%z)" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        id: create_release
+        uses: martiner/release-action@v1.14.0
+        with:
+          tag: ${{ steps.tag.outputs.tag }}
+          name: Release ${{ steps.tag.outputs.tag }}
