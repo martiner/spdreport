@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec

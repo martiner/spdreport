@@ -1,6 +1,7 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
-import com.googlecode.objectify.ObjectifyService.ofy
+import cz.geek.spdreport.datastore.OAuth2AuthorizedClientRepository
+import cz.geek.spdreport.model.ObjectifyOAuth2AuthorizedClient
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties
 import org.springframework.security.core.Authentication
@@ -15,6 +16,7 @@ private val logger = KotlinLogging.logger {}
 class ObjectifyOAuth2AuthorizedClientService(
     properties: OAuth2ClientProperties,
     private val clientRegistrationRepository: ClientRegistrationRepository,
+    private val repository: OAuth2AuthorizedClientRepository
 ) : OAuth2AuthorizedClientService {
 
     private val clientId: String = properties.registration["google"]!!.clientId
@@ -22,7 +24,7 @@ class ObjectifyOAuth2AuthorizedClientService(
     override fun saveAuthorizedClient(client: OAuth2AuthorizedClient, principal: Authentication) {
         logger.info { "Saving ${principal.name}" }
         val auth = ObjectifyOAuth2AuthorizedClient(principal, client.accessToken, client.refreshToken)
-        ofy().save().entities(auth).now()
+        repository.save(auth)
     }
 
     override fun <T : OAuth2AuthorizedClient> loadAuthorizedClient(clientId: String, principalName: String): T {
@@ -31,7 +33,7 @@ class ObjectifyOAuth2AuthorizedClientService(
         val clientRegistration = requireNotNull(clientRegistrationRepository.findByRegistrationId(clientId)) {
             "Registration not found for client id: $clientId"
         }
-        val auth = ofy().load().type(ObjectifyOAuth2AuthorizedClient::class.java).id(principalName).now()
+        val auth = repository.load(principalName)
         @Suppress("UNCHECKED_CAST")
         return OAuth2AuthorizedClient(
             clientRegistration,
@@ -44,7 +46,7 @@ class ObjectifyOAuth2AuthorizedClientService(
     override fun removeAuthorizedClient(clientId: String, principalName: String) {
         logger.info { "Removing $principalName" }
         requireMatchingClientIds(clientId)
-        ofy().delete().type(ObjectifyOAuth2AuthorizedClient::class.java).id(principalName).now()
+        repository.delete(principalName)
     }
 
     private fun requireMatchingClientIds(clientRegistrationId: String) {

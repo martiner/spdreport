@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.model
 
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.multipart.MultipartFile

@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
 import com.googlecode.objectify.ObjectifyService
 import jakarta.servlet.Filter

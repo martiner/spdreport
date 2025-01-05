@@ -1,7 +1,9 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
-import cz.geek.spdreport.EmailFrequency.MONTHLY
-import cz.geek.spdreport.EmailFrequency.WEEKLY
+import cz.geek.spdreport.model.EmailFrequency.MONTHLY
+import cz.geek.spdreport.model.EmailFrequency.WEEKLY
+import cz.geek.spdreport.service.EmailService
+import cz.geek.spdreport.service.TaskService
 import mu.KotlinLogging
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal

@@ -1,8 +1,11 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.datastore
 
 import com.google.cloud.datastore.DatastoreOptions
 import com.googlecode.objectify.ObjectifyFactory
 import com.googlecode.objectify.ObjectifyService
+import cz.geek.spdreport.model.ObjectifyOAuth2AuthorizedClient
+import cz.geek.spdreport.model.Settings
+import cz.geek.spdreport.web.ObjectifyWebFilter
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.security.SecurityProperties

@@ -1,6 +1,11 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
-import cz.geek.spdreport.DateRanges.PREVIOUS_MONTH
+import cz.geek.spdreport.model.DateRanges.PREVIOUS_MONTH
+import cz.geek.spdreport.model.ReportData
+import cz.geek.spdreport.service.ReportService
+import cz.geek.spdreport.model.Settings
+import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.model.fullName
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.stereotype.Controller
@@ -9,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import java.net.URL
 
 @Controller
 @RequestMapping("/")

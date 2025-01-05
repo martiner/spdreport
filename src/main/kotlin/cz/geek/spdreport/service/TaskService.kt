@@ -1,11 +1,14 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
 import com.google.cloud.tasks.v2.AppEngineHttpRequest
 import com.google.cloud.tasks.v2.CloudTasksClient
 import com.google.cloud.tasks.v2.HttpMethod.GET
 import com.google.cloud.tasks.v2.QueueName
 import com.google.cloud.tasks.v2.Task
-import cz.geek.spdreport.EmailFrequency.NONE
+import cz.geek.spdreport.model.EmailFrequency
+import cz.geek.spdreport.model.EmailFrequency.NONE
+import cz.geek.spdreport.model.Settings
+import cz.geek.spdreport.datastore.SettingsRepository
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 

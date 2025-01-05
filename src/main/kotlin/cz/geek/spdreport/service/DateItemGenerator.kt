@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
 import java.time.DayOfWeek.SATURDAY
 import java.time.DayOfWeek.SUNDAY

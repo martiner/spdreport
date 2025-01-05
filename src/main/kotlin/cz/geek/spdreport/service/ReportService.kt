@@ -1,5 +1,6 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
+import cz.geek.spdreport.model.ReportData
 import mu.KotlinLogging
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.component.VEvent

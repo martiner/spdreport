@@ -1,6 +1,8 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.datastore
 
 import com.googlecode.objectify.ObjectifyService.ofy
+import cz.geek.spdreport.model.EmailFrequency
+import cz.geek.spdreport.model.Settings
 import org.springframework.stereotype.Service
 
 @Service

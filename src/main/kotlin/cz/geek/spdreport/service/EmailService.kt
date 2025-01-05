@@ -1,5 +1,10 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
+import cz.geek.spdreport.model.DateRange
+import cz.geek.spdreport.model.EmailFrequency
+import cz.geek.spdreport.model.ReportData
+import cz.geek.spdreport.model.Settings
+import cz.geek.spdreport.datastore.SettingsRepository
 import jakarta.mail.internet.InternetAddress
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.mail.MailProperties

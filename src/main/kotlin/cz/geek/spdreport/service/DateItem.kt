@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
 import java.time.LocalDate
 import java.time.LocalDateTime

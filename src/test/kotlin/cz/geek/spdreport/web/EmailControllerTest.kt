@@ -1,9 +1,11 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
-import cz.geek.spdreport.EmailFrequency.MONTHLY
-import cz.geek.spdreport.EmailFrequency.WEEKLY
+import cz.geek.spdreport.model.EmailFrequency.MONTHLY
+import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import cz.geek.spdreport.TestHelper.oAuth2User
+import cz.geek.spdreport.service.EmailService
+import cz.geek.spdreport.service.TaskService
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.extensions.spring.SpringExtension

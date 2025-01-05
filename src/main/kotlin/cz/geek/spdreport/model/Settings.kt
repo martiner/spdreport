@@ -1,10 +1,10 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.model
 
 import com.googlecode.objectify.annotation.Entity
 import com.googlecode.objectify.annotation.Id
 import com.googlecode.objectify.annotation.Index
-import cz.geek.spdreport.DateRanges.PREVIOUS_MONTH
-import cz.geek.spdreport.EmailFrequency.NONE
+import cz.geek.spdreport.model.DateRanges.PREVIOUS_MONTH
+import cz.geek.spdreport.model.EmailFrequency.NONE
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import java.net.URL
 

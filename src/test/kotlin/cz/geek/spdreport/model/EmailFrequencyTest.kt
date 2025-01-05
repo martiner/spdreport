@@ -1,7 +1,7 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.model
 
-import cz.geek.spdreport.EmailFrequency.MONTHLY
-import cz.geek.spdreport.EmailFrequency.WEEKLY
+import cz.geek.spdreport.model.EmailFrequency.MONTHLY
+import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe

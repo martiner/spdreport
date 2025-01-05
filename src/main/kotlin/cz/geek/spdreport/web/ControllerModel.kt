@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
 import org.springframework.boot.info.GitProperties
 import org.springframework.ui.Model

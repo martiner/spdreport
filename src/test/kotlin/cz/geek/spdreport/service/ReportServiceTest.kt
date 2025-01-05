@@ -1,5 +1,6 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
+import cz.geek.spdreport.model.ReportData
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.inspectors.forAll

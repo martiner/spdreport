@@ -1,6 +1,7 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.service
 
 import com.ninjasquad.springmockk.MockkBean
+import cz.geek.spdreport.model.ReportData
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain

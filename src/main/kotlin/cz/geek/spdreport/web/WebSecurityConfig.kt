@@ -1,4 +1,4 @@
-package cz.geek.spdreport
+package cz.geek.spdreport.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
