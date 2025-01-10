@@ -17,7 +17,11 @@ gcloud components install cloud-datastore-emulator
 gcloud config set project spdreport
 ```
 
-Put `spring.security.oauth2.client.registration.google.client-secret` into `application.properties`
+Update `application.properties` with
+```
+spring.security.oauth2.client.registration.google.client-secret=
+spring.mail.password=
+```
 
 ### Run
 
