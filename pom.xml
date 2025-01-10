@@ -150,6 +150,26 @@
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>reserve-network-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<portNames>
+								<portName>http.port</portName>
+								<portName>objectify.port</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring.boot.version}</version>
@@ -157,6 +177,24 @@
 					<execution>
 						<goals>
 							<goal>repackage</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<arguments>
+								<argument>--server.port=${http.port}</argument>
+								<argument>--objectify.port=${objectify.port}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -209,7 +247,84 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>3.5.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.5.2</version>
+				<configuration>
+					<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+					<systemPropertyVariables>
+						<http.port>${http.port}</http.port>
+						<objectify.port>${objectify.port}</objectify.port>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.45.1</version>
+				<configuration>
+					<logDate>default</logDate>
+					<images>
+						<image>
+							<name>google/cloud-sdk</name>
+							<run>
+								<platform>linux/amd64</platform>
+								<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:8484 --data-dir=/datastore</cmd>
+								<ports>
+									<port>8484:8484</port>
+								</ports>
+								<volumes>
+									<bind>
+										<volume>${project.basedir}/datastore:/datastore</volume>
+									</bind>
+								</volumes>
+							</run>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<images>
+								<image>
+									<name>google/cloud-sdk</name>
+									<run>
+										<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:${objectify.port} --no-store-on-disk</cmd>
+										<ports>
+											<port>${objectify.port}:${objectify.port}</port>
+										</ports>
+										<wait>
+											<log>Dev App Server is now running</log>
+										</wait>
+									</run>
+								</image>
+							</images>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>io.github.git-commit-id</groupId>

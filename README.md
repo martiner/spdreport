@@ -12,11 +12,6 @@ Rewrite lock using:
 
 ### Setup
 
-```shell
-gcloud components install cloud-datastore-emulator
-gcloud config set project spdreport
-```
-
 Update `application.properties` with
 ```
 spring.security.oauth2.client.registration.google.client-secret=
@@ -26,8 +21,7 @@ spring.mail.password=
 ### Run
 
 ```shell
-gcloud beta emulators datastore start --host-port=localhost:8484
-./mvnw spring-boot:run
+./mvnw docker:start spring-boot:run
 ```
 http://localhost:8080
 
