@@ -27,20 +27,22 @@ class ObjectifyOAuth2AuthorizedClientService(
         repository.save(auth)
     }
 
-    override fun <T : OAuth2AuthorizedClient> loadAuthorizedClient(clientId: String, principalName: String): T {
+    override fun <T : OAuth2AuthorizedClient> loadAuthorizedClient(clientId: String, principalName: String): T? {
         logger.info { "Loading $principalName" }
         requireMatchingClientIds(clientId)
         val clientRegistration = requireNotNull(clientRegistrationRepository.findByRegistrationId(clientId)) {
             "Registration not found for client id: $clientId"
         }
-        val auth = repository.load(principalName)
-        @Suppress("UNCHECKED_CAST")
-        return OAuth2AuthorizedClient(
-            clientRegistration,
-            principalName,
-            auth.asAccessToken(),
-            auth.asRefreshToken(),
-        ) as T
+        return repository.load(principalName)
+            ?.let {
+                @Suppress("UNCHECKED_CAST")
+                OAuth2AuthorizedClient(
+                    clientRegistration,
+                    principalName,
+                    it.asAccessToken(),
+                    it.asRefreshToken(),
+                ) as T
+            }
     }
 
     override fun removeAuthorizedClient(clientId: String, principalName: String) {

@@ -11,7 +11,7 @@ class OAuth2AuthorizedClientRepository {
         ofy().save().entities(auth).now()
     }
 
-    fun load(principalName: String): ObjectifyOAuth2AuthorizedClient =
+    fun load(principalName: String): ObjectifyOAuth2AuthorizedClient? =
         ofy().load().type(ObjectifyOAuth2AuthorizedClient::class.java).id(principalName).now()
 
     fun delete(principalName: String) {
