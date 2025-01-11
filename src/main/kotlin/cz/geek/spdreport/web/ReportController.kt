@@ -31,18 +31,13 @@ class ReportController(
         model: Model,
         @AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal?
     ): String {
-        val url = reportData.url
-        if (url != null) {
-            model.addAttribute("list", service.create(reportData, url))
-        } else if (reportData.file?.isEmpty == false) {
-            model.addAttribute("list", service.create(reportData, reportData.file!!.bytes))
-        }
+        model.addAttribute("list", service.create(reportData))
         if (principal != null) {
             settingsRepository.load(principal.name) ?: Settings(principal)
                 .apply {
                     fullName = reportData.name
                     number = reportData.number
-                    this.url = url.toString()
+                    url = reportData.url.toString()
                 }
                 .also {
                     settingsRepository.save(it)

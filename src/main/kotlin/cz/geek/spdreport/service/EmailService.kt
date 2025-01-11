@@ -13,7 +13,6 @@ import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Service
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
-import java.net.URL
 import java.time.format.DateTimeFormatter
 
 private val logger = KotlinLogging.logger {}
@@ -39,22 +38,21 @@ class EmailService(
         val freq = settings.emailFrequency
         val dateRange = freq.toDateRange()
         val reportData = settings.toReportData(dateRange)
-        val url = reportData.url
         val email = settings.email
-        if (url != null && email != null) {
+        if (reportData.url != null && email != null) {
             logger.info {
                 "Sending email $freq to $email"
             }
             try {
-                sendReport(reportData, url, Email(email, settings.fullName, freq, dateRange))
+                sendReport(reportData, Email(email, settings.fullName, freq, dateRange))
             } catch (e: Exception) {
                 logger.error(e) { "Failed to send to $email" }
             }
         }
     }
 
-    private fun sendReport(reportData: ReportData, url: URL, email: Email): Unit =
-        createReport(reportData, url)
+    private fun sendReport(reportData: ReportData, email: Email): Unit =
+        createReport(reportData)
             .let {
                 sendReport(email, it)
             }
@@ -70,8 +68,8 @@ class EmailService(
                 }
         }
 
-    fun createReport(reportData: ReportData, url: URL): String =
-        reportService.create(reportData, url)
+    fun createReport(reportData: ReportData): String =
+        reportService.create(reportData)
             .let {
                 Context()
                     .apply {

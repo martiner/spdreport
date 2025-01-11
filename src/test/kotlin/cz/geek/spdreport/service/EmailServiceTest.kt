@@ -17,12 +17,12 @@ class EmailServiceTest(
     @MockkBean val reportService: ReportService,
 ) : FreeSpec({
 
-    val url = URL("http://foo")
     val reportData = ReportData(
         "GI Joe",
         "123",
         LocalDate.of(2023, 9, 11),
         LocalDate.of(2023, 9, 11),
+        URL("http://foo"),
     )
 
     "Should create report" {
@@ -33,8 +33,8 @@ class EmailServiceTest(
             reportData.name,
             reportData.number,
         )
-        every { reportService.create(any(), any<URL>()) } returns listOf(report)
-        val html = emailService.createReport(reportData, url)
+        every { reportService.create(any()) } returns listOf(report)
+        val html = emailService.createReport(reportData)
         html shouldContain "Monday, Sep 11, 2023"
         html shouldContain "123"
         html shouldContain "17:00"
@@ -43,8 +43,8 @@ class EmailServiceTest(
     }
 
     "Should create empty report" {
-        every { reportService.create(any(), any<URL>()) } returns listOf()
-        val html = emailService.createReport(reportData, url)
+        every { reportService.create(any()) } returns listOf()
+        val html = emailService.createReport(reportData)
         html shouldContain "No data during the period"
     }
 

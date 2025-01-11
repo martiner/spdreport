@@ -24,15 +24,11 @@ class ReportService(
 
     private val zone = ZoneId.of("Europe/Prague")
 
-    fun create(data: ReportData, url: URL): List<Report> {
+    fun create(data: ReportData): List<Report> {
+        val resource = data.source()?.resource ?: return emptyList()
         logger.info { "Creating report for $data" }
-        val source = url.readBytes()
-        return create(data, source)
-    }
-
-    fun create(data: ReportData, source: ByteArray): List<Report> {
         val holidays = holidays(holidays.readBytes(), data)
-        return create(source, data, holidays)
+        return create(resource.contentAsByteArray, data, holidays)
     }
 
     private fun holidays(source: ByteArray, data: ReportData): Set<LocalDate> =
