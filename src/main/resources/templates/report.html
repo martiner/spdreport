@@ -3,33 +3,50 @@
 <body>
 <div class="ui container" id="content">
     <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form" enctype="multipart/form-data">
+        <div class="ui negative message icon" th:if="${#fields.hasAnyErrors()}">
+            <i class="exclamation circle icon"></i>
+            <div class="content">
+                <div class="header">There is an issue preventing submission of the form</div>
+            </div>
+        </div>
         <div class="four fields">
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('start')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('start'), ' ')}">
                 <label>Start:</label>
                 <input type="date" th:field="*{start}" />
             </div>
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('end')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('end'), ' ')}">
                 <label>End:</label>
                 <input type="date" th:field="*{end}" />
             </div>
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('name')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('name'), ' ')}">
                 <label>Employee Name:</label>
                 <input type="text" th:field="*{name}" />
             </div>
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('number')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('number'), ' ')}">
                 <label>Employee Number:</label>
                 <input type="text" th:field="*{number}" />
             </div>
         </div>
         <div class="ui top attached tabular menu">
-            <a class="item active" data-tab="url">iCalendar Download:</a>
-            <a class="item" data-tab="file">iCalendar Upload:</a>
+            <a class="item" data-tab="url"  th:classappend="*{active('url')}" >iCalendar Download:</a>
+            <a class="item" data-tab="file" th:classappend="*{active('file')}">iCalendar Upload:</a>
         </div>
-        <div class="ui bottom attached tab segment active" data-tab="url">
-            <div class="field">
+        <div class="ui bottom attached tab segment" data-tab="url" th:classappend="*{active('url')}">
+            <div class="field" th:classappend="${#fields.hasErrors('url')}? error">
                 <div class="ui labeled input">
                     <div class="ui basic label">URL:</div>
                     <input type="text" th:field="*{url}" />
+                </div>
+                <div class="ui pointing red basic label" th:if="${#fields.hasErrors('url')}" th:text="${#strings.listJoin(#fields.errors('url'), ' ')}">
+                    Please enter a value
                 </div>
             </div>
             <div class="ui bottom attached tiny info message">
@@ -37,10 +54,13 @@
                 My icon (top right) - My On-Call Shifts - Export Calendar - iCalendar File (copy URL)
             </div>
         </div>
-        <div class="ui bottom attached tab segment" data-tab="file">
+        <div class="ui bottom attached tab segment" data-tab="file" th:classappend="*{active('file')}">
             <div class="fields">
-                <div class="field">
+                <div class="field" th:classappend="${#fields.hasErrors('file')}? error">
                     <input type="file" name="file">
+                    <div class="ui pointing red basic label" th:if="${#fields.hasErrors('file')}" th:text="${#strings.listJoin(#fields.errors('file'), ' ')}">
+                        Please enter a value
+                    </div>
                 </div>
             </div>
         </div>

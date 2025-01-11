@@ -2,12 +2,14 @@ package cz.geek.spdreport.service
 
 import cz.geek.spdreport.model.ReportData
 import io.kotest.assertions.assertSoftly
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
+import net.fortuna.ical4j.data.ParserException
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalTime
@@ -141,6 +143,18 @@ class ReportServiceTest : FreeSpec({
                 start shouldBe startTime
                 end shouldBe LocalTime.of(0, 0)
             }
+        }
+    }
+
+    "Should fail parsing" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            start = LocalDate.of(2023, 8, 1),
+            end = LocalDate.of(2023, 8, 20)
+        )
+        shouldThrow<ParserException> {
+            service.create("foo".toByteArray(), data, emptySet())
         }
     }
 })

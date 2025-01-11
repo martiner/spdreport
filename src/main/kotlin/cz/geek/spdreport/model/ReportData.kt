@@ -24,6 +24,10 @@ data class ReportData(
             url != null -> ReportSource(this::url.name, UrlResource(url!!))
             else -> null
         }
+
+    fun active(field: String): String =
+        if (source()?.let { it.field == field } ?: (field == "url")) "active" else ""
+
 }
 
 data class ReportSource(val field: String, val resource: Resource)
