@@ -16,10 +16,8 @@ class WebSecurityConfig {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeHttpRequests {
-                authorize("/", permitAll)
-                authorize("/login/**", permitAll)
-                authorize("/email/**", permitAll)
-                authorize(anyRequest, authenticated)
+                authorize("/settings/**", authenticated)
+                authorize(anyRequest, permitAll)
             }
             logout {
                 logoutSuccessUrl = "/"
