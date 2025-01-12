@@ -8,7 +8,6 @@ import cz.geek.spdreport.service.EmailService
 import cz.geek.spdreport.service.TaskService
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
-import io.kotest.extensions.spring.SpringExtension
 import io.mockk.confirmVerified
 import io.mockk.verify
 import org.springframework.boot.info.GitProperties
@@ -96,6 +95,4 @@ class EmailControllerTest(
             confirmVerified(taskService, emailService)
         }
     }
-}) {
-    override fun extensions() = listOf(SpringExtension)
-}
+})

@@ -6,7 +6,6 @@ import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.model.Settings
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.mockk.Runs
@@ -82,6 +81,4 @@ class SettingsControllerTest(
             url shouldBe "http://bar"
         }
     }
-}) {
-    override fun extensions() = listOf(SpringExtension)
-}
+})

@@ -4,7 +4,6 @@ import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.ReportService
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.extensions.spring.SpringExtension
 import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
@@ -46,6 +45,4 @@ class ReportControllerTest(
                 }
             }
     }
-}) {
-    override fun extensions() = listOf(SpringExtension)
-}
+})
