@@ -51,15 +51,7 @@ class ReportController(
         }
 
         if (principal != null) {
-            settingsRepository.load(principal.name) ?: Settings(principal)
-                .apply {
-                    fullName = reportData.name
-                    number = reportData.number
-                    url = reportData.url.toString()
-                }
-                .also {
-                    settingsRepository.save(it)
-                }
+            settingsRepository.createIfMissing(principal, reportData)
         }
         return VIEW
     }

@@ -28,6 +28,12 @@ data class Settings(
         email = principal.email(),
     )
 
+    constructor(principal: OAuth2AuthenticatedPrincipal, reportData: ReportData) : this(principal) {
+        fullName = reportData.name
+        number = reportData.number
+        url = reportData.url.toString()
+    }
+
     fun toReportData(dateRange: DateRange = defaultRange.dateRange()): ReportData =
         ReportData(
             name = fullName ?: "",
