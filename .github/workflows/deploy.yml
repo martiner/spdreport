@@ -1,0 +1,59 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'write'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout Git
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
+
+      - name: Set env variable google client
+        run: |
+          yq eval ".env_variables.GOOGLE_CLIENT_SECRET = \"${{ secrets.GOOGLE_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
+
+      - name: Set env variable gmail password
+        run: |
+          yq eval ".env_variables.GMAIL_PASSWORD = \"${{ secrets.GMAIL_PASSWORD }}\"" -i src/main/appengine/app.yaml
+
+      - name: Build and Deploy
+        run: ./mvnw -B verify appengine:deploy appengine:deployCron
+
+      - name: Publish Tests Report
+        uses: martiner/action-junit-report@v5
+        if: success() || failure()
+        with:
+          report_paths: 'target/*-reports/TEST-*.xml'
+
+      - name: Generate release tag name
+        id: tag
+        run: |
+          echo "tag=deploy/$(TZ=Europe/Prague date +%Y-%m-%dT%H-%M-%S%z)" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        id: create_release
+        uses: martiner/release-action@v1.14.0
+        with:
+          tag: ${{ steps.tag.outputs.tag }}
+          name: Release ${{ steps.tag.outputs.tag }}
