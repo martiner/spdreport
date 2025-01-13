@@ -218,6 +218,7 @@
 					<javaParameters>true</javaParameters>
 					<args>
 						<arg>-Xjsr305=strict</arg>
+						<arg>-Xmulti-dollar-interpolation</arg>
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>

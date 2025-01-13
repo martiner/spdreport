@@ -19,7 +19,7 @@ private val logger = KotlinLogging.logger {}
 
 @Service
 class ReportService(
-    @Value("\${holidays}") private val holidays: URL,
+    @Value($$"${holidays}") private val holidays: URL,
 ) {
 
     private val zone = ZoneId.of("Europe/Prague")
