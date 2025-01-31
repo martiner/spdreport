@@ -40,8 +40,8 @@ class SettingsController(
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal, model: Model) {
         val settings = settingsRepository.load(principal) ?: Settings(principal)
         model.addAttribute(MODEL, settings)
-        model.addAttribute("ranges", DateRanges.values())
-        model.addAttribute("freq", EmailFrequency.values())
+        model.addAttribute("ranges", DateRanges.entries)
+        model.addAttribute("freq", EmailFrequency.entries)
     }
     
     @InitBinder
