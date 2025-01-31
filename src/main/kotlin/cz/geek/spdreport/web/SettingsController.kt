@@ -38,7 +38,7 @@ class SettingsController(
 
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal, model: Model) {
-        val settings = settingsRepository.load(principal.name) ?: Settings(principal)
+        val settings = settingsRepository.load(principal) ?: Settings(principal)
         model.addAttribute(MODEL, settings)
         model.addAttribute("ranges", DateRanges.values())
         model.addAttribute("freq", EmailFrequency.values())

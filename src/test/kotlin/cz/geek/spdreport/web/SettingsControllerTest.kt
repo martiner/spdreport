@@ -14,6 +14,7 @@ import io.mockk.just
 import io.mockk.slot
 import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
@@ -49,7 +50,7 @@ class SettingsControllerTest(
             number = "789",
             url = "http://foo",
         )
-        every { settingsRepository.load("123") } returns settings
+        every { settingsRepository.load(match<OAuth2AuthenticatedPrincipal>{ it.name == "123" }) } returns settings
         val slot = slot<Settings>()
         every { settingsRepository.save(capture(slot)) } just Runs
 

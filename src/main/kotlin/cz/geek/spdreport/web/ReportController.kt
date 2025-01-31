@@ -59,7 +59,7 @@ class ReportController(
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal?): ReportData {
         if (principal != null) {
-            val settings = settingsRepository.load(principal.name)
+            val settings = settingsRepository.load(principal)
             if (settings != null) {
                 return settings.toReportData()
             }

@@ -14,6 +14,9 @@ class SettingsRepository {
         ofy().save().entities(settings).now()
     }
 
+    fun load(principal: OAuth2AuthenticatedPrincipal): Settings? =
+        load(principal.name)
+
     fun load(name: String?): Settings? =
         ofy().load().type(Settings::class.java).id(name).now()
 
@@ -21,6 +24,6 @@ class SettingsRepository {
         ofy().load().type(Settings::class.java).filter(Settings::emailFrequency.name, freq).list()
 
     fun createIfMissing(principal: OAuth2AuthenticatedPrincipal, reportData: ReportData) {
-        load(principal.name) ?: save(Settings(principal, reportData))
+        load(principal) ?: save(Settings(principal, reportData))
     }
 }
