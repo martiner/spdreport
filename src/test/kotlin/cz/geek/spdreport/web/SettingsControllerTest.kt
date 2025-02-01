@@ -12,7 +12,6 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.slot
-import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
@@ -30,7 +29,6 @@ import org.springframework.web.context.WebApplicationContext
 class SettingsControllerTest(
     val context: WebApplicationContext,
     @MockkBean val settingsRepository: SettingsRepository,
-    @MockkBean val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

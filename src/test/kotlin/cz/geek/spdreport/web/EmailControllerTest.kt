@@ -10,7 +10,6 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.mockk.confirmVerified
 import io.mockk.verify
-import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login
@@ -28,7 +27,6 @@ class EmailControllerTest(
     private val context: WebApplicationContext,
     @MockkBean(relaxed = true) val emailService: EmailService,
     @MockkBean(relaxed = true) val taskService: TaskService,
-    @MockkBean val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc
