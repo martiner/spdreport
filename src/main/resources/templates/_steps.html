@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div class="ui three small steps" th:fragment="steps">
+    <div class="step">
+        <i class="hourglass half icon"></i>
+        <div class="content">
+            <div class="title">Scheduled reports</div>
+            <div class="description">Get the report delivered into your mailbox</div>
+        </div>
+    </div>
+    <a class="active step" href="/oauth2/authorization/google" sec:authorize="isAnonymous()">
+        <i class="google icon"></i>
+        <div class="content">
+            <div class="title">Login</div>
+            <div class="description">Start with logging-in</div>
+        </div>
+    </a>
+    <div class="completed step" sec:authorize="isAuthenticated()">
+        <i class="google icon"></i>
+        <div class="content">
+            <div class="title">Login</div>
+            <div class="description">Start with logging-in</div>
+        </div>
+    </div>
+    <div class="disabled step" sec:authorize="isAnonymous()">
+        <i class="cog icon"></i>
+        <div class="content">
+            <div class="title">Settings</div>
+            <div class="description">Configuration and email frequency</div>
+        </div>
+    </div>
+    <a class="active step" href="/settings" sec:authorize="isAuthenticated()">
+        <i class="cog icon"></i>
+        <div class="content">
+            <div class="title">Settings</div>
+            <div class="description">Configuration and email frequency</div>
+        </div>
+    </a>
+</div>
+</body>
+</html>

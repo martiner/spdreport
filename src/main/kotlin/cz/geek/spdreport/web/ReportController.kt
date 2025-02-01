@@ -3,9 +3,9 @@ package cz.geek.spdreport.web
 import cz.geek.spdreport.model.DateRanges.PREVIOUS_MONTH
 import cz.geek.spdreport.model.ReportData
 import cz.geek.spdreport.service.ReportService
-import cz.geek.spdreport.model.Settings
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.model.fullName
+import cz.geek.spdreport.web.ReportController.Companion.URL
 import net.fortuna.ical4j.data.ParserException
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import java.io.IOException
 
-private const val VIEW = "report"
-
 @Controller
-@RequestMapping("/")
+@RequestMapping(URL)
 class ReportController(
     private val service: ReportService,
     private val settingsRepository: SettingsRepository,
@@ -73,6 +71,11 @@ class ReportController(
                     end = it.end,
                 )
             }
+    }
+
+    companion object {
+        const val URL = "/"
+        private const val VIEW = "report"
     }
 }
 

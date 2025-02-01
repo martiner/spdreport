@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
 <body>
 <div class="ui container" id="content">
+
+    <div th:replace="~{_steps :: steps}"></div>
+
     <div class="ui center aligned container" th:unless="${#strings.isEmpty(message)}">
         <div th:text="${message}" class="ui compact positive message">This is the message</div>
         <p></p>
@@ -28,6 +31,7 @@
                 <input type="text" th:field="*{url}" />
             </div>
         </div>
+        <h4 class="ui dividing header">Manual Report</h4>
         <div class="inline fields">
             <label>Default report date range:</label>
             <div th:each="r : ${ranges}">
@@ -39,6 +43,7 @@
                 </div>
             </div>
         </div>
+        <h4 class="ui dividing header">Scheduled Report</h4>
         <div class="inline fields">
             <label>Send report email:</label>
             <div th:each="f : ${freq}">

@@ -4,6 +4,7 @@ import cz.geek.spdreport.model.DateRanges
 import cz.geek.spdreport.model.EmailFrequency
 import cz.geek.spdreport.model.Settings
 import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.web.SettingsController.Companion.URL
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.stereotype.Controller
@@ -15,10 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
-
-private const val URL = "/settings"
-private const val FORM = "settings"
-private const val MODEL = "settings"
 
 @Controller
 @RequestMapping(URL)
@@ -49,4 +46,9 @@ class SettingsController(
         binder.setDisallowedFields("id", "email")
     }
 
+    companion object {
+        const val URL = "/settings"
+        private const val FORM = "settings"
+        private const val MODEL = "settings"
+    }
 }

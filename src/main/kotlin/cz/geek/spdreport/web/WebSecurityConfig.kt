@@ -1,5 +1,6 @@
 package cz.geek.spdreport.web
 
+import cz.geek.spdreport.datastore.SettingsRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -10,7 +11,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfig {
+class WebSecurityConfig(
+    private val repository: SettingsRepository,
+) {
+
+    @Bean
+    fun smartAuthenticationSuccessHandler() =
+        SmartAuthenticationSuccessHandler(repository)
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
@@ -24,6 +31,7 @@ class WebSecurityConfig {
                 logoutRequestMatcher = AntPathRequestMatcher("/logout", "GET")
             }
             oauth2Login {
+                authenticationSuccessHandler = smartAuthenticationSuccessHandler()
             }
         }
         return http.build()

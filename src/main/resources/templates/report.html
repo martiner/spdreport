@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
 <body>
 <div class="ui container" id="content">
+
+    <div th:replace="~{_steps :: steps}"></div>
+
     <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form" enctype="multipart/form-data">
         <div class="ui negative message icon" th:if="${#fields.hasAnyErrors()}">
             <i class="exclamation circle icon"></i>
