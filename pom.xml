@@ -11,7 +11,7 @@
 		<java.version>17</java.version>
 		<kotlin.version>1.9.25</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-		<spring.boot.version>3.4.1</spring.boot.version>
+		<spring.boot.version>3.4.2</spring.boot.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<kotest.version>5.9.1</kotest.version>
