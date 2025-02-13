@@ -51,7 +51,7 @@ class SettingsController(
         val settings = settingsRepository.load(principal)?.toSettingsData() ?: SettingsData(principal)
         model.addAttribute(MODEL, settings)
         model.addAttribute("ranges", DateRanges.entries)
-        model.addAttribute("freq", EmailFrequency.entries)
+        model.addAttribute("freq", EmailFrequency.SCHEDULE)
     }
     
     companion object {

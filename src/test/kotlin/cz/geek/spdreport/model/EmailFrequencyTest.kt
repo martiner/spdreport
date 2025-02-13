@@ -1,9 +1,11 @@
 package cz.geek.spdreport.model
 
 import cz.geek.spdreport.model.EmailFrequency.MONTHLY
+import cz.geek.spdreport.model.EmailFrequency.NONE
 import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.maps.shouldContain
 import io.kotest.matchers.shouldBe
 import java.time.LocalDate
 
@@ -27,4 +29,11 @@ class EmailFrequencyTest : FreeSpec({
 
     // todo monthly with monday first of month
 
+    "Should load cron.yaml" {
+        assertSoftly(EmailFrequency.SCHEDULE) {
+            shouldContain(WEEKLY, "every monday 9:00")
+            shouldContain(MONTHLY, "1st of month 9:00")
+            shouldContain(NONE, null)
+        }
+    }
 })

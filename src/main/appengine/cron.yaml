@@ -1,7 +1,7 @@
 # https://cloud.google.com/appengine/docs/standard/java11/scheduling-jobs-with-cron-yaml
 cron:
 - url: '/email/monthly'
-  schedule: '1 of month 9:00'
+  schedule: '1st of month 9:00'
   timezone: 'Europe/Prague'
   description: 'Monthly report'
 - url: '/email/weekly'

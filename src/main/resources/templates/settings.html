@@ -72,8 +72,10 @@
             <div th:each="f : ${freq}">
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" th:field="*{emailFrequency}" th:value="${f}" />
-                        <label th:for="${#ids.prev('emailFrequency')}" th:text="${f.title}">frequency</label>
+                        <input type="radio" th:field="*{emailFrequency}" th:value="${f.key}" />
+                        <label th:for="${#ids.prev('emailFrequency')}">
+                            [[${f.key.title}]]<span th:if="${f.value}"> ([[${f.value}]])</span>
+                        </label>
                     </div>
                 </div>
             </div>
