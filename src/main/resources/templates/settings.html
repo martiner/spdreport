@@ -11,21 +11,35 @@
     </div>
 
     <form action="#" th:action="@{/settings}" th:object="${settings}" method="post" class="ui form">
+        <div class="ui negative message icon" th:if="${#fields.hasAnyErrors()}">
+            <i class="exclamation circle icon"></i>
+            <div class="content">
+                <div class="header">There is an issue preventing submission of the form</div>
+            </div>
+        </div>
         <div class="four fields">
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('fullName')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('fullName'), ' ')}">
                 <label>Employee Name:</label>
                 <input type="text" th:field="*{fullName}" />
             </div>
-            <div class="field">
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('number')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('number'), ' ')}">
                 <label>Employee Number:</label>
                 <input type="text" th:field="*{number}" />
             </div>
-            <div class="eight wide field">
+            <div class="eight wide field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('email')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('email'), ' ')}">
                 <label>Email:</label>
                 <input type="text" readonly th:field="*{email}" />
             </div>
         </div>
-        <div class="field">
+        <div class="field" data-position="bottom left"
+             th:classappend="${#fields.hasErrors('url')}? error"
+             th:attr="data-tooltip=${#strings.listJoin(#fields.errors('url'), ' ')}">
             <div class="ui labeled input">
                 <div class="ui basic label">URL:</div>
                 <input type="text" th:field="*{url}" />

@@ -12,6 +12,7 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.slot
+import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
@@ -25,10 +26,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
 @WebMvcTest
-@ContextConfiguration(classes = [WebSecurityConfig::class, SettingsController::class])
+@ContextConfiguration(classes = [WebSecurityConfig::class, SettingsController::class, ControllerModel::class])
 class SettingsControllerTest(
     val context: WebApplicationContext,
     @MockkBean val settingsRepository: SettingsRepository,
+    @MockkBean(relaxed = true) val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc
@@ -55,7 +57,7 @@ class SettingsControllerTest(
         mockMvc
             .post("/settings") {
                 with(csrf())
-                with(oauth2Login().oauth2User(oAuth2User(userId = "123")))
+                with(oauth2Login().oauth2User(oAuth2User(userId = settings.id, email = settings.email)))
                 param("id", "FORGED ID")
                 param("email", "FORGED@EMA.IL")
                 param("fullName", "GI Jane")
@@ -79,5 +81,22 @@ class SettingsControllerTest(
             number shouldBe "456"
             url shouldBe "http://bar"
         }
+    }
+
+    "Should fail on invalid URL" {
+        every { settingsRepository.load(match<OAuth2AuthenticatedPrincipal>{ it.name == "123" }) } returns null
+        mockMvc
+            .post("/settings") {
+                with(csrf())
+                with(oauth2Login().oauth2User(oAuth2User(userId = "123")))
+                param("fullName", "GI Jane")
+                param("number", "456")
+                param("url", "webcal://bar")
+            }
+            .andExpect {
+                model {
+                    attributeHasFieldErrorCode("settings", "url", "typeMismatch")
+                }
+            }
     }
 })

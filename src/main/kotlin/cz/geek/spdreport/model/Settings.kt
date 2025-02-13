@@ -42,10 +42,16 @@ data class Settings(
             end = dateRange.end,
             url = URL(url),
         )
+
+    companion object {
+        fun Settings.toSettingsData(): SettingsData =
+            SettingsData(
+                fullName = fullName,
+                number = number,
+                email = email,
+                url = URL(url),
+                defaultRange = defaultRange,
+                emailFrequency = emailFrequency,
+            )
+    }
 }
-
-fun OAuth2AuthenticatedPrincipal?.fullName(): String? =
-    this?.getAttribute<String>("name")
-
-fun OAuth2AuthenticatedPrincipal?.email(): String? =
-    this?.getAttribute<String>("email")
