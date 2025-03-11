@@ -472,14 +472,6 @@
     "optional" : false,
     "integrity" : "sha512:xKBqCjznvb7nAsBpRCZcBQpMjS+9IcJIk24u39q2Os6jDyzzVo08IaVZlA2TmYWosQ0wr/lyo+jL6zksCwLaOg=="
   }, {
-    "groupId" : "commons-beanutils",
-    "artifactId" : "commons-beanutils",
-    "version" : "1.9.4",
-    "scope" : "compile",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:d2KzSMrs6tSQOKOKiXVP99m+YZkyQxVJW6R88k9SwG+q35MG2SXI/kfFh1iak5yC5JHhxzAmf981QkOmjA+W/w=="
-  }, {
     "groupId" : "commons-codec",
     "artifactId" : "commons-codec",
     "version" : "1.17.2",
@@ -487,22 +479,6 @@
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:p/nLkKN7seLICVj23huqWoyCt/luWQDboT12eQGaDCscx7VRszjiS5p4LJYREmdeAvQ5SYuW84mx+JmUXwgHGw=="
-  }, {
-    "groupId" : "commons-digester",
-    "artifactId" : "commons-digester",
-    "version" : "2.1",
-    "scope" : "compile",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:osgiaQeGtB4KAlBseq9+ikuCUepx1peO4D6CsRyiQuSThtbahNvHGC1ab7FngirtIA2i2X4vJk1jzPjxuWgayA=="
-  }, {
-    "groupId" : "commons-validator",
-    "artifactId" : "commons-validator",
-    "version" : "1.7",
-    "scope" : "compile",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:TjA6ueITLqyotBiKqRiFoEajuOdvKJWpxwJcAB6NNuCWqfaavQXYOlCPoW0NLsCJ6p8NriYdBJ/xhyT61qjxsQ=="
   }, {
     "groupId" : "io.github.classgraph",
     "artifactId" : "classgraph",
@@ -1041,14 +1017,6 @@
     "integrity" : "sha512:TOaaXq4eplZzdOEJGYIWk4A/n8H/Xus3a+8FAV+0Nec74/A4rQsyLIqaB77vXOYHpLwXXC6Mhg5U7Na3gbIovQ=="
   }, {
     "groupId" : "org.apache.commons",
-    "artifactId" : "commons-collections4",
-    "version" : "4.4",
-    "scope" : "compile",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:WTnJkx65VXyu47Rf4d2c5Uyr3E5hgu1/qsd+GoZt0MtgK/pOzi8zFtdpkTNmEGvSthvzu1+q0fp9gIEkwG3sDw=="
-  }, {
-    "groupId" : "org.apache.commons",
     "artifactId" : "commons-lang3",
     "version" : "3.17.0",
     "scope" : "compile",
@@ -1546,11 +1514,11 @@
   }, {
     "groupId" : "org.mnode.ical4j",
     "artifactId" : "ical4j",
-    "version" : "3.2.19",
+    "version" : "4.1.1",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:FZYPjSkT7vcTlT9kGHyFcA1V5v+/szwCJxCn40RS+EGqot5WyPYDKu6FBkQ2mQepsjicaOPFW9PB3vKPQkB+Ng=="
+    "integrity" : "sha512:OidwhEbyCvAErwlfVg15N3wi7E8x5n5kEqaCIo3F1N+b5hlQy2U7W6/i48ZmL23e/M3+5kvwOt2RuDKcL+wwVw=="
   }, {
     "groupId" : "org.mockito",
     "artifactId" : "mockito-core",
@@ -1887,6 +1855,14 @@
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:CVFnv2XRUkxEo35RgzRGwfTWGuGpd8UT2LFvAgbUk6cBLv9JnGaMGjPoTmC7Zm4vd9FZ+s08BtQ0U1BYMpwipQ=="
+  }, {
+    "groupId" : "org.threeten",
+    "artifactId" : "threeten-extra",
+    "version" : "1.8.0",
+    "scope" : "compile",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:tg0YE1RQ28qWYAl/b3JmdpQMGSU0PgzpVH5X5ovrMh7NXfc3EDMhE+HqOrpx+1zrBIPMj0GAajxu8HXTxpCq5g=="
   }, {
     "groupId" : "org.threeten",
     "artifactId" : "threetenbp",
