@@ -58,12 +58,12 @@ class ReportService(
             .filterIsInstance<VEvent>()
             .filter { it.start().isBefore(end) && it.end().isAfter(start) }
 
-    private fun VEvent.start() = this.startDate.toLocal()
+    private fun VEvent.start(): LocalDateTime = this.startDate.toLocal()
 
-    private fun VEvent.end() = this.endDate.date.toInstant().toLocal()
+    private fun VEvent.end(): LocalDateTime = this.endDate.date.toInstant().toLocal()
 
-    private fun DateProperty.toLocal() = this.date.toInstant().toLocal()
+    private fun DateProperty.toLocal(): LocalDateTime = this.date.toInstant().toLocal()
 
-    private fun Instant.toLocal() = this.atZone(zone).toLocalDateTime()
+    private fun Instant.toLocal(): LocalDateTime = this.atZone(zone).toLocalDateTime()
 
 }
