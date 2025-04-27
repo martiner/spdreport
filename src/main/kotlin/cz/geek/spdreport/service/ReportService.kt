@@ -4,16 +4,15 @@ import cz.geek.spdreport.model.ReportData
 import mu.KotlinLogging
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.component.VEvent
-import net.fortuna.ical4j.model.property.DateProperty
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
 import java.net.URL
-import java.time.Instant
 import java.time.ZoneId
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.OffsetDateTime
 
 private val logger = KotlinLogging.logger {}
 
@@ -54,16 +53,13 @@ class ReportService(
     private fun load(source: ByteArray, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
         CalendarBuilder()
             .build(InputStreamReader(ByteArrayInputStream(source)))
-            .components
+            .componentList
+            .all
             .filterIsInstance<VEvent>()
             .filter { it.start().isBefore(end) && it.end().isAfter(start) }
 
-    private fun VEvent.start(): LocalDateTime = this.startDate.toLocal()
+    private fun VEvent.start(): LocalDateTime = getDateTimeStart<OffsetDateTime>().date.toLocalDateTime()
 
-    private fun VEvent.end(): LocalDateTime = this.endDate.date.toInstant().toLocal()
-
-    private fun DateProperty.toLocal(): LocalDateTime = this.date.toInstant().toLocal()
-
-    private fun Instant.toLocal(): LocalDateTime = this.atZone(zone).toLocalDateTime()
+    private fun VEvent.end(): LocalDateTime = getDateTimeEnd<OffsetDateTime>().date.toLocalDateTime()
 
 }
