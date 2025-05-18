@@ -15,6 +15,7 @@ data class SettingsData(
 ) {
     constructor(principal: OAuth2AuthenticatedPrincipal) : this(
         fullName = principal.fullName(),
+        email = principal.email(),
     )
 
     fun toSettings(principal: OAuth2AuthenticatedPrincipal): Settings =
