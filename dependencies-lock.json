@@ -138,91 +138,91 @@
   }, {
     "groupId" : "com.google.api.grpc",
     "artifactId" : "proto-google-cloud-tasks-v2",
-    "version" : "2.60.0",
+    "version" : "2.63.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:9lUJD1bzPNxpZwhFn+xXPfSmQKlFwa0rjhMJnTzGbZRqosz1LLZWA3QbfYpQ+EnDXg9zP8Tx+OQmp0tvMIhOUQ=="
+    "integrity" : "sha512:oh5V1tnDdF3rg68a02Aq7OqmQuq52w1r1Vayr7NxdaQ3Z/nu8L3WV4maWNb8NVPoIisFP563zuDTjNCZ688cRg=="
   }, {
     "groupId" : "com.google.api.grpc",
     "artifactId" : "proto-google-cloud-tasks-v2beta2",
-    "version" : "0.150.0",
+    "version" : "0.153.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:Q7K/IdW2LExw66rLVsF3M4Ab9/XUyJj/wNU6GWt0Abi+wN6aXs95tNC8k6xmp2pKdWc2nnYKMLOaUDM+pGd25w=="
+    "integrity" : "sha512:nvilGl1uAjIY/MEUBPyDGWnnWwY0+g7og/v7kE+PL7QLa/VZnLjI131FgMj8Gurf+SNyGWNvAWRP4aXhCnXPoA=="
   }, {
     "groupId" : "com.google.api.grpc",
     "artifactId" : "proto-google-cloud-tasks-v2beta3",
-    "version" : "0.150.0",
+    "version" : "0.153.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:CKOWFDPih+hcqfu6blcZh1brdANB6ivaGptMStHnyboXYYF7nIJLYAvJuCJWHSgRVmPdXW+wdjTFhWgCG0gJbA=="
+    "integrity" : "sha512:/gfMMpprKbIlWCYEgTZle/WhcWhu7gs/y5AW+8Fr77w3I3ASbTF0uB5L6GSNSeNydzCdRhO//kwGrkMt+yJNaQ=="
   }, {
     "groupId" : "com.google.api.grpc",
     "artifactId" : "proto-google-common-protos",
-    "version" : "2.54.1",
+    "version" : "2.57.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:yTNCg5GQbYBuqc+T+z2t8KKa/wA9BneADyFr0NmXgXsCmmmC2stHj2SfT1gkhimgXn4T0qKoudnKGcvD9pVufg=="
+    "integrity" : "sha512:8rm3jG0ShBAnOYbyxwgxF+oIBoxQbpN9nmAMf8jnxQdolguj5PMLrKT2CRAf4TDPlAffOPmjHH+yku/8uGXxgw=="
   }, {
     "groupId" : "com.google.api.grpc",
     "artifactId" : "proto-google-iam-v1",
-    "version" : "1.49.1",
+    "version" : "1.52.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:gv/YZKNCnZ7nnYlaUyeJ446yirh//TcfrHmMcKhJUvVwEc6+CTD62Bay14VzjLiPHyi8of9Jv5cYR7OEaCZrDQ=="
+    "integrity" : "sha512:3tBV7MRhV4roPZwYK117jqtteglIGQUANK9U3rowqLwaBxlZ10WJEUr9ctRdLq7rkn/e2l8hkU7ri+v7HocrMQ=="
   }, {
     "groupId" : "com.google.api",
     "artifactId" : "api-common",
-    "version" : "2.46.1",
+    "version" : "2.49.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:EBkj5V61UzE4rWUk6M1gykUUSFjhN9zLjBLmFIz+Z0aj1cYHoh8Ny2NuCDAj4xTZmdbABPKa0CMlPbxURkkDRg=="
+    "integrity" : "sha512:SUxsaNefxMkRd42VjQGQ3o+684tULHpigKZmJ7QFEx6zMYWNdfMkkq2Ch0dkfypaopwNKKIiDaSUGIUMvQrvsg=="
   }, {
     "groupId" : "com.google.api",
     "artifactId" : "gax-grpc",
-    "version" : "2.63.1",
+    "version" : "2.66.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:/rz83QlcPuO3L0Ajq9eIGEvfSuySHvpv74xs5gvwJFiPHB9O2fcT7ZTVvurQpsFSWC4E1iVdqrK/wgl5zAwIhQ=="
+    "integrity" : "sha512:jDjCM462yFLEtKdM19MurYC+apWmJzccIyl4tUtgVG/EZargG/0nJS6B7YCxGaYx53ew4OsndSno1v9bGnshww=="
   }, {
     "groupId" : "com.google.api",
     "artifactId" : "gax-httpjson",
-    "version" : "2.63.1",
+    "version" : "2.66.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:/MkfhVuqIu/gxsYUTmqN2wRTmctMiyeS8aa2QejFr1wsO3nlN4YNnRxPq1YCpl5FEamXGkvG1gT0Rlcbxqivxw=="
+    "integrity" : "sha512:ohReGd4vz7ELLDxmFCe9UHodQDX84mS3UEHONBPNwhxQiol8A2S0ZtYFpKVC8Ih8hR3zcVVW8clMgwgCIUPuDw=="
   }, {
     "groupId" : "com.google.api",
     "artifactId" : "gax",
-    "version" : "2.63.1",
+    "version" : "2.66.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:dcL01OJJ4Kck51zwWpfavCKfo6SPeCejj43Dna3Gd/IQ9RIhgQXwW+XxdmKpHtrdixrLKNhEdEr5mdng94/lWw=="
+    "integrity" : "sha512:tlFJOvU8oj8A/sM2W69SL6R7HOlJYfcoO8gmZlSRZ6Pq5cpsAzR+490TfV8k8X+QbbpByMW4Kc5hWjbVYbiMyg=="
   }, {
     "groupId" : "com.google.auth",
     "artifactId" : "google-auth-library-credentials",
-    "version" : "1.33.1",
+    "version" : "1.35.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:0bt0zPCxsemGM5CKW1xZX7exIMSbuR0C2vUHwkLTmrm3X8xXY0AmYIC6GGNvjHNxeQ+rY2yWrtokYiRnyY1F1Q=="
+    "integrity" : "sha512:QHVc94c9JOnCOMOO3JdiAJAReWNdOSvANdYFhhKySkR1ASt1zxvm4ata8CCfhSPOewOof2XqXKGhsCWB92TVTg=="
   }, {
     "groupId" : "com.google.auth",
     "artifactId" : "google-auth-library-oauth2-http",
-    "version" : "1.33.1",
+    "version" : "1.35.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:NZXb6XVRWxZAdbHy1sgb9qRe6hMmVvLvMFo/71hRU0F5Og0Nk9Qwl6AScOiyal5iWMOtODJimr3Wd+9GNluqog=="
+    "integrity" : "sha512:fdRRN7IDVvK0AP/0RzVUpbKdPAguzo8wRg+UsC1IKJaol1yBXySh6oujIaeUkFnLJKU8XoyRu3YHx3xVCW8RCA=="
   }, {
     "groupId" : "com.google.auto.value",
     "artifactId" : "auto-value-annotations",
@@ -266,11 +266,11 @@
   }, {
     "groupId" : "com.google.cloud",
     "artifactId" : "google-cloud-tasks",
-    "version" : "2.60.0",
+    "version" : "2.63.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:mHvJUSgApbCKE/S32AzdcUbqtPoGkStTBXxDt9W6/a39ZaeXqF6R0U1MXHjjdF+Ouo7frY/kKaxCTgCtBN8z2Q=="
+    "integrity" : "sha512:d+UoWw1fEZ2q8iAaSMB3L1WkaZ/GSwqjCIga9LZtVErkYRo13EGDfHJGKxQ7pq+YkttE+iQDNn2uOTAN8/Zo3g=="
   }, {
     "groupId" : "com.google.code.findbugs",
     "artifactId" : "jsr305",
@@ -290,11 +290,11 @@
   }, {
     "groupId" : "com.google.errorprone",
     "artifactId" : "error_prone_annotations",
-    "version" : "2.36.0",
+    "version" : "2.38.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:vW9WUJAlJtPbBqocx702cjZYFmrPq7gjrKJ9Cyw4FOg64kqCF86RXD4ZTCxpahAlgLTCHvXbph92ELy41YD1Zg=="
+    "integrity" : "sha512:sT/bfgbsHxLqHWOw/5QsI55N7LOR1zah99RsmqnidE6Tkb5DmKAqeNVRqWlpYi5lt1u9MeW/Z6WThxZ2X0UfOg=="
   }, {
     "groupId" : "com.google.guava",
     "artifactId" : "failureaccess",
@@ -338,11 +338,11 @@
   }, {
     "groupId" : "com.google.http-client",
     "artifactId" : "google-http-client-gson",
-    "version" : "1.46.3",
+    "version" : "1.47.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:/r9hOMqVP/DHp0wC9hIvUwtwT8D6rdWk5bUUlJTzpIdqC1TimNuxw/Ni7grZeV3mNeDU42anJKEiELvJU4igRw=="
+    "integrity" : "sha512:kNjpbJxW7rfdjztpX3XLUDkoo4TiwqBZ/6wsywR5Vlm2M0VX1ob7QF5OzssO+gZ/yLPet4H8Tvb09oeX7aWD6A=="
   }, {
     "groupId" : "com.google.http-client",
     "artifactId" : "google-http-client-jackson2",
@@ -362,11 +362,11 @@
   }, {
     "groupId" : "com.google.http-client",
     "artifactId" : "google-http-client",
-    "version" : "1.46.3",
+    "version" : "1.47.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:HLylZilB7kCd/i68ORB5BdQcT0YRrlutsA0d9BWRN0f4vsUpdpSWr2Fb1qt80+7YQHuIJb8mBJQwj+ftMq3lbg=="
+    "integrity" : "sha512:6iO2vcljvZLxg0uP3287pCPVf6y/2LRO6tVxU/Xm2jSvW0b+eqS3BlMY3MPNhh7/D4XhN+r9dVDjYRll7qkplw=="
   }, {
     "groupId" : "com.google.j2objc",
     "artifactId" : "j2objc-annotations",
@@ -770,7 +770,7 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-agent-api",
-    "version" : "1.14.0",
+    "version" : "1.14.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
@@ -786,7 +786,7 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-agent",
-    "version" : "1.14.0",
+    "version" : "1.14.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
@@ -802,7 +802,7 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-core",
-    "version" : "1.14.0",
+    "version" : "1.14.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
@@ -818,7 +818,7 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-dsl",
-    "version" : "1.14.0",
+    "version" : "1.14.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
@@ -834,7 +834,7 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk",
-    "version" : "1.14.0",
+    "version" : "1.14.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
