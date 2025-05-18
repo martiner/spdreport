@@ -49,7 +49,7 @@ data class Settings(
                 fullName = fullName,
                 number = number,
                 email = email,
-                url = URL(url),
+                url = runCatching {  URL(url) } .getOrNull(),
                 defaultRange = defaultRange,
                 emailFrequency = emailFrequency,
             )
