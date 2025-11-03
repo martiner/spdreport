@@ -11,6 +11,7 @@ import java.time.LocalDate
 data class ReportData(
     var name: String,
     var number: String,
+    var country: Country,
     @field:DateTimeFormat(pattern = "yyyy-MM-dd")
     var start: LocalDate,
     @field:DateTimeFormat(pattern = "yyyy-MM-dd")

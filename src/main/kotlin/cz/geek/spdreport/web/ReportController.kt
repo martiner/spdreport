@@ -4,6 +4,7 @@ import cz.geek.spdreport.model.DateRanges.PREVIOUS_MONTH
 import cz.geek.spdreport.model.ReportData
 import cz.geek.spdreport.service.ReportService
 import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.fullName
 import cz.geek.spdreport.web.ReportController.Companion.URL
 import net.fortuna.ical4j.data.ParserException
@@ -54,6 +55,9 @@ class ReportController(
         return VIEW
     }
 
+    @ModelAttribute("countries")
+    fun countries(): List<Country> = Country.entries
+
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal?): ReportData {
         if (principal != null) {
@@ -67,6 +71,7 @@ class ReportController(
                 ReportData(
                     name = principal.fullName() ?: "",
                     number = "",
+                    country = Country.CZ,
                     start = it.start,
                     end = it.end,
                 )

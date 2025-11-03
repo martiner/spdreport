@@ -12,7 +12,7 @@
                 <div class="header">There is an issue preventing submission of the form</div>
             </div>
         </div>
-        <div class="four fields">
+        <div class="five fields">
             <div class="field" data-position="bottom left"
                  th:classappend="${#fields.hasErrors('start')}? error"
                  th:attr="data-tooltip=${#strings.listJoin(#fields.errors('start'), ' ')}">
@@ -36,6 +36,14 @@
                  th:attr="data-tooltip=${#strings.listJoin(#fields.errors('number'), ' ')}">
                 <label>Employee Number:</label>
                 <input type="text" th:field="*{number}" />
+            </div>
+            <div class="field" data-position="bottom left"
+                 th:classappend="${#fields.hasErrors('country')}? error"
+                 th:attr="data-tooltip=${#strings.listJoin(#fields.errors('country'), ' ')}">
+                <label>Country:</label>
+                <select th:field="*{country}">
+                    <option th:each="c : ${countries}" th:value="${c.name}" th:text="${c.value}"></option>
+                </select>
             </div>
         </div>
         <div class="ui top attached tabular menu">

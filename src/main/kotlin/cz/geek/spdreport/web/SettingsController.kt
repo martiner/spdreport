@@ -1,6 +1,7 @@
 package cz.geek.spdreport.web
 
 import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.DateRanges
 import cz.geek.spdreport.model.EmailFrequency
 import cz.geek.spdreport.model.Settings.Companion.toSettingsData
@@ -37,6 +38,9 @@ class SettingsController(
         redirectAttributes.addFlashAttribute("message", "Saved")
         return "redirect:$URL"
     }
+
+    @ModelAttribute("countries")
+    fun countries(): List<Country> = Country.entries
 
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal, model: Model) {

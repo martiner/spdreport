@@ -14,6 +14,7 @@ data class Settings(
     var id: String,
     var fullName: String? = null,
     var number: String? = null,
+    var country: Country? = null,
     var email: String? = null,
     var url: String? = null,
     var defaultRange: DateRanges = PREVIOUS_MONTH,
@@ -38,6 +39,7 @@ data class Settings(
         ReportData(
             name = fullName ?: "",
             number = number ?: "",
+            country = country ?: Country.CZ,
             start = dateRange.start,
             end = dateRange.end,
             url = URL(url),
@@ -48,6 +50,7 @@ data class Settings(
             SettingsData(
                 fullName = fullName,
                 number = number,
+                country = country,
                 email = email,
                 url = runCatching {  URL(url) } .getOrNull(),
                 defaultRange = defaultRange,

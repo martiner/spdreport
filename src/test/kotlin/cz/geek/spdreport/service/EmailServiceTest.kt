@@ -1,6 +1,7 @@
 package cz.geek.spdreport.service
 
 import com.ninjasquad.springmockk.MockkBean
+import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.ReportData
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.string.shouldContain
@@ -20,6 +21,7 @@ class EmailServiceTest(
     val reportData = ReportData(
         "GI Joe",
         "123",
+        Country.CZ,
         LocalDate.of(2023, 9, 11),
         LocalDate.of(2023, 9, 11),
         URL("http://foo"),
@@ -32,6 +34,7 @@ class EmailServiceTest(
             LocalTime.of(23, 0),
             reportData.name,
             reportData.number,
+            reportData.country,
         )
         every { reportService.create(any()) } returns listOf(report)
         val html = emailService.createReport(reportData)
