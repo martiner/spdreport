@@ -12,6 +12,7 @@
 		<kotlin.version>2.1.21</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 		<spring.boot.version>3.4.5</spring.boot.version>
+		<cloudsdk.version>google/cloud-sdk:508.0.0</cloudsdk.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<kotest.version>5.9.1</kotest.version>
@@ -284,7 +285,7 @@
 					<logDate>default</logDate>
 					<images>
 						<image>
-							<name>google/cloud-sdk</name>
+							<name>${cloudsdk.version}</name>
 							<run>
 								<platform>linux/amd64</platform>
 								<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:8484 --data-dir=/datastore</cmd>
@@ -296,6 +297,9 @@
 										<volume>${project.basedir}/datastore:/datastore</volume>
 									</bind>
 								</volumes>
+								<log>
+									<enabled>true</enabled>
+								</log>
 							</run>
 						</image>
 					</images>
@@ -310,7 +314,7 @@
 						<configuration>
 							<images>
 								<image>
-									<name>google/cloud-sdk</name>
+									<name>${cloudsdk.version}</name>
 									<run>
 										<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:${objectify.port} --no-store-on-disk</cmd>
 										<ports>
@@ -319,6 +323,9 @@
 										<wait>
 											<log>Dev App Server is now running</log>
 										</wait>
+										<log>
+											<enabled>true</enabled>
+										</log>
 									</run>
 								</image>
 							</images>
