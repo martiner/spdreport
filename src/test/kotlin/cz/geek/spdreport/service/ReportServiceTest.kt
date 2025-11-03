@@ -1,5 +1,6 @@
 package cz.geek.spdreport.service
 
+import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.ReportData
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
@@ -22,6 +23,7 @@ class ReportServiceTest : FreeSpec({
         val data = ReportData(
             name = "James",
             number = "007",
+            country = Country.CZ,
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
@@ -34,6 +36,7 @@ class ReportServiceTest : FreeSpec({
             end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
+            country shouldBe Country.CZ
         }
         list.subList(1, 9)
             .filterIndexed { index, _ -> index % 2 == 0 }
@@ -82,8 +85,9 @@ class ReportServiceTest : FreeSpec({
         val data = ReportData(
             name = "James",
             number = "007",
+            country = Country.CZ,
             start = LocalDate.of(2023, 8, 1),
-            end = LocalDate.of(2023, 8, 20)
+            end = LocalDate.of(2023, 8, 20),
         )
         val list = service.create(read("/jp.ics"), data, emptySet())
         list shouldHaveSize 9
@@ -94,6 +98,7 @@ class ReportServiceTest : FreeSpec({
             end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
+            country shouldBe Country.CZ
         }
 
         assertSoftly(list.last()) {
@@ -102,6 +107,7 @@ class ReportServiceTest : FreeSpec({
             end shouldBe LocalTime.of(0, 0)
             name shouldBe "James"
             number shouldBe "007"
+            country shouldBe Country.CZ
         }
 
     }
@@ -110,8 +116,9 @@ class ReportServiceTest : FreeSpec({
         val data = ReportData(
             name = "James",
             number = "007",
+            country = Country.CZ,
             start = LocalDate.of(2023, 8, 28),
-            end = LocalDate.of(2023, 8, 30)
+            end = LocalDate.of(2023, 8, 30),
         )
         val list = service.create(read("/jp.ics"), data, emptySet())
         list shouldHaveSize 1
@@ -122,6 +129,7 @@ class ReportServiceTest : FreeSpec({
             end shouldBe LocalTime.of(19, 0)
             name shouldBe "James"
             number shouldBe "007"
+            country shouldBe Country.CZ
         }
     }
 
@@ -133,6 +141,7 @@ class ReportServiceTest : FreeSpec({
             val data = ReportData(
                 name = "James",
                 number = "007",
+                country = Country.CZ,
                 start = LocalDate.of(2023, 5, 1),
                 end = LocalDate.of(2023, 5, 2)
             )
@@ -150,6 +159,7 @@ class ReportServiceTest : FreeSpec({
         val data = ReportData(
             name = "James",
             number = "007",
+            country = Country.CZ,
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20)
         )

@@ -8,6 +8,7 @@ import java.net.URL
 data class SettingsData(
     var fullName: String? = null,
     var number: String? = null,
+    var country: Country? = null,
     var email: String? = null,
     var url: URL? = null,
     var defaultRange: DateRanges = PREVIOUS_MONTH,
@@ -24,6 +25,7 @@ data class SettingsData(
             email = principal.email(), // this.email should not be used!
             fullName = fullName,
             number = number,
+            country = country,
             url = url.toString(),
             defaultRange = defaultRange,
             emailFrequency = emailFrequency,

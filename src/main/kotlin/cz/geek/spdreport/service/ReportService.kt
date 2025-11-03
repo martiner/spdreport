@@ -45,7 +45,8 @@ class ReportService(
                 start = start,
                 end = end,
                 name = data.name,
-                number = data.number
+                number = data.number,
+                country = data.country,
             ) }
 
     private fun load(source: ByteArray, start: LocalDate, end: LocalDate): List<VEvent> =

@@ -12,6 +12,7 @@ class ReportDataTest : FreeSpec({
     val data = ReportData(
         name = "James",
         number = "007",
+        country = Country.CZ,
         start = LocalDate.of(2023, 9, 1),
         end = LocalDate.of(2023, 9, 30)
     )

@@ -3,6 +3,7 @@ package cz.geek.spdreport.web
 import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.TestHelper.oAuth2User
 import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.Settings
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
@@ -48,6 +49,7 @@ class SettingsControllerTest(
             email = "gi@example.com",
             fullName = "GI Joe",
             number = "789",
+            country = Country.CZ,
             url = "http://foo",
         )
         every { settingsRepository.load(match<OAuth2AuthenticatedPrincipal>{ it.name == "123" }) } returns settings
@@ -62,6 +64,7 @@ class SettingsControllerTest(
                 param("email", "FORGED@EMA.IL")
                 param("fullName", "GI Jane")
                 param("number", "456")
+                param("country", "CZ")
                 param("url", "http://bar")
             }
             .andExpect {
@@ -79,6 +82,7 @@ class SettingsControllerTest(
             }
             fullName shouldBe "GI Jane"
             number shouldBe "456"
+            country shouldBe Country.CZ
             url shouldBe "http://bar"
         }
     }
@@ -91,6 +95,7 @@ class SettingsControllerTest(
                 with(oauth2Login().oauth2User(oAuth2User(userId = "123")))
                 param("fullName", "GI Jane")
                 param("number", "456")
+                param("country", "CZ")
                 param("url", "webcal://bar")
             }
             .andExpect {
