@@ -19,52 +19,29 @@ private val logger = KotlinLogging.logger {}
 
 @Service
 class ReportService(
-    @Value("\${holidays}") private val holidays: URL,
+    val holidayService: HolidayService,
+    val calendarService: CalendarService
 ) {
-
-    private val zone = ZoneId.of("Europe/Prague")
 
     fun create(data: ReportData): List<Report> {
         val resource = data.source()?.resource ?: return emptyList()
         logger.info { "Creating report for $data" }
-        val holidays = holidays(holidays.readBytes(), data)
+        val holidays = holidayService.getHolidays(data.country, data.start, data.end)
         return create(resource.contentAsByteArray, data, holidays)
     }
 
-    private fun holidays(source: ByteArray, data: ReportData): Set<LocalDate> =
-        load(source, data.start, data.end)
-            .filter { it.description.value == "Státní svátek" }
-            .map { it.start().toLocalDate() }
-            .toSet()
-
     fun create(source: ByteArray, data: ReportData, holidays: Set<LocalDate>): List<Report> =
-        load(source, data.start, data.end)
+        calendarService.load(source, data.start, data.end)
             .flatMap { DateItemGenerator.generate(it.start(), it.end(), holidays) }
-            .map { (day, start, end) -> Report(
-                date = day,
-                start = start,
-                end = end,
-                name = data.name,
-                number = data.number,
-                country = data.country,
-            ) }
-
-    private fun load(source: ByteArray, start: LocalDate, end: LocalDate): List<VEvent> =
-        load(source, start.atStartOfDay(), end.atTime(23, 59))
-
-    private fun load(source: ByteArray, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
-        CalendarBuilder()
-            .build(InputStreamReader(ByteArrayInputStream(source)))
-            .components
-            .filterIsInstance<VEvent>()
-            .filter { it.start().isBefore(end) && it.end().isAfter(start) }
-
-    private fun VEvent.start() = this.startDate.toLocal()
-
-    private fun VEvent.end() = this.endDate.date.toInstant().toLocal()
-
-    private fun DateProperty.toLocal() = this.date.toInstant().toLocal()
-
-    private fun Instant.toLocal() = this.atZone(zone).toLocalDateTime()
+            .map { (day, start, end) ->
+                Report(
+                    date = day,
+                    start = start,
+                    end = end,
+                    name = data.name,
+                    number = data.number,
+                    country = data.country,
+                )
+            }
 
 }

@@ -10,14 +10,17 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
+import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
+    val calendarService = CalendarService()
+    val holidayService = HolidayService(emptyMap(), calendarService)
 
-    val service = ReportService(URL("http://foo"))
+    val service = ReportService(holidayService, calendarService)
 
     "Should create report" {
         val data = ReportData(
