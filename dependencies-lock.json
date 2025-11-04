@@ -72,21 +72,53 @@
     "optional" : false,
     "integrity" : "sha512:VHNXVfUJgfVLNRQ6IyyIYNFpJuTKaYqKRvk6m1M2oCznEFaDnQjzyYTEqr9Dwucxpy6mMA0c/zeJfSP+OMeO5w=="
   }, {
-    "groupId" : "com.github.ajalt",
-    "artifactId" : "colormath",
-    "version" : "1.2.0",
+    "groupId" : "com.github.ajalt.colormath",
+    "artifactId" : "colormath-jvm",
+    "version" : "3.6.0",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:F7vtyafLzItDV5depbda4g1ylyHHSxuzdJNhniaqwaz43TMQ06S8RnrnmcaFB8BrBQTvYQN+GlF6XZVWqd4lTw=="
+    "integrity" : "sha512:OSyX5jWB5oR3lSAf3ymcDMYCA148xo9bjzUYoYWOAUeqsUDcP50B+FO4g4kXQet3C31mlmx+57Dpq2sgFgSOIg=="
   }, {
-    "groupId" : "com.github.ajalt",
-    "artifactId" : "mordant",
-    "version" : "1.2.1",
+    "groupId" : "com.github.ajalt.mordant",
+    "artifactId" : "mordant-core-jvm",
+    "version" : "3.0.2",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:v9pbqsDWAtIrLQWV4odNPNYM6ZEqFZ/ZwLP41mDx2tHWDx8qYpBmg1S7dm1Ol3EnwNNr33cthhkUUp5XKLIQOA=="
+    "integrity" : "sha512:sES5gSGOP/pKazyFHjq5l+HKD3o2BavzX2GAnRXJtO1JaaDLP+Ol6WD6PXYK1/DbKu2JVQU3mN1CTE4MdTC6og=="
+  }, {
+    "groupId" : "com.github.ajalt.mordant",
+    "artifactId" : "mordant-jvm-ffm-jvm",
+    "version" : "3.0.2",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:QIJpz/I+zSZxKxR0lSXhKXT5fmL0+eZl/1J8Nm+jp8lskMmM97g7iHRRUfLBXYQXNym8Q3opNqndGfvU2gNbfw=="
+  }, {
+    "groupId" : "com.github.ajalt.mordant",
+    "artifactId" : "mordant-jvm-graal-ffi-jvm",
+    "version" : "3.0.2",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:+xbdabqWOhj/dakKzHP7W4vv7HHV63GprACT5xa6k/IPBxigfykEiyeB2bqntsTfDTes7ePMbcuutA0sjPNBag=="
+  }, {
+    "groupId" : "com.github.ajalt.mordant",
+    "artifactId" : "mordant-jvm-jna-jvm",
+    "version" : "3.0.2",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:JnYETQ0aDPfeJmQlKKywfEDWdNvs9NIn3bEoyltDexcAnz/7k3TD2R+waRdSCJ9vBlBZg09H5R3nhh6fPcNwNw=="
+  }, {
+    "groupId" : "com.github.ajalt.mordant",
+    "artifactId" : "mordant-jvm",
+    "version" : "3.0.2",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:OTp28qjzKL9Rvazl/QHq2gghjh8LRGEOzKX/z0NGPLa/9ciufvcCwtc8Vbzj7RjHAnfNopnTFAcxMygLZI8IFw=="
   }, {
     "groupId" : "com.github.stephenc.jcip",
     "artifactId" : "jcip-annotations",
@@ -504,21 +536,13 @@
     "optional" : false,
     "integrity" : "sha512:TjA6ueITLqyotBiKqRiFoEajuOdvKJWpxwJcAB6NNuCWqfaavQXYOlCPoW0NLsCJ6p8NriYdBJ/xhyT61qjxsQ=="
   }, {
-    "groupId" : "io.github.classgraph",
-    "artifactId" : "classgraph",
-    "version" : "4.8.172",
+    "groupId" : "io.github.java-diff-utils",
+    "artifactId" : "java-diff-utils",
+    "version" : "4.16",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:6ZAjCPcG6UmJEyglzuy1QB6EQKs8CSJw4kjySmBOyaqWTzK4eiSeDPmKMDzRK4lbpXeT78VdeCxXXyCG3QRpXg=="
-  }, {
-    "groupId" : "io.github.java-diff-utils",
-    "artifactId" : "java-diff-utils",
-    "version" : "4.12",
-    "scope" : "runtime",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:35UOrM/CRkG6eVfkLgvVQCS6/gdFDP7YQEuOnvsAkxu5ayUYxYIxD5hQisVQw004zeSaIg/J10O7xS0P0l/rUw=="
+    "integrity" : "sha512:YXC3VWKbF4q0Kq/BmfpIUwaeXA/ukCG4RcZh8pSe0bIiK69qMpCpSqOsxxc0h2elQvbGYE99XvyZjCcrqykVOw=="
   }, {
     "groupId" : "io.github.microutils",
     "artifactId" : "kotlin-logging-jvm",
@@ -527,6 +551,22 @@
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:ycWgb2wbuYg47N25GrgV3DviNKsTAZIz+1BN2zYJSM4mm/Mupr5tBqsFgBxvBJJi/fg2VsW2l/Kxws448Q5EAw=="
+  }, {
+    "groupId" : "io.github.pdvrieze.xmlutil",
+    "artifactId" : "core-jvmcommon",
+    "version" : "0.91.1",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:hjgoQePPfnO3ijhqsQ/Yt0S9B6bEIPzoBZ0BH4jNx14n9nGv2FpsnbSizygsZhsovJzooAtO5kuUY+S9Flkohw=="
+  }, {
+    "groupId" : "io.github.pdvrieze.xmlutil",
+    "artifactId" : "serialization-jvm",
+    "version" : "0.91.1",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:7lZMtFEEK1UHdHFPtfdkJSDu2Iv0gpV2UOvDwaoMEBhazxLF2TkxiZF19yLE1zPVUBN17SjQqV4NnY3pE0iALQ=="
   }, {
     "groupId" : "io.grpc",
     "artifactId" : "grpc-alts",
@@ -657,92 +697,60 @@
     "integrity" : "sha512:Dey7ibcQEXJfmgE61/EDPNTkuDpXZnh/k3yBy3lKb3q2Urara8h6P1YyAv9+vZwXrrdPs4TTi0loRC69ozZoPA=="
   }, {
     "groupId" : "io.kotest",
-    "artifactId" : "kotest-assertions-api-jvm",
-    "version" : "5.9.1",
-    "scope" : "runtime",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:Ln3dzTTLeAOba6yHdy94dDJgk1Rc/BjZ357NAEBEnjh9o9z64VbriuiFIs/tDFIJucZRjBpI5OU0t9tU0EM8Tw=="
-  }, {
-    "groupId" : "io.kotest",
     "artifactId" : "kotest-assertions-core-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:jTVLJVGOJU/gJLnlCDKGKG2YSSgJdtB0gvz5FGM/aidqDfv68ynl8AhqsRzpciwZ0ZLCsENKr1FYYy3Ceu/NNg=="
+    "integrity" : "sha512:Q2clgMRLh0eZrSy28SLbHOM2jryid4PN+WP95aDh3fP2S7r5ES8D727ogu/RI1HmesmZEbA630tt9kJ4KIHg2Q=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-assertions-shared-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "runtime",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:y3n/j9qGF8MeC72iRe+9O5haUIW25hZzDGduWhmKb97+APxtZoABWyJ2nNbLE8YpB+JDtYMzjeXlJ7zgf5y3Vw=="
+    "integrity" : "sha512:ovDG051CrlaOxILFx4J+1/fIAveM6TvrFtdbZfQQbD2GAJoN8IS+wgMEdmtSJ+n9e7GQs88mtaEluDZXxjyczQ=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-common-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "runtime",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:AMIVPuo5Xshvq/u/UXlgkwVGSc96T4h8XFTkSJPYUPvwYhBqK6obeVAnxpEzToGQtaDEKJNC4c9PeFaB81W2PQ=="
+    "integrity" : "sha512:KMIDtmF0OamquP0q9RG0CMF8gFADGoiMt6eMcLCqkxzeQRGDqLiW5eZD0AvSUI0hAIk/OdoWtmsKhJzAYDwQsQ=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-extensions-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:5rqyZ/KeCfqgiT7TYK5o3KpFk1R/Hg7s2ai70WD8oK5wK+zfT5bdT8vMudzEEK3kKEzIF1CMN/kZucnrLkDsQw=="
+    "integrity" : "sha512:rTo8nPSQEzwmYilNusz39IqCG56To8a41DR5rtMiBfULw7wuuylBZUqt4sVc3tLW+j7iOiiWjAQ/dG0S5mL/Hw=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-framework-api-jvm",
-    "version" : "5.9.1",
+    "version" : "5.8.1",
     "scope" : "runtime",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:/UAYPBl3nSa0lGNhbEyrwZ7Jtz325P+BCTK/wDFRUPcP0htdF9+ORqX3qcD/ttNKoaejvZTUTZzO4KXmEJZTUw=="
-  }, {
-    "groupId" : "io.kotest",
-    "artifactId" : "kotest-framework-concurrency-jvm",
-    "version" : "5.9.1",
-    "scope" : "test",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:ybThw+UfPo60Z7J4uh2oBomQHb3XtkOI0STNkYIgIE9SW70qH7qvA2PXWgjw5iwpCebrScUca+9lpnUavamQ0Q=="
-  }, {
-    "groupId" : "io.kotest",
-    "artifactId" : "kotest-framework-datatest-jvm",
-    "version" : "5.9.1",
-    "scope" : "test",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:jB+SchoEFWWDOIE5fx6HLwHz6xkiB+qJaigeJrJ/EfPnguOHH2Gs6K+2tpCwz3iaaoBP72qdblXm5spH2Ac+vw=="
-  }, {
-    "groupId" : "io.kotest",
-    "artifactId" : "kotest-framework-discovery-jvm",
-    "version" : "5.9.1",
-    "scope" : "test",
-    "type" : "jar",
-    "optional" : false,
-    "integrity" : "sha512:HdYyDSmy/I7c54OL6izh/nv47Aenp+4C6lkUlH6Q6dzt+AWjw5zAaou/Bmq+OIVKOBmueKpABeOAbMomoGGonA=="
+    "integrity" : "sha512:87QmlERtHhRI3vyaxkrjM1Z0yVN3PDVEh3Sfe7z0ojJbXstsAOIb1vrnkML8QLpKF0hbPNEp2WpVGJNseeQdew=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-framework-engine-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:PtTx1Rq6RKEH0MJh6lsInHoql0Sk1cRYMGMnB1jJHy/i2kxQt7myJuaaZq/dKluoV2LPw9GhBTy6pZU6IO2vCQ=="
+    "integrity" : "sha512:Fuipda3XkNxi2zkgEdr4P/cDAUvka3DFNiBgux0Bs6H2jSPIJISzZ8hCsTB2j9f0uSx51grrUxf2fXjxYxkAUQ=="
   }, {
     "groupId" : "io.kotest",
     "artifactId" : "kotest-runner-junit5-jvm",
-    "version" : "5.9.1",
+    "version" : "6.0.4",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:qpDetL+nHBTT4QgPn9h70lR/71sr4yNJJgYm+GGQgPfA1kn4rbQNyx4ZKgL9Wuft1L9APoeF4ucqyu+0mjOBaQ=="
+    "integrity" : "sha512:e1ThVaQbKjTfm6w/Gr1h+T83UZsEzGdZ2GSo55dVFVXuhi4eOxYDgZo7CF2cSdh75D9ch7y6NmZw7HWm10ayuw=="
   }, {
     "groupId" : "io.micrometer",
     "artifactId" : "micrometer-commons",
@@ -1459,7 +1467,7 @@
     "groupId" : "org.jetbrains.kotlinx",
     "artifactId" : "kotlinx-coroutines-jdk8",
     "version" : "1.8.1",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:CXqG9Nbvw/XYbJ3uOjxidnmI1mQbpGjy252y3v7xjLfwRdkMbBh/WeBBEiDatm1Pl0DSNxYHzXrw5vKheX105A=="
@@ -1471,6 +1479,30 @@
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:jmCzXvyf7JQ4V5rwBrOMUE6ZIfGM5ghZLqTT5FdIHV7eNPXBREi9Dbz64CvCYaxY5rP+lFXgqeajRw60vXx7NA=="
+  }, {
+    "groupId" : "org.jetbrains.kotlinx",
+    "artifactId" : "kotlinx-io-bytestring-jvm",
+    "version" : "0.7.0",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:ZGraQ2cES+jQUa/z65Qk5t/9t7uV3f8vldXw9R9lLgszZid56rAqDpMXZ2+WR91oThD6+q4mr0bWDPpiJsRdGQ=="
+  }, {
+    "groupId" : "org.jetbrains.kotlinx",
+    "artifactId" : "kotlinx-io-core-jvm",
+    "version" : "0.7.0",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:/gR1nSs7UFkRt+DaNwiaQPBxHqcYopTnLiMcH19ywC+5GbXinS1Y3DEPG/uiFx8Ny01ggxOO1/NcAgyDL9VvTg=="
+  }, {
+    "groupId" : "org.jetbrains.kotlinx",
+    "artifactId" : "kotlinx-serialization-core-jvm",
+    "version" : "1.6.3",
+    "scope" : "test",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:6p2cpuG91pZtDUGZbeCfo//uPQMO1AX/3BoLQS4LaKiufU9aORqKHlK90TWjIfeORCPJLANyfa55pmGWM6Gwtw=="
   }, {
     "groupId" : "org.jetbrains",
     "artifactId" : "annotations",
