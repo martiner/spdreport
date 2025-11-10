@@ -1,10 +1,12 @@
 package cz.geek.spdreport.service
 
 import cz.geek.spdreport.model.Country
-import cz.geek.spdreport.model.CountryHolidayConfig
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import java.net.URL
 import java.time.LocalDate
 
 data class HolidayTestConfig(
@@ -17,13 +19,27 @@ data class HolidayTestConfig(
 class HolidayServiceTest: FreeSpec() {
     init {
 
-        val service = HolidayService(
-            mapOf(
-                Country.CZ to CountryHolidayConfig(javaClass.getResource("/holidays_cz.ics")!!, "Státní svátek"),
-                Country.SK to CountryHolidayConfig(javaClass.getResource("/holidays_sk.ics")!!, "Public holiday")
-            ),
-            CalendarService()
-        )
+        val calendarService = mockk<CalendarService>()
+        val realCalendarService = CalendarService()
+        
+        // Mock the load method to return events from local test resources
+        every { calendarService.load(any<URL>(), any<LocalDate>(), any<LocalDate>()) } answers {
+            val url = firstArg<URL>()
+            val start = secondArg<LocalDate>()
+            val end = thirdArg<LocalDate>()
+            
+            // Determine which test resource file to use based on URL
+            val resourcePath = when {
+                url.toString().contains("en.czech") -> "/holidays_cz.ics"
+                url.toString().contains("en.slovak") -> "/holidays_sk.ics"
+                else -> throw IllegalArgumentException("Unknown calendar URL: $url")
+            }
+            
+            // Load from test resources using the real CalendarService
+            realCalendarService.load(javaClass.getResource(resourcePath)!!, start, end)
+        }
+
+        val service = HolidayService(calendarService)
 
         withData(
             nameFn = { "Load holidays for country ${it.country.value}" },

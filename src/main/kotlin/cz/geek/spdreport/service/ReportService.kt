@@ -27,10 +27,10 @@ class ReportService(
         val resource = data.source()?.resource ?: return emptyList()
         logger.info { "Creating report for $data" }
         val holidays = holidayService.getHolidays(data.country, data.start, data.end)
-        return create(resource.contentAsByteArray, data, holidays)
+        return create(resource.url, data, holidays)
     }
 
-    fun create(source: ByteArray, data: ReportData, holidays: Set<LocalDate>): List<Report> =
+    fun create(source: URL, data: ReportData, holidays: Set<LocalDate>): List<Report> =
         calendarService.load(source, data.start, data.end)
             .flatMap { DateItemGenerator.generate(it.start(), it.end(), holidays) }
             .map { (day, start, end) ->

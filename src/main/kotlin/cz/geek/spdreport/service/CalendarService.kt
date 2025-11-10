@@ -6,6 +6,7 @@ import net.fortuna.ical4j.model.property.DateProperty
 import org.springframework.stereotype.Service
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
+import java.net.URL
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -14,12 +15,12 @@ import java.time.ZoneId
 @Service
 class CalendarService {
 
-    fun load(source: ByteArray, start: LocalDate, end: LocalDate): List<VEvent> =
+    fun load(source: URL, start: LocalDate, end: LocalDate): List<VEvent> =
         load(source, start.atStartOfDay(), end.atTime(23, 59))
 
-    fun load(source: ByteArray, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
+    fun load(source: URL, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
         CalendarBuilder()
-            .build(InputStreamReader(ByteArrayInputStream(source)))
+            .build(InputStreamReader(ByteArrayInputStream(source.readBytes())))
             .components
             .filterIsInstance<VEvent>()
             .filter { it.start().isBefore(end) && it.end().isAfter(start) }
