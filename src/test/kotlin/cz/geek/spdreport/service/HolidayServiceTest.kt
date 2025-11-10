@@ -27,8 +27,24 @@ class HolidayServiceTest: FreeSpec() {
 
         withData(
             nameFn = { "Load holidays for country ${it.country.value}" },
-            HolidayTestConfig(Country.CZ, LocalDate.of(2023, 5, 1), LocalDate.of(2023, 5, 31), setOf(LocalDate.of(2023, 5, 1), LocalDate.of(2023, 5, 8))),
-            HolidayTestConfig(Country.SK, LocalDate.of(2023, 5, 1), LocalDate.of(2023, 5, 31), setOf(LocalDate.of(2023, 5, 1), LocalDate.of(2023, 5, 8)))
+            HolidayTestConfig(
+                Country.CZ,
+                LocalDate.of(2023, 5, 1),
+                LocalDate.of(2023, 5, 31),
+                setOf(
+                    LocalDate.of(2023, 5, 1),
+                    LocalDate.of(2023, 5, 8)
+                )
+            ),
+            HolidayTestConfig(
+                Country.SK,
+                LocalDate.of(2023, 5, 1),
+                LocalDate.of(2023, 5, 31),
+                setOf(
+                    LocalDate.of(2023, 5, 1),
+                    LocalDate.of(2023, 5, 8)
+                )
+            )
         ) { (country, startDate, endDate, expectedHolidays) ->
             val holidays = service.getHolidays(country, startDate, endDate)
             holidays.shouldBe(expectedHolidays)
