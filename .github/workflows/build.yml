@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - master
+      - renovate/**
   pull_request:
     branches:
       - '**'
@@ -15,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout Git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Set up JDK
         uses: actions/setup-java@v5

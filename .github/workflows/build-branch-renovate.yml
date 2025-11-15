@@ -1,0 +1,51 @@
+name: build
+
+on:
+  push:
+    branches:
+      - renovate/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give GITHUB_TOKEN write permission to commit and push the changed files to the repository
+      contents: write
+
+    steps:
+      - name: Checkout Git
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version-file: '.java-version'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: ./mvnw -B dependency-lock:lock verify
+
+      - name: Publish Tests Report
+        uses: martiner/action-junit-report@v5
+        if: success() || failure()
+        with:
+          report_paths: 'target/*-reports/TEST-*.xml'
+
+      - name: Get last commit message
+        id: last-commit
+        run: |
+          echo "message=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
+          echo "author=$(git log -1 --pretty=\"%an <%ae>\")" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        uses: martiner/git-auto-commit-action@v7
+        with:
+          commit_author: ${{ steps.last-commit.outputs.author }}
+          commit_message: ${{ steps.last-commit.outputs.message }}
+          commit_options: '--amend --no-edit'
+          push_options: '--force'
+          skip_fetch: true
