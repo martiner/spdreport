@@ -308,7 +308,11 @@
 											<port>${objectify.port}:${objectify.port}</port>
 										</ports>
 										<wait>
-											<log>Dev App Server is now running</log>
+											<http>
+												<url>http://localhost:${objectify.port}</url>
+												<method>GET</method>
+												<status>200</status>
+											</http>
 										</wait>
 										<log>
 											<enabled>true</enabled>
