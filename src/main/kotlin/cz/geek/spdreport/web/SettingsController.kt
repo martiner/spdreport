@@ -4,7 +4,6 @@ import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.DateRanges
 import cz.geek.spdreport.model.EmailFrequency
-import cz.geek.spdreport.model.Settings.Companion.toSettingsData
 import cz.geek.spdreport.model.SettingsData
 import cz.geek.spdreport.web.SettingsController.Companion.URL
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -40,7 +39,7 @@ class SettingsController(
     }
 
     @ModelAttribute("countries")
-    fun countries(): List<Country> = Country.entries
+    fun countries(): List<Country> = Country.values().toList()
 
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal, model: Model) {

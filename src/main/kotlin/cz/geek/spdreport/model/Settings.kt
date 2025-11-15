@@ -42,19 +42,20 @@ data class Settings(
             country = country ?: Country.CZ,
             start = dateRange.start,
             end = dateRange.end,
-            url = URL(url),
+            url = url.toURL(),
         )
 
-    companion object {
-        fun Settings.toSettingsData(): SettingsData =
-            SettingsData(
-                fullName = fullName,
-                number = number,
-                country = country,
-                email = email,
-                url = runCatching {  URL(url) } .getOrNull(),
-                defaultRange = defaultRange,
-                emailFrequency = emailFrequency,
-            )
-    }
+    fun toSettingsData(): SettingsData =
+        SettingsData(
+            fullName = fullName,
+            number = number,
+            country = country,
+            email = email,
+            url = url.toURL(),
+            defaultRange = defaultRange,
+            emailFrequency = emailFrequency,
+        )
+
+    private fun String?.toURL(): URL? =
+        runCatching { URL(this) }.getOrNull()
 }
