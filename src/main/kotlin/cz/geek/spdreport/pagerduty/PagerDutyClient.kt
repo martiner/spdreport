@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatterBuilder
 @Component
 class PagerDutyClient(
     clientManager: OAuth2AuthorizedClientManager,
-    @Value("\${pagerduty.api.url:https://api.pagerduty.com}")
+    @param:Value("\${pagerduty.api.url:https://api.pagerduty.com}")
     private val apiUrl: String,
 ) {
 

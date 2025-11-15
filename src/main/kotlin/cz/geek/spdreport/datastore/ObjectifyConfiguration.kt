@@ -17,9 +17,9 @@ private val logger = KotlinLogging.logger {}
 
 @Component
 class ObjectifyConfiguration(
-    @Value("\${objectify.port:-1}")
+    @param:Value("\${objectify.port:-1}")
     private val port: Int,
-    @Value("\${objectify.project: }")
+    @param:Value("\${objectify.project: }")
     private val project: String,
 ) {
 

@@ -1394,43 +1394,43 @@
   }, {
     "groupId" : "org.jetbrains.kotlin",
     "artifactId" : "kotlin-reflect",
-    "version" : "1.9.25",
+    "version" : "2.2.21",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:j1z6o40bm7ID5pcHs+bc75hvsUUWP05vREajQDVvoRNxk1DexRciNywZ+h5whDt+KLgmKDfq6nfoY0sI4WFyuQ=="
+    "integrity" : "sha512:Fosvi9PAw5WnjZvCN93nJu6mMJBAfESMPe7ykWZhwZ4ccBP1oT9aFleGlKKghCqYXx9sfFGaSIWLNaGmAq2UBg=="
   }, {
     "groupId" : "org.jetbrains.kotlin",
     "artifactId" : "kotlin-stdlib-common",
-    "version" : "1.9.25",
+    "version" : "1.8.0",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:dECZb+ta826TUwZKMPf4oiWMuT4VG+HCkyUmd3m1TO+mudmKwEpFLCMFXXpa6BxPFkfXLF5FcUGU8ZuApBTz9g=="
+    "integrity" : "sha512:XeKZhdm830Z0bzVacfAPyCvObdu6DVsu1q499vTBgV4iOEwMxerH4sDS6o53Zg++zOE2JUx7dKe2lRrtGuXzaA=="
   }, {
     "groupId" : "org.jetbrains.kotlin",
     "artifactId" : "kotlin-stdlib-jdk7",
-    "version" : "1.9.25",
+    "version" : "2.2.21",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:PVKfJuFHNdfboq0SbXzy6SkE2vfnFhBWOstrsTpY/olDe06h8vGg8avZhTM3CRmOJXVAsIsVCSk7XHXRngAZVw=="
+    "integrity" : "sha512:yKIoJ7ZS906niE+6rCKTbjD8v05PzcO1862TWhLit/S+Yh06p0x249kx94X4L7FpbqfIETrzoeMbHDMElwpTCA=="
   }, {
     "groupId" : "org.jetbrains.kotlin",
     "artifactId" : "kotlin-stdlib-jdk8",
-    "version" : "1.9.25",
+    "version" : "2.2.21",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:mLIhP2juFsr9rKPxyu6X9x9vFsreaJhArsUq2DNzc4H+hIMQWZDu0GYj1qlrMrAkxHJZdnDhZ/ES+xMOYA1L+A=="
+    "integrity" : "sha512:Hm7tWm3C0E/NNDQJbUrOMopB1Q6/zBLPCrdvbhDlgLLmXIDOc9IRQLsvp1/8W7wRk3V4J/24HnpJZYBSfDTtkQ=="
   }, {
     "groupId" : "org.jetbrains.kotlin",
     "artifactId" : "kotlin-stdlib",
-    "version" : "1.9.25",
+    "version" : "2.2.21",
     "scope" : "compile",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:RT2esBYlncRYLCBmh6uUY7VpaA6JM334DRqL0Iw+pztQ6oTuwjr+p2zAYLmYtFDwDVBrktck9gxyGoGyGJxsMw=="
+    "integrity" : "sha512:y39i4utME/ephzh28Z2dy2nDPV6WPHzYcXjzeJ1l8p0rbPaXVzwEdYQo0tpuJvL90/CvRt7djQStgdMx6VhZ1w=="
   }, {
     "groupId" : "org.jetbrains.kotlinx",
     "artifactId" : "kotlinx-coroutines-core-jvm",
