@@ -275,7 +275,7 @@
 							<name>${cloudsdk.version}</name>
 							<run>
 								<platform>linux/amd64</platform>
-								<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:8484 --data-dir=/datastore</cmd>
+								<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:8484 --consistency=1.0 --data-dir=/datastore</cmd>
 								<ports>
 									<port>8484:8484</port>
 								</ports>
@@ -303,7 +303,7 @@
 								<image>
 									<name>${cloudsdk.version}</name>
 									<run>
-										<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:${objectify.port} --no-store-on-disk</cmd>
+										<cmd>gcloud beta emulators datastore start --project spdreport --host-port 0.0.0.0:${objectify.port} --consistency=1.0 --no-store-on-disk</cmd>
 										<ports>
 											<port>${objectify.port}:${objectify.port}</port>
 										</ports>
