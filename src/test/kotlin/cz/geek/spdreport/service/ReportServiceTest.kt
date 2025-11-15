@@ -10,14 +10,18 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
+import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
+import java.net.URI
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
+    val calendarService = CalendarService()
+    val holidayService = HolidayService(calendarService)
 
-    val service = ReportService(URL("http://foo"))
+    val service = ReportService(holidayService, calendarService)
 
     "Should create report" {
         val data = ReportData(
@@ -27,7 +31,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.create(read("/schedule.ics"), data, emptySet())
+        val list = service.create(javaClass.getResource("/schedule.ics")!!, data, emptySet())
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
@@ -89,7 +93,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
         )
-        val list = service.create(read("/jp.ics"), data, emptySet())
+        val list = service.create(javaClass.getResource("/jp.ics")!!, data, emptySet())
         list shouldHaveSize 9
 
         assertSoftly(list.first()) {
@@ -120,7 +124,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 28),
             end = LocalDate.of(2023, 8, 30),
         )
-        val list = service.create(read("/jp.ics"), data, emptySet())
+        val list = service.create(javaClass.getResource("/jp.ics")!!, data, emptySet())
         list shouldHaveSize 1
 
         assertSoftly(list.first()) {
@@ -145,7 +149,7 @@ class ReportServiceTest : FreeSpec({
                 start = LocalDate.of(2023, 5, 1),
                 end = LocalDate.of(2023, 5, 2)
             )
-            val list = service.create(read("/schedule.ics"), data, holidays)
+            val list = service.create(javaClass.getResource("/schedule.ics")!!, data, holidays)
             list shouldHaveAtLeastSize 1
             assertSoftly(list[0]) {
                 date shouldBe data.start
@@ -164,9 +168,7 @@ class ReportServiceTest : FreeSpec({
             end = LocalDate.of(2023, 8, 20)
         )
         shouldThrow<ParserException> {
-            service.create("foo".toByteArray(), data, emptySet())
+            service.create(javaClass.getResource("/kotest.properties")!!, data, emptySet())
         }
     }
 })
-
-private fun read(resource: String) = requireNotNull(ReportServiceTest::class.java.getResource(resource)).readBytes()
