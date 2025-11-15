@@ -4,7 +4,6 @@ import cz.geek.spdreport.ItHelper.httpPort
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.mpp.log
 import mu.KotlinLogging
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
