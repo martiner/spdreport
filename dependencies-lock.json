@@ -770,11 +770,11 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-agent-api",
-    "version" : "1.14.2",
+    "version" : "1.14.6",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:w76c4FqDUDDFWCl1tath+bWvhr+fLPPJQNR0bJ9YrBPWCGstNVOqQd2GkAj4RvQLa7MQ4RXO++tQqvlM609fpw=="
+    "integrity" : "sha512:+cCBtGJEIzeHpSqrt3ZyKwGelSHDqJprTlWmab6c/uNBF2TnnR3pVjvAPG5h5P5UHe7kswr/2WoU3m3S/codyQ=="
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-agent-jvm",
@@ -786,11 +786,11 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-agent",
-    "version" : "1.14.2",
+    "version" : "1.14.6",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:ZcV/gryEH3Ld7h4Z+oDFVEXDmKX/gnRn18tJBMhzpAzZ7Rd6F7xrYTKoFjVFYa3CEdTk4pY3BAq2O89WjlCeSw=="
+    "integrity" : "sha512:+cCBtGJEIzeHpSqrt3ZyKwGelSHDqJprTlWmab6c/uNBF2TnnR3pVjvAPG5h5P5UHe7kswr/2WoU3m3S/codyQ=="
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-core-jvm",
@@ -802,11 +802,11 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-core",
-    "version" : "1.14.2",
+    "version" : "1.14.6",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:w76c4FqDUDDFWCl1tath+bWvhr+fLPPJQNR0bJ9YrBPWCGstNVOqQd2GkAj4RvQLa7MQ4RXO++tQqvlM609fpw=="
+    "integrity" : "sha512:+cCBtGJEIzeHpSqrt3ZyKwGelSHDqJprTlWmab6c/uNBF2TnnR3pVjvAPG5h5P5UHe7kswr/2WoU3m3S/codyQ=="
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-dsl-jvm",
@@ -818,11 +818,11 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-dsl",
-    "version" : "1.14.2",
+    "version" : "1.14.6",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:w76c4FqDUDDFWCl1tath+bWvhr+fLPPJQNR0bJ9YrBPWCGstNVOqQd2GkAj4RvQLa7MQ4RXO++tQqvlM609fpw=="
+    "integrity" : "sha512:+cCBtGJEIzeHpSqrt3ZyKwGelSHDqJprTlWmab6c/uNBF2TnnR3pVjvAPG5h5P5UHe7kswr/2WoU3m3S/codyQ=="
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk-jvm",
@@ -834,11 +834,11 @@
   }, {
     "groupId" : "io.mockk",
     "artifactId" : "mockk",
-    "version" : "1.14.2",
+    "version" : "1.14.6",
     "scope" : "test",
     "type" : "jar",
     "optional" : false,
-    "integrity" : "sha512:FJBJYZFvcVP8eyymLUnUB6tPgLrJMNbCfJcBlPsvb+xeGiC+PXMsNJLFRwyQqhVQO6UQDIhX35UyEDkRywFSvw=="
+    "integrity" : "sha512:+cCBtGJEIzeHpSqrt3ZyKwGelSHDqJprTlWmab6c/uNBF2TnnR3pVjvAPG5h5P5UHe7kswr/2WoU3m3S/codyQ=="
   }, {
     "groupId" : "io.opencensus",
     "artifactId" : "opencensus-api",
