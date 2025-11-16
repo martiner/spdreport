@@ -56,7 +56,7 @@
     <div class="ui divider"></div>
     <div class="ui center aligned container">
         <i class="github icon"></i><a href="https://github.com/martiner/spdreport">Source code:</a>
-        <a th:href="'https://github.com/martiner/spdreport/commit/' + ${git.shortCommitId}" th:text="'#' + ${git.shortCommitId}">deadbeef</a>
+        <a th:href="'https://github.com/martiner/spdreport/commit/' + ${git?.shortCommitId} ?: ''" th:text="'#' + ${git?.shortCommitId} ?: '???'">deadbeef</a>
     </div>
 
 </div>
