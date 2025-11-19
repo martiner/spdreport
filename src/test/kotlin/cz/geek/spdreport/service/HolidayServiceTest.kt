@@ -6,6 +6,8 @@ import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import org.springframework.core.io.ClassPathResource
+import org.springframework.core.io.Resource
 import java.net.URL
 import java.time.LocalDate
 
@@ -23,8 +25,8 @@ class HolidayServiceTest: FreeSpec() {
         val realCalendarService = CalendarService()
         
         // Mock the load method to return events from local test resources
-        every { calendarService.load(any<URL>(), any<LocalDate>(), any<LocalDate>()) } answers {
-            val url = firstArg<URL>()
+        every { calendarService.load(any<Resource>(), any<LocalDate>(), any<LocalDate>()) } answers {
+            val url = firstArg<Resource>()
             val start = secondArg<LocalDate>()
             val end = thirdArg<LocalDate>()
             
@@ -36,7 +38,7 @@ class HolidayServiceTest: FreeSpec() {
             }
             
             // Load from test resources using the real CalendarService
-            realCalendarService.load(javaClass.getResource(resourcePath)!!, start, end)
+            realCalendarService.load(ClassPathResource(resourcePath), start, end)
         }
 
         val service = HolidayService(calendarService)

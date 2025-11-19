@@ -3,10 +3,10 @@ package cz.geek.spdreport.service
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.component.VEvent
 import net.fortuna.ical4j.model.property.DateProperty
+import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
-import java.net.URL
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -15,12 +15,12 @@ import java.time.ZoneId
 @Service
 class CalendarService {
 
-    fun load(source: URL, start: LocalDate, end: LocalDate): List<VEvent> =
+    fun load(source: Resource, start: LocalDate, end: LocalDate): List<VEvent> =
         load(source, start.atStartOfDay(), end.atTime(23, 59))
 
-    fun load(source: URL, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
+    fun load(source: Resource, start: LocalDateTime, end: LocalDateTime): List<VEvent> =
         CalendarBuilder()
-            .build(InputStreamReader(ByteArrayInputStream(source.readBytes())))
+            .build(InputStreamReader(ByteArrayInputStream(source.contentAsByteArray)))
             .components
             .filterIsInstance<VEvent>()
             .filter { it.start().isBefore(end) && it.end().isAfter(start) }

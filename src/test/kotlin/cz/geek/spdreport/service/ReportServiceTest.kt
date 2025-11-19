@@ -3,6 +3,7 @@ package cz.geek.spdreport.service
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.ReportData
 import io.kotest.assertions.assertSoftly
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.inspectors.forAll
@@ -10,10 +11,9 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
-import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
-import java.net.URI
-import java.net.URL
+import org.springframework.core.io.ClassPathResource
+import org.springframework.mock.web.MockMultipartFile
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -31,7 +31,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.create(javaClass.getResource("/schedule.ics")!!, data, emptySet())
+        val list = service.create(ClassPathResource("/schedule.ics"), data, emptySet())
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
@@ -93,7 +93,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
         )
-        val list = service.create(javaClass.getResource("/jp.ics")!!, data, emptySet())
+        val list = service.create(ClassPathResource("/jp.ics"), data, emptySet())
         list shouldHaveSize 9
 
         assertSoftly(list.first()) {
@@ -124,7 +124,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 28),
             end = LocalDate.of(2023, 8, 30),
         )
-        val list = service.create(javaClass.getResource("/jp.ics")!!, data, emptySet())
+        val list = service.create(ClassPathResource("/jp.ics"), data, emptySet())
         list shouldHaveSize 1
 
         assertSoftly(list.first()) {
@@ -149,7 +149,7 @@ class ReportServiceTest : FreeSpec({
                 start = LocalDate.of(2023, 5, 1),
                 end = LocalDate.of(2023, 5, 2)
             )
-            val list = service.create(javaClass.getResource("/schedule.ics")!!, data, holidays)
+            val list = service.create(ClassPathResource("/schedule.ics"), data, holidays)
             list shouldHaveAtLeastSize 1
             assertSoftly(list[0]) {
                 date shouldBe data.start
@@ -168,7 +168,21 @@ class ReportServiceTest : FreeSpec({
             end = LocalDate.of(2023, 8, 20)
         )
         shouldThrow<ParserException> {
-            service.create(javaClass.getResource("/kotest.properties")!!, data, emptySet())
+            service.create(ClassPathResource("/kotest.properties"), data, emptySet())
+        }
+    }
+
+    "Should create from non-URL source" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            country = Country.CZ,
+            start = LocalDate.of(2023, 8, 1),
+            end = LocalDate.of(2023, 8, 20),
+            file = MockMultipartFile("calendar", ClassPathResource("/schedule.ics").contentAsByteArray)
+        )
+        shouldNotThrowAny {
+            service.create(data)
         }
     }
 })
