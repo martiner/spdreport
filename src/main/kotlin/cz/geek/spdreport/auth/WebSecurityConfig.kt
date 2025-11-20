@@ -32,8 +32,14 @@ class WebSecurityConfig(
             }
             oauth2Login {
                 authenticationSuccessHandler = smartAuthenticationSuccessHandler()
+                userInfoEndpoint {
+                    oidcUserService = googleUserService()
+                }
             }
         }
         return http.build()
     }
+
+    @Bean
+    fun googleUserService() = GoogleUserService()
 }

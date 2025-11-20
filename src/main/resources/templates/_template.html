@@ -39,7 +39,7 @@
                 Settings
             </a>
             <a class="ui item" href="/logout" sec:authorize="isAuthenticated()">
-                <img class="ui avatar image" th:src="${#authentication.principal.attributes['picture']}">&nbsp;
+                <img class="ui avatar image" th:src="${#authentication.principal.icon}">&nbsp;
                 Logout
             </a>
             <a class="ui item" href="/oauth2/authorization/google" sec:authorize="isAnonymous()">
