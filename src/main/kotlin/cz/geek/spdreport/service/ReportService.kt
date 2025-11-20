@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 private val logger = KotlinLogging.logger {}
 
@@ -23,7 +24,8 @@ class ReportService(
 
     fun create(source: Resource, data: ReportData, holidays: Set<LocalDate>): List<Report> =
         calendarService.load(source, data.start, data.end)
-            .flatMap { DateItemGenerator.generate(it.start(), it.end(), holidays) }
+            .map { LocalDateTimePair(it.start(), it.end()) }
+            .flatMap { DateItemGenerator.generate(it.start, it.end, holidays) }
             .map { (day, start, end) ->
                 Report(
                     date = day,
@@ -34,5 +36,6 @@ class ReportService(
                     country = data.country,
                 )
             }
-
 }
+
+data class LocalDateTimePair(val start: LocalDateTime, val end: LocalDateTime)
