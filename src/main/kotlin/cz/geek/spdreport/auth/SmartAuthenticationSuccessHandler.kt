@@ -1,6 +1,8 @@
-package cz.geek.spdreport.web
+package cz.geek.spdreport.auth
 
 import cz.geek.spdreport.datastore.SettingsRepository
+import cz.geek.spdreport.web.ReportController
+import cz.geek.spdreport.web.SettingsController
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.core.Authentication
@@ -17,9 +19,9 @@ class SmartAuthenticationSuccessHandler(
         authentication: Authentication
     ): String =
         if (loggedUserAlreadyHasSettings(authentication.principal as? OAuth2AuthenticatedPrincipal)) {
-            ReportController.URL
+            ReportController.Companion.URL
         } else {
-            SettingsController.URL
+            SettingsController.Companion.URL
         }
 
     private fun loggedUserAlreadyHasSettings(principal: OAuth2AuthenticatedPrincipal?): Boolean =

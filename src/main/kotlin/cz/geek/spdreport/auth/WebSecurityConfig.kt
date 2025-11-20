@@ -1,4 +1,4 @@
-package cz.geek.spdreport.web
+package cz.geek.spdreport.auth
 
 import cz.geek.spdreport.datastore.SettingsRepository
 import org.springframework.context.annotation.Bean

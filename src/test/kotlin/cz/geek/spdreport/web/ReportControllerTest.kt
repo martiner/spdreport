@@ -1,6 +1,7 @@
 package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
+import cz.geek.spdreport.auth.WebSecurityConfig
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.ReportService
 import io.kotest.core.spec.style.FreeSpec

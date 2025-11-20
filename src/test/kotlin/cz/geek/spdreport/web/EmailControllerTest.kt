@@ -4,6 +4,7 @@ import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.model.EmailFrequency.MONTHLY
 import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import cz.geek.spdreport.TestHelper.oAuth2User
+import cz.geek.spdreport.auth.WebSecurityConfig
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.EmailService
 import cz.geek.spdreport.service.TaskService

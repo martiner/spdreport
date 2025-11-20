@@ -1,4 +1,4 @@
-package cz.geek.spdreport.service
+package cz.geek.spdreport.auth
 
 import cz.geek.spdreport.datastore.OAuth2AuthorizedClientRepository
 import cz.geek.spdreport.model.ObjectifyOAuth2AuthorizedClient
