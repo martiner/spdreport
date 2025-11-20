@@ -11,6 +11,8 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
+import io.mockk.every
+import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
 import org.springframework.core.io.ClassPathResource
 import org.springframework.mock.web.MockMultipartFile
@@ -19,9 +21,13 @@ import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
     val calendarService = CalendarService()
-    val holidayService = HolidayService(calendarService)
+    val holidayService = mockk<HolidayService>()
 
     val service = ReportService(holidayService, calendarService)
+
+    beforeTest {
+        every { holidayService.getHolidays(any(), any(), any()) } returns emptySet()
+    }
 
     "Should create report" {
         val data = ReportData(
@@ -31,7 +37,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.create(ClassPathResource("/schedule.ics"), data, emptySet())
+        val list = service.create(ClassPathResource("/schedule.ics"), data)
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
@@ -93,7 +99,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
         )
-        val list = service.create(ClassPathResource("/jp.ics"), data, emptySet())
+        val list = service.create(ClassPathResource("/jp.ics"), data)
         list shouldHaveSize 9
 
         assertSoftly(list.first()) {
@@ -124,7 +130,7 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 28),
             end = LocalDate.of(2023, 8, 30),
         )
-        val list = service.create(ClassPathResource("/jp.ics"), data, emptySet())
+        val list = service.create(ClassPathResource("/jp.ics"), data)
         list shouldHaveSize 1
 
         assertSoftly(list.first()) {
@@ -149,7 +155,9 @@ class ReportServiceTest : FreeSpec({
                 start = LocalDate.of(2023, 5, 1),
                 end = LocalDate.of(2023, 5, 2)
             )
-            val list = service.create(ClassPathResource("/schedule.ics"), data, holidays)
+            every { holidayService.getHolidays(any(), any(), any()) } returns holidays
+
+            val list = service.create(ClassPathResource("/schedule.ics"), data)
             list shouldHaveAtLeastSize 1
             assertSoftly(list[0]) {
                 date shouldBe data.start
@@ -168,7 +176,7 @@ class ReportServiceTest : FreeSpec({
             end = LocalDate.of(2023, 8, 20)
         )
         shouldThrow<ParserException> {
-            service.create(ClassPathResource("/kotest.properties"), data, emptySet())
+            service.create(ClassPathResource("/kotest.properties"), data)
         }
     }
 
