@@ -1,11 +1,8 @@
 package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
-import cz.geek.spdreport.auth.WebSecurityConfig
-import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.ReportService
 import io.kotest.core.spec.style.FreeSpec
-import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
@@ -17,12 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
 @WebMvcTest
-@ContextConfiguration(classes = [WebSecurityConfig::class, ReportController::class, ControllerModel::class])
+@ContextConfiguration(classes = [WebTestConfig::class, ReportController::class])
 class ReportControllerTest(
     val context: WebApplicationContext,
-    @MockkBean val settingsRepository: SettingsRepository,
     @MockkBean val service: ReportService,
-    @MockkBean(relaxed = true) val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

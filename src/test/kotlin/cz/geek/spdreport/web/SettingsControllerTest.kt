@@ -1,8 +1,6 @@
 package cz.geek.spdreport.web
 
-import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.TestHelper.oAuth2User
-import cz.geek.spdreport.auth.WebSecurityConfig
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.Settings
@@ -14,7 +12,6 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.slot
-import org.springframework.boot.info.GitProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
@@ -28,11 +25,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
 @WebMvcTest
-@ContextConfiguration(classes = [WebSecurityConfig::class, SettingsController::class, ControllerModel::class])
+@ContextConfiguration(classes = [WebTestConfig::class, SettingsController::class])
 class SettingsControllerTest(
     val context: WebApplicationContext,
-    @MockkBean val settingsRepository: SettingsRepository,
-    @MockkBean(relaxed = true) val gitProperties: GitProperties,
+    val settingsRepository: SettingsRepository,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

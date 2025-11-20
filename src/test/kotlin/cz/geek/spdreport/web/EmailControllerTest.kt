@@ -4,8 +4,6 @@ import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.model.EmailFrequency.MONTHLY
 import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import cz.geek.spdreport.TestHelper.oAuth2User
-import cz.geek.spdreport.auth.WebSecurityConfig
-import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.EmailService
 import cz.geek.spdreport.service.TaskService
 import io.kotest.core.spec.style.FreeSpec
@@ -24,12 +22,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
 @WebMvcTest
-@ContextConfiguration(classes = [WebSecurityConfig::class, EmailController::class])
+@ContextConfiguration(classes = [WebTestConfig::class, EmailController::class])
 class EmailControllerTest(
     private val context: WebApplicationContext,
     @MockkBean(relaxed = true) val emailService: EmailService,
     @MockkBean(relaxed = true) val taskService: TaskService,
-    @MockkBean val settingsRepository: SettingsRepository,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc
