@@ -24,6 +24,7 @@ class WebSecurityConfig(
         http {
             authorizeHttpRequests {
                 authorize("/settings/**", authenticated)
+                authorize("/report", authenticated) // todo
                 authorize(anyRequest, permitAll)
             }
             logout {
@@ -32,8 +33,14 @@ class WebSecurityConfig(
             }
             oauth2Login {
                 authenticationSuccessHandler = smartAuthenticationSuccessHandler()
+                userInfoEndpoint {
+                    oidcUserService = googleUserService()
+                }
             }
         }
         return http.build()
     }
+
+    @Bean
+    fun googleUserService() = GoogleUserService()
 }
