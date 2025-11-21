@@ -3,11 +3,12 @@ package cz.geek.spdreport.auth
 import cz.geek.spdreport.datastore.SettingsRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +29,7 @@ class WebSecurityConfig(
             }
             logout {
                 logoutSuccessUrl = "/"
-                logoutRequestMatcher = AntPathRequestMatcher("/logout", "GET")
+                logoutRequestMatcher = PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, "/logout")
             }
             oauth2Login {
                 authenticationSuccessHandler = smartAuthenticationSuccessHandler()
