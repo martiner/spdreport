@@ -1,5 +1,7 @@
 package cz.geek.spdreport.web
 
+import cz.geek.spdreport.auth.PagerDutyUser
+import cz.geek.spdreport.auth.User
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.DateRanges
@@ -28,8 +30,11 @@ class SettingsController(
 
     @PostMapping
     fun post(@ModelAttribute(MODEL) settings: SettingsData, errors: BindingResult,
-             @AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal,
+             @AuthenticationPrincipal principal: User,
              redirectAttributes: RedirectAttributes): String {
+        if (settings.url != null && principal is PagerDutyUser) {
+            errors.reject("pdical", "iCalendar is not supported with PagerDuty login")
+        }
         if (errors.hasErrors()) {
             return FORM
         }

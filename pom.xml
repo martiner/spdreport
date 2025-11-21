@@ -100,13 +100,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.kotest</groupId>
 			<artifactId>kotest-runner-junit5-jvm</artifactId>
 			<version>${kotest.version}</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.kotest</groupId>
@@ -142,7 +142,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>cz.geek</groupId>
+			<artifactId>geek-util</artifactId>
+			<version>0.1.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -214,6 +219,7 @@
 					<javaParameters>true</javaParameters>
 					<args>
 						<arg>-Xjsr305=strict</arg>
+						<arg>-Xjvm-default=all</arg>
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>

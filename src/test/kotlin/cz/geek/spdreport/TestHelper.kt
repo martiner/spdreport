@@ -1,9 +1,7 @@
 package cz.geek.spdreport
 
-import cz.geek.spdreport.auth.GoogleUser
 import cz.geek.spdreport.auth.User
 import org.apache.commons.lang3.RandomStringUtils
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User
 import org.springframework.security.oauth2.core.user.OAuth2User
 

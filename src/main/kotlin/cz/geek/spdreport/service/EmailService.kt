@@ -39,7 +39,7 @@ class EmailService(
         val dateRange = freq.toDateRange()
         val reportData = settings.toReportData(dateRange)
         val email = settings.email
-        if (reportData.url != null && email != null) {
+        if (reportData.url != null && email != null) { // todo pagerduty
             logger.info {
                 "Sending email $freq to $email"
             }
@@ -68,7 +68,7 @@ class EmailService(
                 }
         }
 
-    fun createReport(reportData: ReportData): String =
+    fun createReport(reportData: ReportData): String = // todo pagerduty
         reportService.create(reportData)
             .let {
                 Context()

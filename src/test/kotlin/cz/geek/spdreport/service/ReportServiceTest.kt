@@ -2,6 +2,7 @@ package cz.geek.spdreport.service
 
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.ReportData
+import cz.geek.spdreport.pagerduty.PagerDutyClient
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -15,15 +16,15 @@ import io.mockk.every
 import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
 import org.springframework.core.io.ClassPathResource
-import org.springframework.mock.web.MockMultipartFile
 import java.time.LocalDate
 import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
     val calendarService = CalendarService()
     val holidayService = mockk<HolidayService>()
+    val pagerDutyClient = mockk<PagerDutyClient>()
 
-    val service = ReportService(holidayService, calendarService)
+    val service = ReportService(holidayService, calendarService, pagerDutyClient)
 
     beforeTest {
         every { holidayService.getHolidays(any(), any(), any()) } returns emptySet()
@@ -187,7 +188,6 @@ class ReportServiceTest : FreeSpec({
             country = Country.CZ,
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
-            file = MockMultipartFile("calendar", ClassPathResource("/schedule.ics").contentAsByteArray)
         )
         shouldNotThrowAny {
             service.create(data)

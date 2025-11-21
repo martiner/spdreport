@@ -24,7 +24,6 @@ class EmailServiceTest(
         Country.CZ,
         LocalDate.of(2023, 9, 11),
         LocalDate.of(2023, 9, 11),
-        URL("http://foo"),
     )
 
     "Should create report" {

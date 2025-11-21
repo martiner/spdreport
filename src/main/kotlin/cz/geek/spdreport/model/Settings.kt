@@ -29,10 +29,10 @@ data class Settings(
         email = principal.email(),
     )
 
-    constructor(principal: OAuth2AuthenticatedPrincipal, reportData: ReportData) : this(principal) {
+    constructor(principal: OAuth2AuthenticatedPrincipal, reportData: ReportData) : this(principal) { // todo
         fullName = reportData.name
         number = reportData.number
-        url = reportData.url.toString()
+        url = reportData.url.toString() // todo remove?
     }
 
     fun toReportData(dateRange: DateRange = defaultRange.dateRange()): ReportData =

@@ -1,6 +1,7 @@
 package cz.geek.spdreport.datastore
 
 import com.googlecode.objectify.ObjectifyService.ofy
+import cz.geek.spdreport.auth.User
 import cz.geek.spdreport.model.EmailFrequency
 import cz.geek.spdreport.model.ReportData
 import cz.geek.spdreport.model.Settings
@@ -23,7 +24,7 @@ class SettingsRepository {
     fun find(freq: EmailFrequency): List<Settings> =
         ofy().load().type(Settings::class.java).filter(Settings::emailFrequency.name, freq).list()
 
-    fun createIfMissing(principal: OAuth2AuthenticatedPrincipal, reportData: ReportData) {
+    fun createIfMissing(principal: User, reportData: ReportData) {
         load(principal) ?: save(Settings(principal, reportData))
     }
 }

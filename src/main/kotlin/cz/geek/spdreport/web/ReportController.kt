@@ -1,5 +1,7 @@
 package cz.geek.spdreport.web
 
+import cz.geek.spdreport.auth.PagerDutyUser
+import cz.geek.spdreport.auth.User
 import cz.geek.spdreport.model.DateRanges.PREVIOUS_MONTH
 import cz.geek.spdreport.model.ReportData
 import cz.geek.spdreport.service.ReportService
@@ -33,13 +35,16 @@ class ReportController(
     fun post(
         @ModelAttribute reportData: ReportData, errors: BindingResult,
         model: Model,
-        @AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal?
+        @AuthenticationPrincipal principal: User?,
     ): String {
+        if (reportData.source() != null && principal is PagerDutyUser) {
+            errors.reject("pdical", "iCalendar is not supported with PagerDuty login")
+        }
         if (errors.hasErrors()) {
             return VIEW
         }
         try {
-            model.addAttribute("list", service.create(reportData))
+            model.addAttribute("list", service.create(reportData, principal))
         } catch (e: ParserException) {
             errors.rejectValue(reportData, "parser", "Invalid iCal file: $e")
         } catch (e: IOException) {
@@ -79,7 +84,7 @@ class ReportController(
     }
 
     companion object {
-        const val URL = "/"
+        const val URL = "/report"
         private const val VIEW = "report"
     }
 }

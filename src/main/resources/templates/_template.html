@@ -34,6 +34,10 @@
             S PD Report
         </a>
         <div class="right menu">
+            <a class="ui item" href="/report">
+                <i class="clipboard icon"></i>
+                Report
+            </a>
             <a class="ui item" href="/settings" sec:authorize="isAuthenticated()">
                 <i class="cog icon"></i>
                 Settings
@@ -42,8 +46,8 @@
                 <img class="ui avatar image" th:src="${#authentication.principal.icon}">&nbsp;
                 Logout
             </a>
-            <a class="ui item" href="/oauth2/authorization/google" sec:authorize="isAnonymous()">
-                <i class="blue google icon"></i>
+            <a class="ui item" href="/oauth2/authorization/pagerduty" sec:authorize="isAnonymous()">
+                <i class="green mobile icon"></i>
                 Login
             </a>
         </div>

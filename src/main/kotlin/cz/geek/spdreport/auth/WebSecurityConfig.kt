@@ -14,6 +14,7 @@ import org.springframework.security.web.servlet.util.matcher.PathPatternRequestM
 @EnableWebSecurity
 class WebSecurityConfig(
     private val repository: SettingsRepository,
+    private val pagerDutyUserService: PagerDutyUserService,
 ) {
 
     @Bean
@@ -25,7 +26,6 @@ class WebSecurityConfig(
         http {
             authorizeHttpRequests {
                 authorize("/settings/**", authenticated)
-                authorize("/report", authenticated) // todo
                 authorize(anyRequest, permitAll)
             }
             logout {
@@ -35,6 +35,7 @@ class WebSecurityConfig(
             oauth2Login {
                 authenticationSuccessHandler = smartAuthenticationSuccessHandler()
                 userInfoEndpoint {
+                    userService = pagerDutyUserService
                     oidcUserService = googleUserService()
                 }
             }
