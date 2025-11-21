@@ -35,14 +35,16 @@ class EmailService(
     }
 
     private fun sendReport(settings: Settings) {
+        val email = settings.email
+        if (email == null) {
+            logger.warn { "No email for ${settings.id}" }
+            return
+        }
         val freq = settings.emailFrequency
         val dateRange = freq.toDateRange()
         val reportData = settings.toReportData(dateRange)
-        val email = settings.email
-        if (reportData.url != null && email != null) {
-            logger.info {
-                "Sending email $freq to $email"
-            }
+        if (reportData.url != null) {
+            logger.info { "Sending email $freq to $email" }
             try {
                 sendReport(reportData, Email(email, settings.fullName, freq, dateRange))
             } catch (e: Exception) {
