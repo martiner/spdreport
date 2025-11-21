@@ -1,0 +1,54 @@
+{
+  "oncalls": [
+    {
+      "escalation_policy": {
+        "id": "PWDIE1E",
+        "type": "escalation_policy_reference",
+        "summary": "James Bond Personal EP",
+        "self": "https://api.pagerduty.com/escalation_policies/PWDIE1E",
+        "html_url": "https://api.pagerduty.com/escalation_policies/PWDIE1E"
+      },
+      "escalation_level": 1,
+      "schedule": null,
+      "user": {
+        "id": "PQ303VB",
+        "type": "user_reference",
+        "summary": "James Bond",
+        "self": "https://api.pagerduty.com/users/PQ303VB",
+        "html_url": "https://api.pagerduty.com/users/PQ303VB"
+      },
+      "start": null,
+      "end": null
+    },
+    {
+      "escalation_policy": {
+        "id": "PQ5P8WD",
+        "type": "escalation_policy_reference",
+        "summary": "Secret Service",
+        "self": "https://api.pagerduty.com/escalation_policies/PQ5P8WD",
+        "html_url": "https://api.pagerduty.com/escalation_policies/PQ5P8WD"
+      },
+      "escalation_level": 1,
+      "schedule": {
+        "id": "P0W1433",
+        "type": "schedule_reference",
+        "summary": "Team schedule",
+        "self": "https://api.pagerduty.com/schedules/P0W1433",
+        "html_url": "https://api.pagerduty.com/schedules/P0W1433"
+      },
+      "user": {
+        "id": "PQ303VB",
+        "type": "user_reference",
+        "summary": "James Bond",
+        "self": "https://api.pagerduty.com/users/PQ303VB",
+        "html_url": "https://api.pagerduty.com/users/PQ303VB"
+      },
+      "start": "2025-11-11T08:00:00Z",
+      "end": "2025-11-18T08:00:00Z"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "more": false,
+  "total": null
+}

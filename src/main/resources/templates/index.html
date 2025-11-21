@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
+<body>
+<div class="ui container" id="content">
+    <div th:replace="~{_steps :: steps}"></div>
+
+    <div class="ui center aligned basic segment">
+        <p><a href="/oauth2/authorization/pagerduty" class="ui green labeled icon button">
+            PageDuty Login
+            <i class="mobile icon"></i>
+        </a>
+    </div>
+</div>
+</body>
+</html>

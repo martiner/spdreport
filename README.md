@@ -15,6 +15,7 @@ Rewrite lock using:
 Update `application.properties` with
 ```
 spring.security.oauth2.client.registration.google.client-secret=
+spring.security.oauth2.client.registration.pagerduty.client-secret=
 spring.mail.password=
 ```
 

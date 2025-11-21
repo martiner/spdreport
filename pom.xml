@@ -142,7 +142,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -214,6 +213,7 @@
 					<javaParameters>true</javaParameters>
 					<args>
 						<arg>-Xjsr305=strict</arg>
+						<arg>-Xjvm-default=all</arg>
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>

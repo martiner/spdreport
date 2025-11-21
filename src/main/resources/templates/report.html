@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
+<html lang="en" th:replace="~{_template :: layout(~{::#content})}"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <div class="ui container" id="content">
 
     <div th:replace="~{_steps :: steps}"></div>
 
-    <form action="#" th:action="@{/}" th:object="${reportData}" method="post" class="ui form" enctype="multipart/form-data">
+    <form action="#" th:action="@{/report}" th:object="${reportData}" method="post" class="ui form" enctype="multipart/form-data">
         <div class="ui negative message icon" th:if="${#fields.hasAnyErrors()}">
             <i class="exclamation circle icon"></i>
             <div class="content">
@@ -46,6 +47,7 @@
                 </select>
             </div>
         </div>
+        <div sec:authorize="isAnonymous() or (isAuthenticated() and principal.icalSupported)">
         <div class="ui top attached tabular menu">
             <a class="item" data-tab="url"  th:classappend="*{active('url')}" >iCalendar Download:</a>
             <a class="item" data-tab="file" th:classappend="*{active('file')}">iCalendar Upload:</a>
@@ -74,6 +76,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <div class="ui center aligned container">
             <button type="submit" class="ui blue button"><i class="icon sync alternate"></i>Generate</button>

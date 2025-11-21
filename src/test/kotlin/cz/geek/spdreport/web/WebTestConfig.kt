@@ -1,6 +1,7 @@
 package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
+import cz.geek.spdreport.auth.PagerDutyUserService
 import cz.geek.spdreport.auth.WebSecurityConfig
 import cz.geek.spdreport.datastore.SettingsRepository
 import org.springframework.boot.info.GitProperties
@@ -12,5 +13,6 @@ import org.springframework.context.annotation.Import
 class WebTestConfig(
     @MockkBean val settingsRepository: SettingsRepository,
     @MockkBean(relaxed = true) val gitProperties: GitProperties,
+    @MockkBean val pagerDutyUserService: PagerDutyUserService,
 ) {
 }

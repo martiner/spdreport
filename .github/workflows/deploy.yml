@@ -33,6 +33,10 @@ jobs:
         run: |
           yq eval ".env_variables.GOOGLE_CLIENT_SECRET = \"${{ secrets.GOOGLE_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
 
+      - name: Set env variable pagerduty client
+        run: |
+          yq eval ".env_variables.PAGERDUTY_CLIENT_SECRET = \"${{ secrets.PAGERDUTY_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
+
       - name: Set env variable gmail password
         run: |
           yq eval ".env_variables.GMAIL_PASSWORD = \"${{ secrets.GMAIL_PASSWORD }}\"" -i src/main/appengine/app.yaml

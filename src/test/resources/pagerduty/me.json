@@ -1,0 +1,119 @@
+{
+  "user": {
+    "name": "James Bond",
+    "email": "james.bond@examle.com",
+    "time_zone": "Europe/Prague",
+    "color": "teal",
+    "avatar_url": "https://secure.gravatar.com/avatar/c1db05a9b348bbd75ed4eaad5b534bc7.png?d=mm&r=PG",
+    "billed": true,
+    "role": "user",
+    "description": null,
+    "invitation_sent": false,
+    "job_title": null,
+    "teams": [
+      {
+        "id": "PR87CJ9",
+        "type": "team_reference",
+        "summary": "EPP Services",
+        "self": "https://api.pagerduty.com/teams/PR87CJ9",
+        "html_url": "https://api.pagerduty.com/teams/PR87CJ9"
+      }
+    ],
+    "created_via_sso": true,
+    "contact_methods": [
+      {
+        "id": "P7Q1ID7",
+        "type": "email_contact_method_reference",
+        "summary": "Default",
+        "self": "https://api.pagerduty.com/users/PQ303VB/contact_methods/P7Q1ID7",
+        "html_url": null
+      },
+      {
+        "id": "PDPIOD5",
+        "type": "phone_contact_method_reference",
+        "summary": "Mobile",
+        "self": "https://api.pagerduty.com/users/PQ303VB/contact_methods/PDPIOD5",
+        "html_url": null
+      },
+      {
+        "id": "PSFKGQF",
+        "type": "push_notification_contact_method_reference",
+        "summary": "Pixel 9 Pro",
+        "self": "https://api.pagerduty.com/users/PQ303VB/contact_methods/PSFKGQF",
+        "html_url": null
+      },
+      {
+        "id": "P8G15J8",
+        "type": "slack_contact_method_reference",
+        "summary": "slack",
+        "self": "https://api.pagerduty.com/users/PQ303VB/contact_methods/P8G15J8",
+        "html_url": null
+      },
+      {
+        "id": "PZDXO0F",
+        "type": "sms_contact_method_reference",
+        "summary": "Mobile",
+        "self": "https://api.pagerduty.com/users/PQ303VB/contact_methods/PZDXO0F",
+        "html_url": null
+      }
+    ],
+    "notification_rules": [
+      {
+        "id": "P5FXM7C",
+        "type": "assignment_notification_rule_reference",
+        "summary": "0 minutes: channel P7Q1ID7",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/P5FXM7C",
+        "html_url": null
+      },
+      {
+        "id": "PDYRUF5",
+        "type": "assignment_notification_rule_reference",
+        "summary": "0 minutes: channel P7Q1ID7",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/PDYRUF5",
+        "html_url": null
+      },
+      {
+        "id": "PM9I9PN",
+        "type": "assignment_notification_rule_reference",
+        "summary": "10 minutes: channel PDPIOD5",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/PM9I9PN",
+        "html_url": null
+      },
+      {
+        "id": "P2JVYLL",
+        "type": "assignment_notification_rule_reference",
+        "summary": "15 minutes: channel PDPIOD5",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/P2JVYLL",
+        "html_url": null
+      },
+      {
+        "id": "PZD5AHJ",
+        "type": "assignment_notification_rule_reference",
+        "summary": "20 minutes: channel PDPIOD5",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/PZD5AHJ",
+        "html_url": null
+      },
+      {
+        "id": "P9RIMK2",
+        "type": "assignment_notification_rule_reference",
+        "summary": "25 minutes: channel PDPIOD5",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/P9RIMK2",
+        "html_url": null
+      },
+      {
+        "id": "PCQMEY2",
+        "type": "assignment_notification_rule_reference",
+        "summary": "0 minutes: channel PSFKGQF",
+        "self": "https://api.pagerduty.com/users/PQ303VB/notification_rules/PCQMEY2",
+        "html_url": null
+      }
+    ],
+    "coordinated_incidents": [],
+    "locale": "en-US",
+    "id": "PQ303VB",
+    "type": "user",
+    "summary": "James Bond",
+    "self": "https://api.pagerduty.com/users/PQ303VB",
+    "html_url": "https://api.pagerduty.com/users/PQ303VB"
+  }
+}

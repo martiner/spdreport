@@ -14,6 +14,7 @@ import org.springframework.security.web.servlet.util.matcher.PathPatternRequestM
 @EnableWebSecurity
 class WebSecurityConfig(
     private val repository: SettingsRepository,
+    private val pagerDutyUserService: PagerDutyUserService,
 ) {
 
     @Bean
@@ -34,6 +35,7 @@ class WebSecurityConfig(
             oauth2Login {
                 authenticationSuccessHandler = smartAuthenticationSuccessHandler()
                 userInfoEndpoint {
+                    userService = pagerDutyUserService
                     oidcUserService = googleUserService()
                 }
             }

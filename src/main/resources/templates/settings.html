@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{_template :: layout(~{::#content})}">
+<html lang="en" th:replace="~{_template :: layout(~{::#content})}"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <div class="ui container" id="content">
 
@@ -45,7 +46,7 @@
                 <input type="text" readonly th:field="*{email}" />
             </div>
         </div>
-        <div class="field" data-position="bottom left"
+        <div sec:authorize="isAnonymous() or (isAuthenticated() and principal.icalSupported)" class="field" data-position="bottom left"
              th:classappend="${#fields.hasErrors('url')}? error"
              th:attr="data-tooltip=${#strings.listJoin(#fields.errors('url'), ' ')}">
             <div class="ui labeled input">

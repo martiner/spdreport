@@ -19,9 +19,9 @@ class SmartAuthenticationSuccessHandler(
         authentication: Authentication
     ): String =
         if (loggedUserAlreadyHasSettings(authentication.principal as? OAuth2AuthenticatedPrincipal)) {
-            ReportController.Companion.URL
+            SettingsController.URL
         } else {
-            SettingsController.Companion.URL
+            ReportController.URL
         }
 
     private fun loggedUserAlreadyHasSettings(principal: OAuth2AuthenticatedPrincipal?): Boolean =
