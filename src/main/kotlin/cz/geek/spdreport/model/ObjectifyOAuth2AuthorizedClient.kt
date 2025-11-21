@@ -17,6 +17,7 @@ private const val SCOPE_DELIMITER = ","
 data class ObjectifyOAuth2AuthorizedClient(
     @Id
     var principalName: String,
+    var clientId: String? = null,
     var accessTokenType: String = "",
     var accessTokenValue: String = "",
     var accessTokenIssued: Instant? = null,
@@ -29,10 +30,12 @@ data class ObjectifyOAuth2AuthorizedClient(
     constructor() : this("")
     constructor(
         principal: Authentication,
+        clientId: String,
         accessToken: OAuth2AccessToken,
         refreshToken: OAuth2RefreshToken?,
     ) : this(
         principalName = principal.name,
+        clientId = clientId,
         accessTokenType = accessToken.tokenType.value,
         accessTokenIssued = accessToken.issuedAt,
         accessTokenExpires = accessToken.expiresAt,

@@ -13,7 +13,7 @@ class OAuth2AuthorizedClientRepositoryIT : AbstractObjectifyIT({
 
     "Should save, load and delete" {
         val id = random.nextAlphanumeric(10)
-        val auth = ObjectifyOAuth2AuthorizedClient(id, "accessToken", "refreshToken")
+        val auth = ObjectifyOAuth2AuthorizedClient(id, "id-123", "accessToken", "refreshToken")
 
         objectify {
             repo.load(id).shouldBeNull()
