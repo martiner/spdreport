@@ -289,6 +289,19 @@
 								</log>
 							</run>
 						</image>
+						<image>
+							<name>ghcr.io/remko/dsadmin:latest</name>
+							<run>
+								<platform>linux/amd64</platform>
+								<cmd>--project=spdreport --datastore-emulator-host=host.docker.internal:8484</cmd>
+								<ports>
+									<port>8000:8080</port>
+								</ports>
+								<log>
+									<enabled>true</enabled>
+								</log>
+							</run>
+						</image>
 					</images>
 				</configuration>
 				<executions>

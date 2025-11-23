@@ -23,8 +23,11 @@ spring.mail.password=
 ```shell
 ./mvnw docker:start spring-boot:run
 ```
-http://localhost:8080
 
+This will start
+* the application on port `8080` http://localhost:8080
+* the Datastore emulator on port `8484` http://localhost:8484
+* the Datastore viewer on port `8000` http://localhost:8000
 
 ### Deploy
 
