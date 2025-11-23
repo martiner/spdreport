@@ -33,6 +33,7 @@ data class Settings(
         fullName = reportData.name
         number = reportData.number
         url = reportData.url.toString()
+        country = reportData.country
     }
 
     fun toReportData(dateRange: DateRange = defaultRange.dateRange()): ReportData =
