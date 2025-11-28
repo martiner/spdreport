@@ -43,13 +43,11 @@ class SettingsController(
         return "redirect:$URL"
     }
 
-    @ModelAttribute("countries")
-    fun countries(): List<Country> = Country.values().toList()
-
     @ModelAttribute
     fun model(@AuthenticationPrincipal principal: OAuth2AuthenticatedPrincipal, model: Model) {
         val settings = settingsRepository.load(principal)?.toSettingsData() ?: SettingsData(principal)
         model.addAttribute(MODEL, settings)
+        model.addAttribute("countries", Country.entries)
         model.addAttribute("ranges", DateRanges.entries)
         model.addAttribute("freq", EmailFrequency.SCHEDULE)
     }
