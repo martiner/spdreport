@@ -1,0 +1,42 @@
+{
+  "event": {
+    "id": "01EYXX3JJG0QZQ3K8H5R2QVABC",
+    "event_type": "incident.responder.added",
+    "resource_type": "incident",
+    "occurred_at": "2026-05-20T18:30:00.123Z",
+    "agent": {
+      "html_url": "https://sentinelone.pagerduty.com/users/PXPGF42",
+      "id": "PXPGF42",
+      "self": "https://api.pagerduty.com/users/PXPGF42",
+      "summary": "Earline Greenholt",
+      "type": "user_reference"
+    },
+    "client": null,
+    "data": {
+      "incident": {
+        "html_url": "https://sentinelone.pagerduty.com/incidents/PGR0VU2",
+        "id": "PGR0VU2",
+        "self": "https://api.pagerduty.com/incidents/PGR0VU2",
+        "summary": "SIREN: high error rate on payments-api",
+        "type": "incident_reference"
+      },
+      "user": {
+        "html_url": "https://sentinelone.pagerduty.com/users/PVMGSML",
+        "id": "PVMGSML",
+        "self": "https://api.pagerduty.com/users/PVMGSML",
+        "summary": "Maeve",
+        "type": "user_reference"
+      },
+      "escalation_policy": {
+        "html_url": "https://sentinelone.pagerduty.com/escalation_policies/PQ5P8WD",
+        "id": "PQ5P8WD",
+        "self": "https://api.pagerduty.com/escalation_policies/PQ5P8WD",
+        "summary": "EPPS Console",
+        "type": "escalation_policy_reference"
+      },
+      "message": "Please help me make the tests pass",
+      "state": "pending",
+      "type": "incident_responder"
+    }
+  }
+}

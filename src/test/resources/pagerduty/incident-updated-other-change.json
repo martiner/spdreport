@@ -1,0 +1,36 @@
+{
+  "event": {
+    "id": "01EYXX3JJG0QZQ3K8H5R2QVDEF",
+    "event_type": "incident.responder.added",
+    "resource_type": "incident",
+    "occurred_at": "2026-05-20T18:31:00.123Z",
+    "agent": {
+      "html_url": "https://sentinelone.pagerduty.com/users/PXPGF42",
+      "id": "PXPGF42",
+      "self": "https://api.pagerduty.com/users/PXPGF42",
+      "summary": "Earline Greenholt",
+      "type": "user_reference"
+    },
+    "client": null,
+    "data": {
+      "incident": {
+        "html_url": "https://sentinelone.pagerduty.com/incidents/PGR0VU3",
+        "id": "PGR0VU3",
+        "self": "https://api.pagerduty.com/incidents/PGR0VU3",
+        "summary": "SIREN: latency spike on auth-service",
+        "type": "incident_reference"
+      },
+      "user": null,
+      "escalation_policy": {
+        "html_url": "https://sentinelone.pagerduty.com/escalation_policies/POTHER01",
+        "id": "POTHER01",
+        "self": "https://api.pagerduty.com/escalation_policies/POTHER01",
+        "summary": "Auth backup",
+        "type": "escalation_policy_reference"
+      },
+      "message": "Need eyes on auth latency",
+      "state": "pending",
+      "type": "incident_responder"
+    }
+  }
+}
