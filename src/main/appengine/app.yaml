@@ -1,4 +1,6 @@
 # https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=java
+# The env_variables block is generated at deploy time by scripts/generate-appengine-env.sh
+# from the ${UPPER_SNAKE} placeholders in application.properties. Do not add secrets here.
 runtime: java17
 automatic_scaling:
   max_instances: 1

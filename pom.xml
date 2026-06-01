@@ -207,12 +207,33 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-appengine-config</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<exec executable="bash" failonerror="true">
+									<arg value="${project.basedir}/scripts/generate-appengine-env.sh"/>
+								</exec>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
 				<version>2.8.3</version>
 				<configuration>
 					<projectId>spdreport</projectId>
 					<version>1</version>
+					<appEngineDirectory>${project.build.directory}/appengine</appEngineDirectory>
 				</configuration>
 				<executions>
 					<execution>

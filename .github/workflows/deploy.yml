@@ -29,17 +29,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
-      - name: Set env variable google client
+      # Exposes GitHub secrets (except GCLOUD_SERVICE_KEY, used only for auth above) as env
+      # vars, so adding a new secret needs no workflow change. The deploy fails fast if
+      # app.yaml references one that is unset.
+      - name: Export secrets to environment
         run: |
-          yq eval ".env_variables.GOOGLE_CLIENT_SECRET = \"${{ secrets.GOOGLE_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
-
-      - name: Set env variable pagerduty client
-        run: |
-          yq eval ".env_variables.PAGERDUTY_CLIENT_SECRET = \"${{ secrets.PAGERDUTY_CLIENT_SECRET }}\"" -i src/main/appengine/app.yaml
-
-      - name: Set env variable gmail password
-        run: |
-          yq eval ".env_variables.GMAIL_PASSWORD = \"${{ secrets.GMAIL_PASSWORD }}\"" -i src/main/appengine/app.yaml
+          echo '${{ toJSON(secrets) }}' | jq -r 'to_entries[] | select(.key != "GCLOUD_SERVICE_KEY") | "\(.key)<<__SECRET_EOF__\n\(.value)\n__SECRET_EOF__"' >> "$GITHUB_ENV"
 
       - name: Build and Deploy
         run: ./mvnw -B deploy

@@ -30,8 +30,14 @@ This will start
 * the Datastore emulator on port `8484` http://localhost:8484
 * the Datastore viewer on port `8000` http://localhost:8000
 
-### Deploy
+### Manual Deploy
+
+Environment variables with secrets must be set (otherwise the deploy fails fast).
+The required secrets are the `${UPPER_SNAKE}` placeholders in `application.properties`; at
+deploy time they are generated into `app.yaml`. In CI they come from GitHub secrets of the
+same name.
 
 ```shell
+export ..._SECRET=...
 ./mvnw deploy
 ```

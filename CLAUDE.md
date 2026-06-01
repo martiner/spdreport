@@ -11,6 +11,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Deployment
 - Deploy is done with `./mvnw deploy` (runs `appengine:deploy appengine:deployCron`).
+- Secrets must be set as env vars. `application.properties` is the single source of truth:
+  its `${UPPER_SNAKE}` placeholders define the required secrets. At deploy time
+  `scripts/generate-appengine-env.sh` generates `app.yaml`'s `env_variables` from them and
+  fails fast if any is unset. In CI all GitHub secrets are exported to env automatically.
+- Adding a secret: reference it in `application.properties` and add the GitHub secret — no
+  `app.yaml`, workflow, or `pom.xml` change needed.
 - IMPORTANT: Never run the deploy yourself — only the user deploys.
 
 ## Code Style Guidelines
