@@ -4,13 +4,16 @@ import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.model.EmailFrequency.MONTHLY
 import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import cz.geek.spdreport.TestHelper.oAuth2User
+import cz.geek.spdreport.auth.PagerDutyUserService
+import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.EmailService
 import cz.geek.spdreport.service.TaskService
+import org.springframework.boot.info.GitProperties
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.mockk.confirmVerified
 import io.mockk.verify
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
@@ -27,6 +30,9 @@ class EmailControllerTest(
     private val context: WebApplicationContext,
     @MockkBean(relaxed = true) val emailService: EmailService,
     @MockkBean(relaxed = true) val taskService: TaskService,
+    @MockkBean val settingsRepository: SettingsRepository,
+    @MockkBean val pagerDutyUserService: PagerDutyUserService,
+    @MockkBean(relaxed = true) val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

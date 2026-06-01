@@ -5,9 +5,9 @@ import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import mu.KotlinLogging
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.boot.resttestclient.getForEntity
+import org.springframework.boot.restclient.RestTemplateBuilder
 
 private val logger = KotlinLogging.logger {}
 

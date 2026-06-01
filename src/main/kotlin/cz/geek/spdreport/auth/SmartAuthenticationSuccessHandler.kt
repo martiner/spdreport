@@ -16,9 +16,9 @@ class SmartAuthenticationSuccessHandler(
     override fun determineTargetUrl(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        authentication: Authentication
+        authentication: Authentication?
     ): String =
-        if (loggedUserAlreadyHasSettings(authentication.principal as? OAuth2AuthenticatedPrincipal)) {
+        if (loggedUserAlreadyHasSettings(authentication?.principal as? OAuth2AuthenticatedPrincipal)) {
             SettingsController.URL
         } else {
             ReportController.URL

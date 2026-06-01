@@ -1,6 +1,6 @@
 package cz.geek.spdreport.pagerduty
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.autoconfigure.json.JsonTest
@@ -15,7 +15,7 @@ class IncidentWebhookFilterTest(private val objectMapper: ObjectMapper) : FreeSp
     )
 
     fun parse(resource: String): IncidentWebhookPayload =
-        objectMapper.readValue(javaClass.getResource(resource), IncidentWebhookPayload::class.java)
+        objectMapper.readValue(javaClass.getResourceAsStream(resource)!!, IncidentWebhookPayload::class.java)
 
     fun parseJson(json: String): IncidentWebhookPayload =
         objectMapper.readValue(json, IncidentWebhookPayload::class.java)
