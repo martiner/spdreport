@@ -42,7 +42,7 @@ jobs:
           yq eval ".env_variables.GMAIL_PASSWORD = \"${{ secrets.GMAIL_PASSWORD }}\"" -i src/main/appengine/app.yaml
 
       - name: Build and Deploy
-        run: ./mvnw -B verify appengine:deploy appengine:deployCron
+        run: ./mvnw -B deploy
 
       - name: Publish Tests Report
         uses: martiner/action-junit-report@v5

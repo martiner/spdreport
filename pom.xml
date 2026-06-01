@@ -22,6 +22,8 @@
 		<kotest.version>5.9.1</kotest.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.install.skip>true</maven.install.skip>
+		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
 	<dependencies>
@@ -212,6 +214,16 @@
 					<projectId>spdreport</projectId>
 					<version>1</version>
 				</configuration>
+				<executions>
+					<execution>
+						<id>deploy-app</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+							<goal>deployCron</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>

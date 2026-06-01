@@ -33,5 +33,5 @@ This will start
 ### Deploy
 
 ```shell
-./mvnw package appengine:deploy appengine:deployCron
+./mvnw deploy
 ```

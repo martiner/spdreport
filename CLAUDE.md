@@ -9,6 +9,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Run integration tests: `./mvnw verify`
 - Update dependency lock: `./mvnw dependency-lock:lock`
 
+## Deployment
+- Deploy is done with `./mvnw deploy` (runs `appengine:deploy appengine:deployCron`).
+- IMPORTANT: Never run the deploy yourself — only the user deploys.
+
 ## Code Style Guidelines
 - Language: Kotlin with SpringBoot
 - Testing: Kotest with FreeSpec style and SpringMockK
