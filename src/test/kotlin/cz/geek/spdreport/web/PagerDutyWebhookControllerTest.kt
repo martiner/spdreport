@@ -1,7 +1,9 @@
 package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
+import cz.geek.spdreport.auth.PagerDutyUserService
 import cz.geek.spdreport.datastore.ProcessedWebhookEventRepository
+import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.pagerduty.IncidentWebhookFilter
 import cz.geek.spdreport.pagerduty.IncidentWebhookPayloadArgumentResolver
 import cz.geek.spdreport.pagerduty.MatchedIncident
@@ -15,7 +17,8 @@ import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.verify
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.info.GitProperties
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
 import org.springframework.test.context.ContextConfiguration
@@ -63,6 +66,9 @@ class PagerDutyWebhookControllerTest(
     private val context: WebApplicationContext,
     @MockkBean(relaxed = true) val slackNotifier: SlackNotifier,
     @MockkBean val processedWebhookEventRepository: ProcessedWebhookEventRepository,
+    @MockkBean val settingsRepository: SettingsRepository,
+    @MockkBean val pagerDutyUserService: PagerDutyUserService,
+    @MockkBean(relaxed = true) val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

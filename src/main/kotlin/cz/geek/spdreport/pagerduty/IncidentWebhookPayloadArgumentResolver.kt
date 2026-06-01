@@ -1,7 +1,7 @@
 package cz.geek.spdreport.pagerduty
 
-import com.fasterxml.jackson.core.JacksonException
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.core.JacksonException
+import tools.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest
 import mu.KotlinLogging
 import org.springframework.core.MethodParameter
