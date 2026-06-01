@@ -472,6 +472,14 @@
     "optional" : false,
     "integrity" : "sha512:TjA6ueITLqyotBiKqRiFoEajuOdvKJWpxwJcAB6NNuCWqfaavQXYOlCPoW0NLsCJ6p8NriYdBJ/xhyT61qjxsQ=="
   }, {
+    "groupId" : "cz.geek",
+    "artifactId" : "objectify-spring-boot-starter",
+    "version" : "0.2.0",
+    "scope" : "compile",
+    "type" : "jar",
+    "optional" : false,
+    "integrity" : "sha512:LFbP+oLCYyXzcPLBxOO6B4wlZX8eZTMonLwgg3rJudaMyMRNh4IoNhJgweY8abM57uJ4oGrX/3vHBDSzRtDZgQ=="
+  }, {
     "groupId" : "io.github.classgraph",
     "artifactId" : "classgraph",
     "version" : "4.8.172",
