@@ -1,30 +1,35 @@
 package cz.geek.spdreport.datastore
 
+import com.googlecode.objectify.ObjectifyFactory
+import cz.geek.objectify.ObjectifyTest
+import cz.geek.spdreport.ItHelper.objectify
 import cz.geek.spdreport.TestHelper.random
 import cz.geek.spdreport.model.EmailFrequency.WEEKLY
 import cz.geek.spdreport.model.Settings
 import io.kotest.assertions.assertSoftly
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldHaveSingleElement
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
-class SettingsRepositoryIT : AbstractObjectifyIT({
+@ObjectifyTest
+class SettingsRepositoryIT(factory: ObjectifyFactory) : FreeSpec({
 
     val id1 = random.nextAlphanumeric(10)
     val id2 = random.nextAlphanumeric(10)
 
-    val repo = SettingsRepository()
+    val repo = SettingsRepository(factory)
 
     beforeSpec {
-        objectify {
+        factory.objectify {
             repo.save(Settings(id = id1, fullName = "First"))
         }
     }
 
     "Should load settings by id" {
-        objectify {
+        factory.objectify {
             assertSoftly(repo.load(id1)) {
                 shouldNotBeNull()
                 fullName shouldBe "First"
@@ -33,7 +38,7 @@ class SettingsRepositoryIT : AbstractObjectifyIT({
     }
 
     "Should not load settings" {
-        objectify {
+        factory.objectify {
             assertSoftly(repo.load("unknown")) {
                 shouldBeNull()
             }
@@ -42,11 +47,11 @@ class SettingsRepositoryIT : AbstractObjectifyIT({
 
     "Should find by frequency" {
         var initial = 0
-        objectify {
+        factory.objectify {
             initial = repo.find(WEEKLY).size
             repo.save(Settings(id = id2, fullName = "Second", emailFrequency = WEEKLY))
         }
-        objectify {
+        factory.objectify {
             val result = repo.find(WEEKLY)
             result shouldHaveSize (initial + 1)
             result shouldHaveSingleElement { it.id == id2 }

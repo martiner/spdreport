@@ -1,21 +1,26 @@
 package cz.geek.spdreport.datastore
 
+import com.googlecode.objectify.ObjectifyFactory
+import cz.geek.objectify.ObjectifyTest
+import cz.geek.spdreport.ItHelper.objectify
 import cz.geek.spdreport.TestHelper.random
 import cz.geek.spdreport.model.ObjectifyOAuth2AuthorizedClient
 import io.kotest.assertions.assertSoftly
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
-class OAuth2AuthorizedClientRepositoryIT : AbstractObjectifyIT({
+@ObjectifyTest
+class OAuth2AuthorizedClientRepositoryIT(factory: ObjectifyFactory) : FreeSpec({
 
-    val repo = OAuth2AuthorizedClientRepository()
+    val repo = OAuth2AuthorizedClientRepository(factory)
 
     "Should save, load and delete" {
         val id = random.nextAlphanumeric(10)
         val auth = ObjectifyOAuth2AuthorizedClient(id, "id-123", "accessToken", "refreshToken")
 
-        objectify {
+        factory.objectify {
             repo.load(id).shouldBeNull()
 
             repo.save(auth)
