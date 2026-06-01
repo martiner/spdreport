@@ -2,15 +2,17 @@ package cz.geek.spdreport.web
 
 import com.ninjasquad.springmockk.MockkBean
 import cz.geek.spdreport.auth.PagerDutyUser
+import cz.geek.spdreport.auth.PagerDutyUserService
 import cz.geek.spdreport.datastore.SettingsRepository
 import cz.geek.spdreport.service.ReportService
+import org.springframework.boot.info.GitProperties
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.mockk.every
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login
@@ -27,8 +29,10 @@ import org.springframework.web.context.WebApplicationContext
 @ContextConfiguration(classes = [WebTestConfig::class, ReportController::class])
 class ReportControllerTest(
     val context: WebApplicationContext,
-    val settingsRepository: SettingsRepository,
+    @MockkBean val settingsRepository: SettingsRepository,
     @MockkBean val service: ReportService,
+    @MockkBean val pagerDutyUserService: PagerDutyUserService,
+    @MockkBean(relaxed = true) val gitProperties: GitProperties,
 ) : FreeSpec({
 
     lateinit var mockMvc: MockMvc

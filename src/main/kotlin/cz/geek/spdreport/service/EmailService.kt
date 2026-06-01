@@ -6,7 +6,7 @@ import cz.geek.spdreport.model.ReportData
 import cz.geek.spdreport.model.Settings
 import cz.geek.spdreport.datastore.SettingsRepository
 import mu.KotlinLogging
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties
+import org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientProperties
 import org.springframework.stereotype.Service
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
@@ -23,7 +23,7 @@ class EmailService(
     properties: OAuth2ClientProperties,
 ) {
 
-    private val clientId: String = properties.registration["pagerduty"]!!.clientId
+    private val clientId: String = properties.registration["pagerduty"]!!.clientId!!
 
     fun sendReport(user: String) {
         settingsRepository.loadOrThrow(user)

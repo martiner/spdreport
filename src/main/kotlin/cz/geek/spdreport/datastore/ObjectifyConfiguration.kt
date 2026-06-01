@@ -8,7 +8,7 @@ import cz.geek.spdreport.model.Settings
 import cz.geek.spdreport.web.ObjectifyWebFilter
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.autoconfigure.security.SecurityProperties
+import org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
@@ -31,7 +31,7 @@ class ObjectifyConfiguration(
             }
             .apply {
                 urlPatterns = setOf("/*")
-                order = SecurityProperties.DEFAULT_FILTER_ORDER - 1
+                order = SecurityFilterProperties.DEFAULT_FILTER_ORDER - 1
             }
 
     fun init() {
