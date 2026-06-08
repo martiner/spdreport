@@ -28,6 +28,9 @@ class WebSecurityConfig(
                 authorize("/settings/**", authenticated)
                 authorize(anyRequest, permitAll)
             }
+            csrf {
+                ignoringRequestMatchers("/webhooks/pagerduty/incident")
+            }
             logout {
                 logoutSuccessUrl = "/"
                 logoutRequestMatcher = PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, "/logout")

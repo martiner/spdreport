@@ -1,7 +1,6 @@
 package cz.geek.spdreport.pagerduty
 
 import cz.geek.spdreport.auth.PagerDutyPrincipal
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager
 import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor
@@ -19,9 +18,10 @@ import java.time.format.DateTimeFormatterBuilder
 @Component
 class PagerDutyClient(
     clientManager: OAuth2AuthorizedClientManager,
-    @Value("\${pagerduty.api.url:https://api.pagerduty.com}")
-    private val apiUrl: String,
+    properties: PagerDutyProperties,
 ) {
+
+    private val apiUrl: String = properties.api.url
 
     private val acceptHeader = "Accept" to "application/vnd.pagerduty+json;version=2"
 

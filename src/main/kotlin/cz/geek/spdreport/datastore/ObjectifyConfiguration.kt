@@ -4,6 +4,7 @@ import com.google.cloud.datastore.DatastoreOptions
 import com.googlecode.objectify.ObjectifyFactory
 import com.googlecode.objectify.ObjectifyService
 import cz.geek.spdreport.model.ObjectifyOAuth2AuthorizedClient
+import cz.geek.spdreport.model.ProcessedWebhookEvent
 import cz.geek.spdreport.model.Settings
 import cz.geek.spdreport.web.ObjectifyWebFilter
 import mu.KotlinLogging
@@ -38,6 +39,7 @@ class ObjectifyConfiguration(
         initObjectifyService()
         ObjectifyService.register(ObjectifyOAuth2AuthorizedClient::class.java)
         ObjectifyService.register(Settings::class.java)
+        ObjectifyService.register(ProcessedWebhookEvent::class.java)
     }
 
     private fun initObjectifyService() {

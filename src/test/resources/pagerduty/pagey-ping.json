@@ -1,0 +1,14 @@
+{
+  "event": {
+    "id": "01GNQKVMSI0BBGALGL20WVSWRZ",
+    "event_type": "pagey.ping",
+    "resource_type": "pagey",
+    "occurred_at": "2026-06-02T07:06:58.533Z",
+    "agent": null,
+    "client": null,
+    "data": {
+      "message": "Ping from your PagerDuty webhook subscription",
+      "type": "ping"
+    }
+  }
+}
