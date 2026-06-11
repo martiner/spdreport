@@ -10,14 +10,14 @@
         </div>
     </div>
     <a class="active step" href="/oauth2/authorization/pagerduty" sec:authorize="isAnonymous()">
-        <i class="mobile icon"></i>
+        <i th:replace="~{_icons :: pagerduty}"></i>
         <div class="content">
             <div class="title">Login</div>
             <div class="description">Start with logging-in</div>
         </div>
     </a>
     <div class="completed step" sec:authorize="isAuthenticated()">
-        <i class="mobile icon"></i>
+        <i th:replace="~{_icons :: pagerduty}"></i>
         <div class="content">
             <div class="title">Login</div>
             <div class="description">Start with logging-in</div>
