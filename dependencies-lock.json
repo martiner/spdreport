@@ -491,7 +491,7 @@
     "groupId" : "io.github.java-diff-utils",
     "artifactId" : "java-diff-utils",
     "version" : "4.12",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:35UOrM/CRkG6eVfkLgvVQCS6/gdFDP7YQEuOnvsAkxu5ayUYxYIxD5hQisVQw004zeSaIg/J10O7xS0P0l/rUw=="
@@ -627,7 +627,7 @@
     "groupId" : "io.kotest.extensions",
     "artifactId" : "kotest-extensions-spring",
     "version" : "1.3.0",
-    "scope" : "compile",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:Dey7ibcQEXJfmgE61/EDPNTkuDpXZnh/k3yBy3lKb3q2Urara8h6P1YyAv9+vZwXrrdPs4TTi0loRC69ozZoPA=="
@@ -635,7 +635,7 @@
     "groupId" : "io.kotest",
     "artifactId" : "kotest-assertions-api-jvm",
     "version" : "5.9.1",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:Ln3dzTTLeAOba6yHdy94dDJgk1Rc/BjZ357NAEBEnjh9o9z64VbriuiFIs/tDFIJucZRjBpI5OU0t9tU0EM8Tw=="
@@ -651,7 +651,7 @@
     "groupId" : "io.kotest",
     "artifactId" : "kotest-assertions-shared-jvm",
     "version" : "5.9.1",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:y3n/j9qGF8MeC72iRe+9O5haUIW25hZzDGduWhmKb97+APxtZoABWyJ2nNbLE8YpB+JDtYMzjeXlJ7zgf5y3Vw=="
@@ -659,7 +659,7 @@
     "groupId" : "io.kotest",
     "artifactId" : "kotest-common-jvm",
     "version" : "5.9.1",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:AMIVPuo5Xshvq/u/UXlgkwVGSc96T4h8XFTkSJPYUPvwYhBqK6obeVAnxpEzToGQtaDEKJNC4c9PeFaB81W2PQ=="
@@ -675,7 +675,7 @@
     "groupId" : "io.kotest",
     "artifactId" : "kotest-framework-api-jvm",
     "version" : "5.9.1",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:/UAYPBl3nSa0lGNhbEyrwZ7Jtz325P+BCTK/wDFRUPcP0htdF9+ORqX3qcD/ttNKoaejvZTUTZzO4KXmEJZTUw=="
@@ -987,7 +987,7 @@
     "groupId" : "net.bytebuddy",
     "artifactId" : "byte-buddy",
     "version" : "1.17.8",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:3X8/aq89v533Y+VYcGyCrQWt2TTVfkhyYD2iD+i6KWR0EbJFbsM8XPB8+dEeU/Qa7byw6kyhQMQspjKJHNgmvw=="
@@ -1459,7 +1459,7 @@
     "groupId" : "org.jetbrains.kotlinx",
     "artifactId" : "kotlinx-coroutines-core-jvm",
     "version" : "1.10.2",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:I4/UUfgOIiSAyIDdi8/XbpIDtoM6AwalVIOz+esLJWUSQqPnvq91ENXjmSLx09mH/KeUaNlF6zWw8HFWp4h7oA=="
@@ -1483,7 +1483,7 @@
     "groupId" : "org.jetbrains.kotlinx",
     "artifactId" : "kotlinx-coroutines-jdk8",
     "version" : "1.10.2",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:A5vZTcp6JpE0SrJNk2u2hHwztWyfY7hRvn4NwEIv2s7ah/yAtAWweFMKeZ8pgWJ7IV/ULalcG+vWwwYzTDhPJw=="
@@ -1491,7 +1491,7 @@
     "groupId" : "org.jetbrains.kotlinx",
     "artifactId" : "kotlinx-coroutines-test-jvm",
     "version" : "1.10.2",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:eNwW1mGiwh1w97dM3hBtUH45jXclNAV9lFmZEwHHbaQVneAYqXAQamI2PvbwgMTLIWK2saOmNqrp9aWuT8M1qQ=="
@@ -1611,7 +1611,7 @@
     "groupId" : "org.opentest4j",
     "artifactId" : "opentest4j",
     "version" : "1.3.0",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:ePxpinhxu1AwXjZXiTwQUAWV8EM0jYdfV7w5ykpqUe2jlnt8jIp+w+j4XyFxvKSqmII+kS5BbofoHGultwo3ww=="
@@ -2027,7 +2027,7 @@
     "groupId" : "org.springframework",
     "artifactId" : "spring-test",
     "version" : "7.0.7",
-    "scope" : "runtime",
+    "scope" : "test",
     "type" : "jar",
     "optional" : false,
     "integrity" : "sha512:X4Sjmj6y+I6PrkGRtC/Nz/Py9D3ivExqO7lzYSDuNIUD06rrLUTDENqgussw8NpGgX4EMwbr0dilpqPJlOHlcA=="
