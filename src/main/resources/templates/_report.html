@@ -24,6 +24,27 @@
             </tr>
         </tbody>
     </table>
+    <div th:if="${not #lists.isEmpty(report.incidents)}">
+        <h3>Incidents</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                    <th>Opened</th>
+                    <th>Closed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="inc : ${report.incidents}">
+                    <td th:text="${inc.number}">123</td>
+                    <td th:text="${inc.title}">Incident</td>
+                    <td th:text="${#temporals.format(inc.opened, 'EEEE, MMM d, yyyy HH:mm', T(java.util.Locale).ENGLISH)}">Monday, Jan 13, 2025 09:00</td>
+                    <td th:text="${inc.closed != null ? #temporals.format(inc.closed, 'EEEE, MMM d, yyyy HH:mm', T(java.util.Locale).ENGLISH) : ''}">Monday, Jan 13, 2025 17:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

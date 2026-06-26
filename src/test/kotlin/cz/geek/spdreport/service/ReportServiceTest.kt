@@ -4,9 +4,11 @@ import cz.geek.spdreport.auth.PagerDutyPrincipal
 import cz.geek.spdreport.auth.PagerDutyUser
 import cz.geek.spdreport.model.Country
 import cz.geek.spdreport.model.ReportData
+import cz.geek.spdreport.pagerduty.Incident
 import cz.geek.spdreport.pagerduty.OnCall
 import cz.geek.spdreport.pagerduty.OnCalls
 import cz.geek.spdreport.pagerduty.PagerDutyClient
+import cz.geek.spdreport.pagerduty.PagerDutyReference
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -17,6 +19,7 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.nulls.shouldBeNull
 import io.mockk.every
 import io.mockk.mockk
 import net.fortuna.ical4j.data.ParserException
@@ -25,6 +28,7 @@ import org.springframework.mock.web.MockMultipartFile
 import java.net.URL
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
 class ReportServiceTest : FreeSpec({
@@ -216,6 +220,56 @@ class ReportServiceTest : FreeSpec({
         assertSoftly(service.create(data, user).items) {
             shouldHaveSize(2)
         }
+    }
+
+    "Should match PagerDuty incidents by escalation policy and on-call window" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            country = Country.CZ,
+            start = LocalDate.of(2025, 11, 1),
+            end = LocalDate.of(2025, 11, 30),
+        )
+        val user = PagerDutyPrincipal("PQ303VB")
+        fun ep(id: String) = PagerDutyReference(id, null, null, null, null)
+
+        every { pagerDutyClient.fetchOnCalls(user, data.start, data.end) } returns OnCalls(
+            listOf(
+                OnCall(Instant.parse("2025-11-10T08:00:00Z"), Instant.parse("2025-11-17T08:00:00Z"), ep("EP1")),
+                OnCall(null, null, ep("EP2")),
+            )
+        )
+        every { pagerDutyClient.fetchServiceIds(user, "EP1") } returns listOf("S1")
+        every { pagerDutyClient.fetchServiceIds(user, "EP2") } returns listOf("S2")
+        every { pagerDutyClient.fetchIncidents(user, data.start, data.end, listOf("S1", "S2")) } returns listOf(
+            Incident(1, "in EP1 window", Instant.parse("2025-11-12T09:00:00Z"), Instant.parse("2025-11-12T10:00:00Z"), ep("EP1")),
+            Incident(2, "after EP1 window", Instant.parse("2025-11-20T09:00:00Z"), null, ep("EP1")),
+            Incident(3, "permanent EP2", Instant.parse("2025-11-02T09:00:00Z"), null, ep("EP2")),
+            Incident(4, "other policy", Instant.parse("2025-11-12T09:00:00Z"), null, ep("OTHER")),
+        )
+
+        assertSoftly(service.create(data, user).incidents) {
+            shouldHaveSize(2)
+            map { it.number } shouldBe listOf(1, 3)
+            this[0].closed shouldBe LocalDateTime.of(2025, 11, 12, 11, 0)
+            this[1].closed.shouldBeNull()
+        }
+    }
+
+    "Should have empty incidents when on-calls have no escalation policy" {
+        val data = ReportData(
+            name = "James",
+            number = "007",
+            country = Country.CZ,
+            start = LocalDate.of(2025, 11, 1),
+            end = LocalDate.of(2025, 11, 30),
+        )
+        val user = PagerDutyPrincipal("PQ303VB")
+        every { pagerDutyClient.fetchOnCalls(user, data.start, data.end) } returns OnCalls(
+            listOf(OnCall(Instant.parse("2025-11-10T08:00:00Z"), Instant.parse("2025-11-17T08:00:00Z"))),
+        )
+
+        service.create(data, user).incidents.shouldBeEmpty()
     }
 
     "Should return empty report on no input" {

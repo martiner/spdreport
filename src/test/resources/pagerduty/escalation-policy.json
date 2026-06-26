@@ -1,0 +1,25 @@
+{
+  "escalation_policy": {
+    "id": "PQ5P8WD",
+    "type": "escalation_policy",
+    "summary": "Secret Service",
+    "name": "Secret Service",
+    "escalation_rules": [],
+    "services": [
+      {
+        "id": "PIJ90N7",
+        "type": "service_reference",
+        "summary": "My Application Service",
+        "self": "https://api.pagerduty.com/services/PIJ90N7",
+        "html_url": "https://api.pagerduty.com/services/PIJ90N7"
+      },
+      {
+        "id": "PABC123",
+        "type": "service_reference",
+        "summary": "Database Service",
+        "self": "https://api.pagerduty.com/services/PABC123",
+        "html_url": "https://api.pagerduty.com/services/PABC123"
+      }
+    ]
+  }
+}

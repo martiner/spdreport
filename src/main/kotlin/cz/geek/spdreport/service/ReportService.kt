@@ -2,6 +2,9 @@ package cz.geek.spdreport.service
 
 import cz.geek.spdreport.auth.PagerDutyPrincipal
 import cz.geek.spdreport.model.ReportData
+import cz.geek.spdreport.pagerduty.Incident
+import cz.geek.spdreport.pagerduty.OnCall
+import cz.geek.spdreport.pagerduty.OnCalls
 import cz.geek.spdreport.pagerduty.PagerDutyClient
 import mu.KotlinLogging
 import org.springframework.core.io.Resource
@@ -30,13 +33,27 @@ class ReportService(
 
     private fun createPD(data: ReportData, user: PagerDutyPrincipal): Report {
         logger.info { "Creating PD report for ${user.name} $data" }
-        val response = pagerDutyClient.fetchOnCalls(user, data.start, data.end)
-        return response.oncalls
+        val onCalls = pagerDutyClient.fetchOnCalls(user, data.start, data.end)
+        val report = onCalls.oncalls
             .filter { it.start != null && it.end != null }
             .map { LocalDateTimePair(it.start!!.toLocal(), it.end!!.toLocal()) }
-            .let {
-                create(it, data)
-            }
+            .let { create(it, data) }
+        return report.copy(incidents = fetchIncidents(data, user, onCalls))
+    }
+
+    private fun fetchIncidents(data: ReportData, user: PagerDutyPrincipal, onCalls: OnCalls): List<ReportIncident> {
+        val epIds = onCalls.oncalls.mapNotNull { it.escalationPolicy?.id }.toSet()
+        val serviceIds = epIds.flatMap { pagerDutyClient.fetchServiceIds(user, it) }.distinct()
+        if (serviceIds.isEmpty()) {
+            logger.info { "No services for on-call escalation policies $epIds, skipping incidents" }
+            return emptyList()
+        }
+        val fetched = pagerDutyClient.fetchIncidents(user, data.start, data.end, serviceIds)
+        val incidents = fetched
+            .filter { incident -> onCalls.oncalls.any { it.covers(incident) } }
+            .map { ReportIncident(it.number, it.title, it.createdAt.toLocal(), it.resolvedAt?.toLocal()) }
+        logger.info { "Matched ${incidents.size} of ${fetched.size} fetched incidents for ${user.name}" }
+        return incidents
     }
 
     fun createIcal(source: Resource, data: ReportData): Report {
@@ -61,3 +78,10 @@ class ReportService(
 }
 
 data class LocalDateTimePair(val start: LocalDateTime, val end: LocalDateTime)
+
+private fun OnCall.covers(incident: Incident): Boolean {
+    val epId = escalationPolicy?.id ?: return false
+    if (epId != incident.escalationPolicy?.id) return false
+    val created = incident.createdAt
+    return (start == null || !created.isBefore(start)) && (end == null || !created.isAfter(end))
+}

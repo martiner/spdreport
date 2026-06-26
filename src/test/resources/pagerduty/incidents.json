@@ -1,0 +1,40 @@
+{
+  "incidents": [
+    {
+      "id": "PT4KHLK",
+      "type": "incident",
+      "incident_number": 1234,
+      "title": "Database connection pool exhausted",
+      "created_at": "2025-11-12T09:15:00Z",
+      "status": "resolved",
+      "resolved_at": "2025-11-12T10:42:00Z",
+      "escalation_policy": {
+        "id": "PQ5P8WD",
+        "type": "escalation_policy_reference",
+        "summary": "Secret Service",
+        "self": "https://api.pagerduty.com/escalation_policies/PQ5P8WD",
+        "html_url": "https://api.pagerduty.com/escalation_policies/PQ5P8WD"
+      }
+    },
+    {
+      "id": "PT4KHLM",
+      "type": "incident",
+      "incident_number": 1235,
+      "title": "High memory usage",
+      "created_at": "2025-11-13T22:05:00Z",
+      "status": "triggered",
+      "resolved_at": null,
+      "escalation_policy": {
+        "id": "PQ5P8WD",
+        "type": "escalation_policy_reference",
+        "summary": "Secret Service",
+        "self": "https://api.pagerduty.com/escalation_policies/PQ5P8WD",
+        "html_url": "https://api.pagerduty.com/escalation_policies/PQ5P8WD"
+      }
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "more": false,
+  "total": null
+}
