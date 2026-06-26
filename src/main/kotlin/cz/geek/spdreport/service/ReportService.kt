@@ -17,7 +17,7 @@ class ReportService(
     private val pagerDutyClient: PagerDutyClient,
 ) {
 
-    fun create(data: ReportData, principal: PagerDutyPrincipal?): List<Report> {
+    fun create(data: ReportData, principal: PagerDutyPrincipal?): Report {
         if (principal != null) {
             return createPD(data, principal)
         }
@@ -25,10 +25,10 @@ class ReportService(
         if (source != null) {
             return createIcal(source.resource, data)
         }
-        return emptyList()
+        return Report(data.name, data.number, data.country, emptyList())
     }
 
-    private fun createPD(data: ReportData, user: PagerDutyPrincipal): List<Report> {
+    private fun createPD(data: ReportData, user: PagerDutyPrincipal): Report {
         logger.info { "Creating PD report for ${user.name} $data" }
         val response = pagerDutyClient.fetchOnCalls(user, data.start, data.end)
         return response.oncalls
@@ -39,26 +39,24 @@ class ReportService(
             }
     }
 
-    fun createIcal(source: Resource, data: ReportData): List<Report> {
+    fun createIcal(source: Resource, data: ReportData): Report {
         logger.info { "Creating iCal report for $data" }
         return calendarService.load(source, data.start, data.end)
             .map { LocalDateTimePair(it.start(), it.end()) }
             .let { create(it, data) }
     }
 
-    private fun create(list: List<LocalDateTimePair>, data: ReportData): List<Report> {
+    private fun create(list: List<LocalDateTimePair>, data: ReportData): Report {
         val holidays = holidayService.getHolidays(data.country, data.start, data.end)
-        return list.flatMap { DateItemGenerator.generate(it.start, it.end, holidays) }
+        val items = list.flatMap { DateItemGenerator.generate(it.start, it.end, holidays) }
             .map { (day, start, end) ->
-                Report(
+                ReportItem(
                     date = day,
                     start = start,
                     end = end,
-                    name = data.name,
-                    number = data.number,
-                    country = data.country,
                 )
             }
+        return Report(data.name, data.number, data.country, items)
     }
 }
 

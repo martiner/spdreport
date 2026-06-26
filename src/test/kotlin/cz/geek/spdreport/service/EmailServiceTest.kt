@@ -44,12 +44,16 @@ class EmailServiceTest(
     )
 
     val report = Report(
-        date = LocalDate.of(2023, 9, 11),
-        start = LocalTime.of(17, 0),
-        end = LocalTime.of(23, 0),
         name = settings.fullName!!,
         number = settings.number!!,
         country = settings.country!!,
+        items = listOf(
+            ReportItem(
+                date = LocalDate.of(2023, 9, 11),
+                start = LocalTime.of(17, 0),
+                end = LocalTime.of(23, 0),
+            ),
+        ),
     )
 
     beforeTest {
@@ -67,7 +71,7 @@ class EmailServiceTest(
     }
 
     "Should create report for iCal" {
-        every { reportService.create(any(), null) } returns listOf(report)
+        every { reportService.create(any(), null) } returns report
 
         emailService.sendReport("jamesb")
 
@@ -83,7 +87,7 @@ class EmailServiceTest(
 
     "Should create report for PagerDuty" {
         val pdSettings = settings.copy(id = "jamesbpd", url = null)
-        every { reportService.create(any(), match { it.name == "pdprinc" } ) } returns listOf(report)
+        every { reportService.create(any(), match { it.name == "pdprinc" } ) } returns report
         every { repository.loadOrThrow(pdSettings.id) } returns pdSettings
         every { clientRepository.load(pdSettings.id) } returns
                 ObjectifyOAuth2AuthorizedClient(
@@ -104,7 +108,7 @@ class EmailServiceTest(
     }
 
     "Should create empty report" {
-        every { reportService.create(any(), null) } returns listOf()
+        every { reportService.create(any(), null) } returns report.copy(items = emptyList())
 
         emailService.sendReport("jamesb")
 

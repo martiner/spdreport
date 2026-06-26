@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:switch="${not #lists.isEmpty(list)}">
+<div th:switch="${not #lists.isEmpty(report.items)}">
     <div th:case="true" th:replace="~{ _report :: report }"></div>
     <div th:case="false">No data during the period.</div>
 </div>

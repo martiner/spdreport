@@ -65,7 +65,7 @@ class EmailService(
             .let {
                 Context()
                     .apply {
-                        setVariable("list", it)
+                        setVariable("report", it)
                     }
             }
             .let {

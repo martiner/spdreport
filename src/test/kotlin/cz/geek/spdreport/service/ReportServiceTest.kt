@@ -46,16 +46,19 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 9, 1),
             end = LocalDate.of(2023, 9, 30)
         )
-        val list = service.createIcal(ClassPathResource("/schedule.ics"), data)
+        val report = service.createIcal(ClassPathResource("/schedule.ics"), data)
+        assertSoftly(report) {
+            name shouldBe "James"
+            number shouldBe "007"
+            country shouldBe Country.CZ
+        }
+        val list = report.items
         list shouldHaveSize 12
 
         assertSoftly(list[0]) {
             date shouldBe LocalDate.parse("2023-09-18")
             start shouldBe LocalTime.of(17, 0)
             end shouldBe LocalTime.of(0, 0)
-            name shouldBe "James"
-            number shouldBe "007"
-            country shouldBe Country.CZ
         }
         list.subList(1, 9)
             .filterIndexed { index, _ -> index % 2 == 0 }
@@ -63,8 +66,6 @@ class ReportServiceTest : FreeSpec({
                 assertSoftly(it) {
                     start shouldBe LocalTime.of(0, 0)
                     end shouldBe LocalTime.of(9, 0)
-                    name shouldBe "James"
-                    number shouldBe "007"
                 }
             }
         list.subList(1, 9)
@@ -73,30 +74,22 @@ class ReportServiceTest : FreeSpec({
                 assertSoftly(it) {
                     start shouldBe LocalTime.of(17, 0)
                     end shouldBe LocalTime.of(0, 0)
-                    name shouldBe "James"
-                    number shouldBe "007"
                 }
             }
         assertSoftly(list[9]) {
             date shouldBe LocalDate.parse("2023-09-23")
             start shouldBe LocalTime.of(0, 0)
             end shouldBe LocalTime.of(0, 0)
-            name shouldBe "James"
-            number shouldBe "007"
         }
         assertSoftly(list[10]) {
             date shouldBe LocalDate.parse("2023-09-24")
             start shouldBe LocalTime.of(0, 0)
             end shouldBe LocalTime.of(0, 0)
-            name shouldBe "James"
-            number shouldBe "007"
         }
         assertSoftly(list[11]) {
             date shouldBe LocalDate.parse("2023-09-25")
             start shouldBe LocalTime.of(0, 0)
             end shouldBe LocalTime.of(9, 0)
-            name shouldBe "James"
-            number shouldBe "007"
         }
     }
 
@@ -108,25 +101,25 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
         )
-        val list = service.createIcal(ClassPathResource("/jp.ics"), data)
+        val report = service.createIcal(ClassPathResource("/jp.ics"), data)
+        assertSoftly(report) {
+            name shouldBe "James"
+            number shouldBe "007"
+            country shouldBe Country.CZ
+        }
+        val list = report.items
         list shouldHaveSize 9
 
         assertSoftly(list.first()) {
             date shouldBe LocalDate.of(2023, 8, 7)
             start shouldBe LocalTime.of(17, 0)
             end shouldBe LocalTime.of(0, 0)
-            name shouldBe "James"
-            number shouldBe "007"
-            country shouldBe Country.CZ
         }
 
         assertSoftly(list.last()) {
             date shouldBe LocalDate.of(2023, 8, 11)
             start shouldBe LocalTime.of(17, 0)
             end shouldBe LocalTime.of(0, 0)
-            name shouldBe "James"
-            number shouldBe "007"
-            country shouldBe Country.CZ
         }
 
     }
@@ -139,16 +132,19 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 28),
             end = LocalDate.of(2023, 8, 30),
         )
-        val list = service.createIcal(ClassPathResource("/jp.ics"), data)
+        val report = service.createIcal(ClassPathResource("/jp.ics"), data)
+        assertSoftly(report) {
+            name shouldBe "James"
+            number shouldBe "007"
+            country shouldBe Country.CZ
+        }
+        val list = report.items
         list shouldHaveSize 1
 
         assertSoftly(list.first()) {
             date shouldBe LocalDate.of(2023, 8, 29)
             start shouldBe LocalTime.of(18, 30)
             end shouldBe LocalTime.of(19, 0)
-            name shouldBe "James"
-            number shouldBe "007"
-            country shouldBe Country.CZ
         }
     }
 
@@ -166,7 +162,7 @@ class ReportServiceTest : FreeSpec({
             )
             every { holidayService.getHolidays(any(), any(), any()) } returns holidays
 
-            val list = service.createIcal(ClassPathResource("/schedule.ics"), data)
+            val list = service.createIcal(ClassPathResource("/schedule.ics"), data).items
             list shouldHaveAtLeastSize 1
             assertSoftly(list[0]) {
                 date shouldBe data.start
@@ -217,7 +213,7 @@ class ReportServiceTest : FreeSpec({
                 OnCalls(listOf(
                     OnCall(Instant.parse("2023-08-01T10:00:00Z"), Instant.parse("2023-08-02T10:00:00Z")),
                 ))
-        assertSoftly(service.create(data, user)) {
+        assertSoftly(service.create(data, user).items) {
             shouldHaveSize(2)
         }
     }
@@ -230,9 +226,8 @@ class ReportServiceTest : FreeSpec({
             start = LocalDate.of(2023, 8, 1),
             end = LocalDate.of(2023, 8, 20),
         )
-        assertSoftly(service.create(data, null)) {
+        assertSoftly(service.create(data, null).items) {
             shouldBeEmpty()
         }
-
     }
 })

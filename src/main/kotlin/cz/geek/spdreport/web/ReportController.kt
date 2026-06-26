@@ -50,7 +50,7 @@ class ReportController(
             return VIEW
         }
         try {
-            model.addAttribute("list", service.create(reportData, pdPrincipal))
+            model.addAttribute("report", service.create(reportData, pdPrincipal))
         } catch (e: ParserException) {
             errors.rejectValue(reportData, "parser", "Invalid iCal file: $e")
         } catch (e: IOException) {
