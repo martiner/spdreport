@@ -404,7 +404,7 @@
 			<plugin>
 				<groupId>se.vandmo</groupId>
 				<artifactId>dependency-lock-maven-plugin</artifactId>
-				<version>1.2.2</version>
+				<version>1.4.0</version>
 				<executions>
 					<execution>
 						<id>check</id>
